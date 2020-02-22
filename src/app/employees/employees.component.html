@@ -1,0 +1,16 @@
+<table>
+    <tr>
+        <th>id</th>
+        <th>email</th>
+        <th>given Name</th>
+        <th>family Name</th>
+        <th>hourly pay</th>
+    </tr>
+    <tr *ngFor="let employee of employees$ | async">
+        <td>{{employee.id}}</td>
+        <td>{{employee.email}}</td>
+        <td>{{employee.givenName}}</td>
+        <td>{{employee.familyName}}</td>
+        <td>{{employee.hourlyPay}}</td>
+    </tr>
+</table>
