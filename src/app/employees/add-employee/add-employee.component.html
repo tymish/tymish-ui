@@ -1,1 +1,25 @@
-<p>add-employee works!</p>
+<h2>Add employee</h2>
+<button routerLink="/employees">Back to Employees</button>
+<form [formGroup]="form">
+    <label>
+        First Name:
+        <input type="text" formControlName="givenName">
+    </label>
+
+    <label>
+        Last Name:
+        <input type="text" formControlName="familyName">
+    </label>
+
+    <label>
+        Email:
+        <input type="text" formControlName="email">
+    </label>
+
+    <label>
+        Hourly Pay:
+        <input type="text" formControlName="hourlyPay">
+    </label>
+
+    <button type="submit" (click)="postEmployee()">Add Employee</button>
+</form>

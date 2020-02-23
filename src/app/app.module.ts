@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { ApiModule } from './core/api/api.module';
@@ -21,6 +22,7 @@ import { AddEmployeeComponent } from './employees/add-employee/add-employee.comp
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     ApiModule.forRoot({rootUrl: 'http://localhost:5000' })
   ],
   providers: [],
