@@ -27,7 +27,7 @@ export class EmployeesService extends BaseService {
   /**
    * Path part for operation getEmployeeList
    */
-  static readonly GetEmployeeListPath = '/employees';
+  static readonly GetEmployeeListPath = '/employees/list';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -67,6 +67,104 @@ export class EmployeesService extends BaseService {
 
     return this.getEmployeeList$Response(params).pipe(
       map((r: StrictHttpResponse<Array<Employee>>) => r.body as Array<Employee>)
+    );
+  }
+
+  /**
+   * Path part for operation getEmployeeById
+   */
+  static readonly GetEmployeeByIdPath = '/employees/{id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getEmployeeById()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getEmployeeById$Response(params: {
+    id: string;
+
+  }): Observable<StrictHttpResponse<Employee>> {
+
+    const rb = new RequestBuilder(this.rootUrl, EmployeesService.GetEmployeeByIdPath, 'get');
+    if (params) {
+
+      rb.path('id', params.id);
+
+    }
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Employee>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `getEmployeeById$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getEmployeeById(params: {
+    id: string;
+
+  }): Observable<Employee> {
+
+    return this.getEmployeeById$Response(params).pipe(
+      map((r: StrictHttpResponse<Employee>) => r.body as Employee)
+    );
+  }
+
+  /**
+   * Path part for operation getEmployeeByNumber
+   */
+  static readonly GetEmployeeByNumberPath = '/employees/{number}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getEmployeeByNumber()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getEmployeeByNumber$Response(params: {
+    number: number;
+
+  }): Observable<StrictHttpResponse<Employee>> {
+
+    const rb = new RequestBuilder(this.rootUrl, EmployeesService.GetEmployeeByNumberPath, 'get');
+    if (params) {
+
+      rb.path('number', params.number);
+
+    }
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Employee>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `getEmployeeByNumber$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getEmployeeByNumber(params: {
+    number: number;
+
+  }): Observable<Employee> {
+
+    return this.getEmployeeByNumber$Response(params).pipe(
+      map((r: StrictHttpResponse<Employee>) => r.body as Employee)
     );
   }
 
