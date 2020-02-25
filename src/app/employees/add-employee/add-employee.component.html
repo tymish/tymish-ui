@@ -1,25 +1,27 @@
 <h2>Add employee</h2>
 <button routerLink="/employees">Back to Employees</button>
 <form [formGroup]="form">
-    <label>
-        First Name:
-        <input type="text" formControlName="givenName">
-    </label>
+    <div>
+        <label>
+            First Name:
+            <input type="text" formControlName="givenName">
+        </label>
+    </div>
 
-    <label>
-        Last Name:
-        <input type="text" formControlName="familyName">
-    </label>
+    <div><label>
+            Last Name:
+            <input type="text" formControlName="familyName">
+        </label></div>
 
-    <label>
-        Email:
-        <input type="text" formControlName="email">
-    </label>
+    <div><label>
+            Email:
+            <input type="text" formControlName="email">
+        </label></div>
 
-    <label>
-        Hourly Pay:
-        <input type="text" formControlName="hourlyPay">
-    </label>
+    <div><label>
+            Hourly Pay:
+            <input type="text" formControlName="hourlyPay">
+        </label></div>
 
     <button type="submit" (click)="postEmployee()">Add Employee</button>
 </form>

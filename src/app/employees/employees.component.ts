@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeesService } from '../core/api/services';
-import { Employee } from '../core/api/models';
+import { Employee, DeleteEmployeeCommand, UpdateEmployeeCommand } from '../core/api/models';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -15,5 +15,10 @@ export class EmployeesComponent implements OnInit {
 
   ngOnInit(): void {
     this.employees$ = this.service.getEmployeeList();
+  }
+
+  delete(employeeNumber: number): void {
+    const command: DeleteEmployeeCommand = { employeeNumber: employeeNumber };
+    this.service.delete({ body: command }).subscribe();
   }
 }
