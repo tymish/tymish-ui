@@ -3,7 +3,7 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
-import { EmployeeService } from './services/employee.service';
+import { EmployeesService } from './services/employees.service';
 
 /**
  * Module that provides all services and configuration.
@@ -13,7 +13,7 @@ import { EmployeeService } from './services/employee.service';
   exports: [],
   declarations: [],
   providers: [
-    EmployeeService,
+    EmployeesService,
     ApiConfiguration
   ],
 })

@@ -1,9 +1,8 @@
 /* tslint:disable */
-export interface Employee {
+export interface UpdateEmployeeCommand {
   email?: null | string;
   employeeNumber?: number;
   familyName?: null | string;
   givenName?: null | string;
   hourlyPay?: number;
-  id?: string;
 }

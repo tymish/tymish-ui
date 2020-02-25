@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from '../core/api/services';
+import { EmployeesService } from '../core/api/services';
 import { Employee } from '../core/api/models';
 import { Observable } from 'rxjs';
 
@@ -11,9 +11,9 @@ import { Observable } from 'rxjs';
 export class EmployeesComponent implements OnInit {
   public employees$: Observable<Employee[]>;
 
-  constructor(private service: EmployeeService) { }
+  constructor(private service: EmployeesService) { }
 
   ngOnInit(): void {
-    this.employees$ = this.service.employeeGet();
+    this.employees$ = this.service.getEmployeeList();
   }
 }

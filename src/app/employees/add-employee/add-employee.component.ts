@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from 'src/app/core/api/services';
+import { EmployeesService } from 'src/app/core/api/services';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Employee } from 'src/app/core/api/models';
 
@@ -17,7 +17,7 @@ export class AddEmployeeComponent implements OnInit {
     hourlyPay: new FormControl('')
   })
 
-  constructor(private service: EmployeeService) { }
+  constructor(private service: EmployeesService) { }
 
   ngOnInit(): void {
   }
@@ -29,7 +29,7 @@ export class AddEmployeeComponent implements OnInit {
       email: this.form.get('email').value,
       hourlyPay: +this.form.get('hourlyPay').value
     }
-    this.service.employeePost({body: employee}).subscribe();
+    this.service.post({body: employee}).subscribe();
   }
 
 }

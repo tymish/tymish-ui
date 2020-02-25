@@ -1,1 +1,1 @@
-export { EmployeeService } from './services/employee.service';
+export { EmployeesService } from './services/employees.service';
