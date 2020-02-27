@@ -25,9 +25,9 @@ export class ManageEmployeeComponent implements OnInit {
   })
 
   ngOnInit(): void {
-    const employeeNumber$ = this.route.params.pipe(map(p => p.employeeNumber as string));
+    const employeeNumber$ = this.route.params.pipe(map(params => +params.employeeNumber));
     this.employee$ = employeeNumber$.pipe(switchMap(employeeNumber =>
-      this.service.getEmployeeByNumber({ number: +employeeNumber })
+      this.service.getEmployeeByNumber({ number: employeeNumber })
     ), tap(employee => this.form.patchValue(employee)));
   }
 
