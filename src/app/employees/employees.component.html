@@ -1,20 +1,20 @@
-<button routerLink="/employees/add">Add Employee</button>
+<div class="container">
+    <div class="row">
+        <h2>Employees</h2>
+        <button routerLink="/employees/add">Add Employee</button>
+    </div>
 
-<table>
-    <tr>
-        <th>id</th>
-        <th>email</th>
-        <th>given Name</th>
-        <th>family Name</th>
-        <th>hourly pay</th>
-    </tr>
-    <tr *ngFor="let employee of employees$ | async">
-        <td>{{employee.id}}</td>
-        <td>{{employee.email}}</td>
-        <td>{{employee.givenName}}</td>
-        <td>{{employee.familyName}}</td>
-        <td>{{employee.hourlyPay}}</td>
-        <td><button (click)="delete(employee.employeeNumber)">Delete</button></td>
-        <td><button [routerLink]="[employee.employeeNumber, 'manage']">Manage</button></td>
-    </tr>
-</table>
+    <div class="employee-list">
+        <div class="employee-list-employee" *ngFor="let employee of employees$ | async"
+            [routerLink]="[employee.employeeNumber, 'manage']">
+            <img class="head-shot" src="https://via.placeholder.com/75" alt="head shot">
+            <div class="overview">
+                <div class="name">
+                    {{employee.givenName}} {{employee.familyName}}
+                </div>
+                <div class="email">{{employee.email}}</div>
+            </div>
+            <button (click)="delete(employee.employeeNumber)">Delete</button>
+        </div>
+    </div>
+</div>

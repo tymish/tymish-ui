@@ -1,0 +1,42 @@
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 800px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.employee-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.employee-list-employee {
+    display: flex;
+    flex-direction: row;
+    padding: 1em;
+}
+
+.employee-list-employee:hover {
+    background-color: #0c0c0c0c;
+}
+
+.employee-list-employee > .overview {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.employee-list-employee > .overview > .name,
+.employee-list-employee > .overview > .email {
+    padding: .5em;
+    width: 100%;
+}
+
+.employee-list-employee > button {
+    margin-left: auto;
+}
