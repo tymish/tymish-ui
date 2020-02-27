@@ -19,6 +19,6 @@ export class EmployeesComponent implements OnInit {
 
   delete(employeeNumber: number): void {
     const command: DeleteEmployeeCommand = { employeeNumber: employeeNumber };
-    this.service.delete({ body: command }).subscribe();
+    this.service.deleteEmployee({ body: command }).subscribe();
   }
 }

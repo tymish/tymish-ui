@@ -5,11 +5,11 @@ import { Observable } from 'rxjs';
 import { EmployeesService } from 'src/app/core/api/services';
 
 @Component({
-  selector: 'app-update-employee',
-  templateUrl: './update-employee.component.html',
-  styleUrls: ['./update-employee.component.scss']
+  selector: 'app-manage-employee',
+  templateUrl: './manage-employee.component.html',
+  styleUrls: ['./manage-employee.component.scss']
 })
-export class UpdateEmployeeComponent implements OnInit {
+export class ManageEmployeeComponent implements OnInit {
   public employeeNumber$: Observable<number>;
 
   constructor(private route: ActivatedRoute, private service: EmployeesService) { }

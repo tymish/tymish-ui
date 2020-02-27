@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
 import { EmployeesService } from './services/employees.service';
+import { TimeReportsService } from './services/time-reports.service';
 
 /**
  * Module that provides all services and configuration.
@@ -14,6 +15,7 @@ import { EmployeesService } from './services/employees.service';
   declarations: [],
   providers: [
     EmployeesService,
+    TimeReportsService,
     ApiConfiguration
   ],
 })

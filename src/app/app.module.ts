@@ -10,14 +10,14 @@ import { ApiModule } from './core/api/api.module';
 import { AppComponent } from './app.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { AddEmployeeComponent } from './employees/add-employee/add-employee.component';
-import { UpdateEmployeeComponent } from './employees/update-employee/update-employee.component';
+import { ManageEmployeeComponent } from './employees/manage-employee/manage-employee.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeesComponent,
     AddEmployeeComponent,
-    UpdateEmployeeComponent
+    ManageEmployeeComponent
   ],
   imports: [
     CommonModule,

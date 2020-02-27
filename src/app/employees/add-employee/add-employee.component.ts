@@ -29,7 +29,7 @@ export class AddEmployeeComponent implements OnInit {
       email: this.form.get('email').value,
       hourlyPay: +this.form.get('hourlyPay').value
     }
-    this.service.post({body: employee}).subscribe();
+    this.service.createEmployee({body: employee}).subscribe();
   }
 
 }

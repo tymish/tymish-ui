@@ -11,6 +11,7 @@ import { map, filter } from 'rxjs/operators';
 import { CreateEmployeeCommand } from '../models/create-employee-command';
 import { DeleteEmployeeCommand } from '../models/delete-employee-command';
 import { Employee } from '../models/employee';
+import { TimeReport } from '../models/time-report';
 import { UpdateEmployeeCommand } from '../models/update-employee-command';
 
 @Injectable({
@@ -27,7 +28,7 @@ export class EmployeesService extends BaseService {
   /**
    * Path part for operation getEmployeeList
    */
-  static readonly GetEmployeeListPath = '/employees/list';
+  static readonly GetEmployeeListPath = '/employees';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -67,6 +68,147 @@ export class EmployeesService extends BaseService {
 
     return this.getEmployeeList$Response(params).pipe(
       map((r: StrictHttpResponse<Array<Employee>>) => r.body as Array<Employee>)
+    );
+  }
+
+  /**
+   * Path part for operation updateEmployee
+   */
+  static readonly UpdateEmployeePath = '/employees';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `updateEmployee()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  updateEmployee$Response(params?: {
+      body?: UpdateEmployeeCommand
+  }): Observable<StrictHttpResponse<void>> {
+
+    const rb = new RequestBuilder(this.rootUrl, EmployeesService.UpdateEmployeePath, 'put');
+    if (params) {
+
+
+      rb.body(params.body, 'application/*+json');
+    }
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: '*/*'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `updateEmployee$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  updateEmployee(params?: {
+      body?: UpdateEmployeeCommand
+  }): Observable<void> {
+
+    return this.updateEmployee$Response(params).pipe(
+      map((r: StrictHttpResponse<void>) => r.body as void)
+    );
+  }
+
+  /**
+   * Path part for operation createEmployee
+   */
+  static readonly CreateEmployeePath = '/employees';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `createEmployee()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  createEmployee$Response(params?: {
+      body?: CreateEmployeeCommand
+  }): Observable<StrictHttpResponse<Employee>> {
+
+    const rb = new RequestBuilder(this.rootUrl, EmployeesService.CreateEmployeePath, 'post');
+    if (params) {
+
+
+      rb.body(params.body, 'application/*+json');
+    }
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Employee>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `createEmployee$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  createEmployee(params?: {
+      body?: CreateEmployeeCommand
+  }): Observable<Employee> {
+
+    return this.createEmployee$Response(params).pipe(
+      map((r: StrictHttpResponse<Employee>) => r.body as Employee)
+    );
+  }
+
+  /**
+   * Path part for operation deleteEmployee
+   */
+  static readonly DeleteEmployeePath = '/employees';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `deleteEmployee()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  deleteEmployee$Response(params?: {
+      body?: DeleteEmployeeCommand
+  }): Observable<StrictHttpResponse<void>> {
+
+    const rb = new RequestBuilder(this.rootUrl, EmployeesService.DeleteEmployeePath, 'delete');
+    if (params) {
+
+
+      rb.body(params.body, 'application/*+json');
+    }
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: '*/*'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `deleteEmployee$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  deleteEmployee(params?: {
+      body?: DeleteEmployeeCommand
+  }): Observable<void> {
+
+    return this.deleteEmployee$Response(params).pipe(
+      map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
@@ -169,25 +311,26 @@ export class EmployeesService extends BaseService {
   }
 
   /**
-   * Path part for operation put
+   * Path part for operation getTimeReportsForEmployee
    */
-  static readonly PutPath = '/employees';
+  static readonly GetTimeReportsForEmployeePath = '/employees/{number}/time-reports';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `put()` instead.
+   * To access only the response body, use `getTimeReportsForEmployee()` instead.
    *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   * This method doesn't expect any request body.
    */
-  put$Response(params?: {
-      body?: UpdateEmployeeCommand
+  getTimeReportsForEmployee$Response(params: {
+    number: number;
+
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, EmployeesService.PutPath, 'put');
+    const rb = new RequestBuilder(this.rootUrl, EmployeesService.GetTimeReportsForEmployeePath, 'get');
     if (params) {
 
+      rb.path('number', params.number);
 
-      rb.body(params.body, 'application/*+json');
     }
     return this.http.request(rb.build({
       responseType: 'text',
@@ -202,110 +345,115 @@ export class EmployeesService extends BaseService {
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `put$Response()` instead.
+   * To access the full response (for headers, for example), `getTimeReportsForEmployee$Response()` instead.
    *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   * This method doesn't expect any request body.
    */
-  put(params?: {
-      body?: UpdateEmployeeCommand
+  getTimeReportsForEmployee(params: {
+    number: number;
+
   }): Observable<void> {
 
-    return this.put$Response(params).pipe(
+    return this.getTimeReportsForEmployee$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
   /**
-   * Path part for operation post
+   * Path part for operation createTimeReportForEmployee
    */
-  static readonly PostPath = '/employees';
+  static readonly CreateTimeReportForEmployeePath = '/employees/{number}/time-report';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `post()` instead.
+   * To access only the response body, use `createTimeReportForEmployee()` instead.
    *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   * This method doesn't expect any request body.
    */
-  post$Response(params?: {
-      body?: CreateEmployeeCommand
-  }): Observable<StrictHttpResponse<void>> {
+  createTimeReportForEmployee$Response(params: {
+    number: number;
 
-    const rb = new RequestBuilder(this.rootUrl, EmployeesService.PostPath, 'post');
+  }): Observable<StrictHttpResponse<TimeReport>> {
+
+    const rb = new RequestBuilder(this.rootUrl, EmployeesService.CreateTimeReportForEmployeePath, 'post');
     if (params) {
 
+      rb.path('number', params.number);
 
-      rb.body(params.body, 'application/*+json');
     }
     return this.http.request(rb.build({
-      responseType: 'text',
-      accept: '*/*'
+      responseType: 'json',
+      accept: 'application/json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<TimeReport>;
       })
     );
   }
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `post$Response()` instead.
+   * To access the full response (for headers, for example), `createTimeReportForEmployee$Response()` instead.
    *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   * This method doesn't expect any request body.
    */
-  post(params?: {
-      body?: CreateEmployeeCommand
-  }): Observable<void> {
+  createTimeReportForEmployee(params: {
+    number: number;
 
-    return this.post$Response(params).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+  }): Observable<TimeReport> {
+
+    return this.createTimeReportForEmployee$Response(params).pipe(
+      map((r: StrictHttpResponse<TimeReport>) => r.body as TimeReport)
     );
   }
 
   /**
-   * Path part for operation delete
+   * Path part for operation issueTimeReportForEmployee
    */
-  static readonly DeletePath = '/employees';
+  static readonly IssueTimeReportForEmployeePath = '/employees/{number}/time-report/issued';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `delete()` instead.
+   * To access only the response body, use `issueTimeReportForEmployee()` instead.
    *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   * This method doesn't expect any request body.
    */
-  delete$Response(params?: {
-      body?: DeleteEmployeeCommand
-  }): Observable<StrictHttpResponse<void>> {
+  issueTimeReportForEmployee$Response(params: {
+    number: number;
 
-    const rb = new RequestBuilder(this.rootUrl, EmployeesService.DeletePath, 'delete');
+  }): Observable<StrictHttpResponse<TimeReport>> {
+
+    const rb = new RequestBuilder(this.rootUrl, EmployeesService.IssueTimeReportForEmployeePath, 'put');
     if (params) {
 
+      rb.path('number', params.number);
 
-      rb.body(params.body, 'application/*+json');
     }
     return this.http.request(rb.build({
-      responseType: 'text',
-      accept: '*/*'
+      responseType: 'json',
+      accept: 'application/json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<TimeReport>;
       })
     );
   }
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `delete$Response()` instead.
+   * To access the full response (for headers, for example), `issueTimeReportForEmployee$Response()` instead.
    *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   * This method doesn't expect any request body.
    */
-  delete(params?: {
-      body?: DeleteEmployeeCommand
-  }): Observable<void> {
+  issueTimeReportForEmployee(params: {
+    number: number;
 
-    return this.delete$Response(params).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+  }): Observable<TimeReport> {
+
+    return this.issueTimeReportForEmployee$Response(params).pipe(
+      map((r: StrictHttpResponse<TimeReport>) => r.body as TimeReport)
     );
   }
 
