@@ -15,6 +15,6 @@
         <td>{{employee.familyName}}</td>
         <td>{{employee.hourlyPay}}</td>
         <td><button (click)="delete(employee.employeeNumber)">Delete</button></td>
-        <td><button [routerLink]="['update', employee.employeeNumber]">Update</button></td>
+        <td><button [routerLink]="[employee.employeeNumber, 'manage']">Manage</button></td>
     </tr>
 </table>

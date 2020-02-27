@@ -9,7 +9,9 @@ const routes: Routes = [
   { path: "", redirectTo: "/employees", pathMatch: "full" },
   { path: "employees", component: EmployeesComponent },
   { path: "employees/add", component: AddEmployeeComponent },
-  { path: "employees/update/:employeeNumber", component: ManageEmployeeComponent }
+  { path: "employees/:employeeNumber/manage", component: ManageEmployeeComponent },
+  // Future use this to select tab in the <employee-shelf>
+  { path: "employees/:employeeNumber/time-sheets", redirectTo: "employees/:employeeNumber"}
 ];
 
 @NgModule({
