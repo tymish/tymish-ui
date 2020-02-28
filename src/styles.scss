@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+
+$primary-color: #000294;
+
+
+$btn-bg-color: #dddddd;
+$btn-height: 2.75em;
+
+a.btn,
+button.btn {
+    display: inline-block;
+    height: $btn-height;
+    border: 0;
+    border-radius: 4px;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    text-decoration: none;
+    
+    box-sizing: border-box;
+    line-height: $btn-height;
+}
+
+a.btn:hover,
+button.btn:hover {
+    background-color: darken($btn-bg-color, .7);
+}
+
+a.btn.btn-primary,
+button.btn.btn-primary {
+    background-color: $primary-color;
+    color: white;
+    font-weight: 500;
+}
