@@ -22,7 +22,7 @@ export class ManageEmployeeComponent implements OnInit {
     familyName: new FormControl(''),
     email: new FormControl(''),
     hourlyPay: new FormControl('')
-  })
+  });
 
   ngOnInit(): void {
     const employeeNumber$ = this.route.params.pipe(map(params => +params.employeeNumber));
@@ -33,12 +33,12 @@ export class ManageEmployeeComponent implements OnInit {
 
   updateEmployee(employeeNumber: number): void {
     const updateEmployeeCommand: UpdateEmployeeCommand = {
-      employeeNumber: employeeNumber,
+      employeeNumber,
       givenName: this.form.get('givenName').value,
       familyName: this.form.get('familyName').value,
       email: this.form.get('email').value,
       hourlyPay: +this.form.get('hourlyPay').value
-    }
+    };
     this.service.updateEmployee({ body: updateEmployeeCommand }).subscribe();
   }
 }

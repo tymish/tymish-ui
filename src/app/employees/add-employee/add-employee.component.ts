@@ -15,7 +15,7 @@ export class AddEmployeeComponent implements OnInit {
     familyName: new FormControl(''),
     email: new FormControl(''),
     hourlyPay: new FormControl('')
-  })
+  });
 
   constructor(private service: EmployeesService) { }
 
@@ -28,7 +28,7 @@ export class AddEmployeeComponent implements OnInit {
       familyName: this.form.get('familyName').value,
       email: this.form.get('email').value,
       hourlyPay: +this.form.get('hourlyPay').value
-    }
+    };
     this.service.createEmployee({body: employee}).subscribe();
   }
 

@@ -6,12 +6,12 @@ import { ManageEmployeeComponent } from './employees/manage-employee/manage-empl
 
 
 const routes: Routes = [
-  { path: "", redirectTo: "/employees", pathMatch: "full" },
-  { path: "employees", component: EmployeesComponent },
-  { path: "employees/add", component: AddEmployeeComponent },
-  { path: "employees/:employeeNumber/manage", component: ManageEmployeeComponent },
+  { path: '', redirectTo: '/employees', pathMatch: 'full' },
+  { path: 'employees', component: EmployeesComponent },
+  { path: 'employees/add', component: AddEmployeeComponent },
+  { path: 'employees/:employeeNumber/manage', component: ManageEmployeeComponent },
   // Future use this to select tab in the <employee-shelf>
-  { path: "employees/:employeeNumber/time-sheets", redirectTo: "employees/:employeeNumber"}
+  { path: 'employees/:employeeNumber/time-sheets', redirectTo: 'employees/:employeeNumber'}
 ];
 
 @NgModule({
