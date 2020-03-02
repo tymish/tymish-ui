@@ -3,6 +3,7 @@ import { Employee } from './employee';
 import { TimeEntry } from './time-entry';
 export interface TimeReport {
   employee?: null | Employee;
+  employeeId?: string;
   id?: string;
   issued?: string;
   paid?: string;

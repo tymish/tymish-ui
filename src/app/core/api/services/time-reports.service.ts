@@ -11,6 +11,7 @@ import { map, filter } from 'rxjs/operators';
 import { CreateTimeReportsCommand } from '../models/create-time-reports-command';
 import { IssueTimeReportsCommand } from '../models/issue-time-reports-command';
 import { TimeReport } from '../models/time-report';
+import { TimeReportSummary } from '../models/time-report-summary';
 
 @Injectable({
   providedIn: 'root',
@@ -69,6 +70,110 @@ export class TimeReportsService extends BaseService {
 
     return this.getTimeReportById$Response(params).pipe(
       map((r: StrictHttpResponse<TimeReport>) => r.body as TimeReport)
+    );
+  }
+
+  /**
+   * Path part for operation getTimeReportsByIssuedMonth
+   */
+  static readonly GetTimeReportsByIssuedMonthPath = '/time-reports';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getTimeReportsByIssuedMonth()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getTimeReportsByIssuedMonth$Response(params?: {
+    month?: number;
+    year?: number;
+
+  }): Observable<StrictHttpResponse<Array<TimeReport>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, TimeReportsService.GetTimeReportsByIssuedMonthPath, 'get');
+    if (params) {
+
+      rb.query('month', params.month);
+      rb.query('year', params.year);
+
+    }
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<TimeReport>>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `getTimeReportsByIssuedMonth$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getTimeReportsByIssuedMonth(params?: {
+    month?: number;
+    year?: number;
+
+  }): Observable<Array<TimeReport>> {
+
+    return this.getTimeReportsByIssuedMonth$Response(params).pipe(
+      map((r: StrictHttpResponse<Array<TimeReport>>) => r.body as Array<TimeReport>)
+    );
+  }
+
+  /**
+   * Path part for operation getSummary
+   */
+  static readonly GetSummaryPath = '/time-reports/summary';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getSummary()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getSummary$Response(params?: {
+    month?: number;
+    year?: number;
+
+  }): Observable<StrictHttpResponse<TimeReportSummary>> {
+
+    const rb = new RequestBuilder(this.rootUrl, TimeReportsService.GetSummaryPath, 'get');
+    if (params) {
+
+      rb.query('month', params.month);
+      rb.query('year', params.year);
+
+    }
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<TimeReportSummary>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `getSummary$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getSummary(params?: {
+    month?: number;
+    year?: number;
+
+  }): Observable<TimeReportSummary> {
+
+    return this.getSummary$Response(params).pipe(
+      map((r: StrictHttpResponse<TimeReportSummary>) => r.body as TimeReportSummary)
     );
   }
 

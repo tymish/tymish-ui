@@ -11,13 +11,17 @@ import { AppComponent } from './app.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { AddEmployeeComponent } from './employees/add-employee/add-employee.component';
 import { ManageEmployeeComponent } from './employees/manage-employee/manage-employee.component';
+import { TimeReportsComponent } from './time-reports/time-reports.component';
+import { MonthSummaryComponent } from './time-reports/month-summary/month-summary.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeesComponent,
     AddEmployeeComponent,
-    ManageEmployeeComponent
+    ManageEmployeeComponent,
+    TimeReportsComponent,
+    MonthSummaryComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +29,7 @@ import { ManageEmployeeComponent } from './employees/manage-employee/manage-empl
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ApiModule.forRoot({rootUrl: 'http://localhost:5000' })
+    ApiModule.forRoot({rootUrl: 'https://localhost:5001' })
   ],
   providers: [],
   bootstrap: [AppComponent]

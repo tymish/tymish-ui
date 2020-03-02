@@ -1,0 +1,15 @@
+<div>
+    <div *ngIf="" class="" id="current-month">
+        <h2>March</h2>
+        <p>There are no time reports for this month yet.</p>
+        <button>Send reports for March</button>
+    </div>
+    <div class="monthly-time-reports">
+        <div *ngFor="let month of previousMonthsReports$ | async">
+            {{formatMonth(month.issuedMonth)}} Issued: {{month.reportsIssuedCount}}, Submitted: {{month.reportsSubmittedCount}}, Paid: {{month.reportsPaidCount}} | {{month.amountOwing}}
+        </div>
+    </div>
+</div>
+<div>
+
+</div>
