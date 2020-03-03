@@ -37,6 +37,6 @@ export class TimeReportsComponent implements OnInit {
   }
 
   formatMonth(month: number) {
-    return moment.months(month);
+    return moment().month(month).format('MMM');
   }
 }

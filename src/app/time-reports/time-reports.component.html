@@ -6,7 +6,7 @@
     </div>
     <div class="monthly-time-reports">
         <div *ngFor="let month of previousMonthsReports$ | async">
-            <div [routerLink]="[month.issuedYear, month.issuedMonth, 'summary']">
+            <div [routerLink]="[month.issuedYear, formatMonth(month.issuedMonth).toLowerCase(), 'summary']">
                 {{formatMonth(month.issuedMonth)}} Issued: {{month.reportsIssuedCount}}, Submitted: {{month.reportsSubmittedCount}}, Paid: {{month.reportsPaidCount}} | {{month.amountOwing}}
             </div>
         </div>
