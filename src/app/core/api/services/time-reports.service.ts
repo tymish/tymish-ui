@@ -9,9 +9,10 @@ import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
 import { CreateTimeReportsCommand } from '../models/create-time-reports-command';
+import { EmployeeTimeReportAggregateDto } from '../models/employee-time-report-aggregate-dto';
 import { IssueTimeReportsCommand } from '../models/issue-time-reports-command';
+import { MonthlyAggregateDto } from '../models/monthly-aggregate-dto';
 import { TimeReport } from '../models/time-report';
-import { TimeReportSummary } from '../models/time-report-summary';
 
 @Injectable({
   providedIn: 'root',
@@ -74,27 +75,25 @@ export class TimeReportsService extends BaseService {
   }
 
   /**
-   * Path part for operation getTimeReportsByIssuedMonth
+   * Path part for operation getEmployeeTimeReportAggregates
    */
-  static readonly GetTimeReportsByIssuedMonthPath = '/time-reports';
+  static readonly GetEmployeeTimeReportAggregatesPath = '/time-reports';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getTimeReportsByIssuedMonth()` instead.
+   * To access only the response body, use `getEmployeeTimeReportAggregates()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getTimeReportsByIssuedMonth$Response(params?: {
-    month?: number;
-    year?: number;
+  getEmployeeTimeReportAggregates$Response(params?: {
+    month?: string;
 
-  }): Observable<StrictHttpResponse<Array<TimeReport>>> {
+  }): Observable<StrictHttpResponse<Array<EmployeeTimeReportAggregateDto>>> {
 
-    const rb = new RequestBuilder(this.rootUrl, TimeReportsService.GetTimeReportsByIssuedMonthPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, TimeReportsService.GetEmployeeTimeReportAggregatesPath, 'get');
     if (params) {
 
       rb.query('month', params.month);
-      rb.query('year', params.year);
 
     }
     return this.http.request(rb.build({
@@ -103,50 +102,47 @@ export class TimeReportsService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<TimeReport>>;
+        return r as StrictHttpResponse<Array<EmployeeTimeReportAggregateDto>>;
       })
     );
   }
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `getTimeReportsByIssuedMonth$Response()` instead.
+   * To access the full response (for headers, for example), `getEmployeeTimeReportAggregates$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getTimeReportsByIssuedMonth(params?: {
-    month?: number;
-    year?: number;
+  getEmployeeTimeReportAggregates(params?: {
+    month?: string;
 
-  }): Observable<Array<TimeReport>> {
+  }): Observable<Array<EmployeeTimeReportAggregateDto>> {
 
-    return this.getTimeReportsByIssuedMonth$Response(params).pipe(
-      map((r: StrictHttpResponse<Array<TimeReport>>) => r.body as Array<TimeReport>)
+    return this.getEmployeeTimeReportAggregates$Response(params).pipe(
+      map((r: StrictHttpResponse<Array<EmployeeTimeReportAggregateDto>>) => r.body as Array<EmployeeTimeReportAggregateDto>)
     );
   }
 
   /**
-   * Path part for operation getSummary
+   * Path part for operation getMonthAggregate
    */
-  static readonly GetSummaryPath = '/time-reports/summary';
+  static readonly GetMonthAggregatePath = '/time-reports/summary';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getSummary()` instead.
+   * To access only the response body, use `getMonthAggregate()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getSummary$Response(params?: {
-    month?: number;
-    year?: number;
+  getMonthAggregate$Response(params?: {
+    month?: string;
 
-  }): Observable<StrictHttpResponse<TimeReportSummary>> {
+  }): Observable<StrictHttpResponse<MonthlyAggregateDto>> {
 
-    const rb = new RequestBuilder(this.rootUrl, TimeReportsService.GetSummaryPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, TimeReportsService.GetMonthAggregatePath, 'get');
     if (params) {
 
       rb.query('month', params.month);
-      rb.query('year', params.year);
 
     }
     return this.http.request(rb.build({
@@ -155,25 +151,24 @@ export class TimeReportsService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<TimeReportSummary>;
+        return r as StrictHttpResponse<MonthlyAggregateDto>;
       })
     );
   }
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `getSummary$Response()` instead.
+   * To access the full response (for headers, for example), `getMonthAggregate$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getSummary(params?: {
-    month?: number;
-    year?: number;
+  getMonthAggregate(params?: {
+    month?: string;
 
-  }): Observable<TimeReportSummary> {
+  }): Observable<MonthlyAggregateDto> {
 
-    return this.getSummary$Response(params).pipe(
-      map((r: StrictHttpResponse<TimeReportSummary>) => r.body as TimeReportSummary)
+    return this.getMonthAggregate$Response(params).pipe(
+      map((r: StrictHttpResponse<MonthlyAggregateDto>) => r.body as MonthlyAggregateDto)
     );
   }
 

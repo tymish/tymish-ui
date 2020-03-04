@@ -1,9 +1,8 @@
 /* tslint:disable */
-export interface TimeReportSummary {
+export interface MonthlyAggregateDto {
   amountOwing?: number;
   amountPaid?: number;
-  issuedMonth?: number;
-  issuedYear?: number;
+  issued?: string;
   reportsIssuedCount?: number;
   reportsPaidCount?: number;
   reportsSubmittedCount?: number;
