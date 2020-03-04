@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TimeReportsService } from '../core/api/services';
-import { TimeReportSummary } from '../core/api/models';
+import { MonthlyAggregateDto } from '../core/api/models';
 import * as moment from 'moment';
 import { Observable, forkJoin } from 'rxjs';
 
@@ -10,8 +10,8 @@ import { Observable, forkJoin } from 'rxjs';
   styleUrls: ['./time-reports.component.scss']
 })
 export class TimeReportsComponent implements OnInit {
-  public thisMonthSummary$: Observable<TimeReportSummary>;
-  public previousMonthsReports$: Observable<TimeReportSummary[]>;
+  public thisMonthSummary$: Observable<MonthlyAggregateDto>;
+  public previousMonthsReports$: Observable<MonthlyAggregateDto[]>;
 
   constructor(private service: TimeReportsService) { }
 
@@ -21,7 +21,7 @@ export class TimeReportsComponent implements OnInit {
   }
 
   getPreviousMonthsTimeReports(monthsToFetch: number)  {
-    let timeReportArrays = [] as Observable<TimeReportSummary>[];
+    let timeReportArrays = [] as Observable<MonthlyAggregateDto>[];
     for (let i = 1; i <= monthsToFetch; i++) {
       const lastMonth = moment().subtract('months', i).toDate();
       timeReportArrays.push(this.getTimeReportSummary(lastMonth))
@@ -30,13 +30,12 @@ export class TimeReportsComponent implements OnInit {
   }
 
   getTimeReportSummary(date: Date) {
-    return this.service.getSummary({
-      month: date.getMonth(),
-      year: date.getFullYear()
+    return this.service.getMonthAggregate({
+      month: date.toLocaleDateString()
     });
   }
 
-  formatMonth(month: number) {
-    return moment().month(month).format('MMM');
+  getDate(date: string): moment.Moment {
+    return moment(date);
   }
 }

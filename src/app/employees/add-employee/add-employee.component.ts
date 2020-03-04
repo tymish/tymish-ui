@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeesService } from 'src/app/core/api/services';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Employee } from 'src/app/core/api/models';
+import { CreateEmployeeCommand } from 'src/app/core/api/models';
 
 @Component({
   selector: 'app-add-employee',
@@ -23,7 +23,7 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   postEmployee(): void {
-    const employee: Employee = {
+    const employee: CreateEmployeeCommand = {
       givenName: this.form.get('givenName').value,
       familyName: this.form.get('familyName').value,
       email: this.form.get('email').value,

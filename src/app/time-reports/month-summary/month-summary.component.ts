@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TimeReportsService } from 'src/app/core/api/services';
 import * as moment from 'moment';
+import { Observable } from 'rxjs';
+import { EmployeeTimeReportAggregateDto } from 'src/app/core/api/models';
 
 @Component({
   selector: 'app-month-summary',
@@ -11,6 +13,7 @@ import * as moment from 'moment';
 export class MonthSummaryComponent implements OnInit {
   public year: number;
   public month: string;
+  public aggregates$: Observable<EmployeeTimeReportAggregateDto[]>;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,9 +24,12 @@ export class MonthSummaryComponent implements OnInit {
     this.year = +snapshot.params['year'];
     this.month = snapshot.params['month'];
 
-    const monthNumber = +moment().month(this.month).format('M');
-    this.service.getTimeReportsByIssuedMonth({
-      month: monthNumber, year: this.year
-    }).subscribe(res => console.log(res));
+    this.aggregates$ = this.service.getEmployeeTimeReportAggregates({
+      month: this.toDateString(this.year, this.month)
+    });
+  }
+
+  toDateString(year: number, month: string) {
+    return moment(`${year}-${month}`, 'YYYY-MM').toISOString();
   }
 }

@@ -1,1 +1,8 @@
 <h2>{{year}} {{month}}</h2>
+
+<div *ngFor="let a of aggregates$ | async">
+    {{a.employee.givenName}} {{a.employee.familyName}} {{a.employee.timeReports}}
+</div>
+
+
+
