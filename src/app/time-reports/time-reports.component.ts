@@ -38,4 +38,8 @@ export class TimeReportsComponent implements OnInit {
   getDate(date: string): moment.Moment {
     return moment(date);
   }
+
+  requestTimeReports(date: string) {
+    this.service.issueTimeReports({body: {issued: date}}).subscribe();
+  }
 }

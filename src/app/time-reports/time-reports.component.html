@@ -1,8 +1,8 @@
 <div>
-    <div *ngIf="" class="" id="current-month">
-        <h2>March</h2>
+    <div *ngIf="thisMonthSummary$ | async as thisMonth" class="" id="current-month">
+        <h2>{{getDate(thisMonth.issued).toLocaleString()}}</h2>
         <p>There are no time reports for this month yet.</p>
-        <button>Send reports for March</button>
+        <button (click)="requestTimeReports(thisMonth.issued)">Send reports for March</button>
     </div>
     <div class="monthly-time-reports">
         <div *ngFor="let month of previousMonthsReports$ | async">
