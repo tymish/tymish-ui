@@ -1,22 +1,16 @@
 <div class="container">
-    <div class="row">
-        <h2>Employees</h2>
-        <a routerLink="/employees/add" class="btn btn-primary">Add Employee</a>
-    </div>
+  <div class="row">
+    <h2>Employees</h2>
+    <a routerLink="/employees/add" mat-raised-button color="primary">Add Employee</a>
+  </div>
 
-    <div class="employee-list d-flex col">
-        <div class="employee-list-employee d-flex row" *ngFor="let employee of employees$ | async">
-            <div [routerLink]="[employee.employeeNumber, 'manage']"
-             class="d-flex row p-1">
-                <img class="head-shot" src="https://via.placeholder.com/75" alt="head shot">
-                <div class="overview">
-                    <div class="name">
-                        {{employee.givenName}} {{employee.familyName}}
-                    </div>
-                    <div class="email">{{employee.email}}</div>
-                </div>
-            </div>
-            <button (click)="delete(employee.employeeNumber)" class="btn">Delete</button>
-        </div>
-    </div>
+  <div class="employee-list d-flex col">
+    <mat-list>
+      <mat-list-item *ngFor="let employee of employees$ | async" [routerLink]="[employee.employeeNumber, 'manage']">
+        <img mat-list-icon class="head-shot" src="https://via.placeholder.com/75" alt="head shot">
+        <h4 mat-line>{{employee.givenName}} {{employee.familyName}}</h4>
+        <p mat-line>{{employee.email}}</p>
+      </mat-list-item>
+    </mat-list>
+  </div>
 </div>

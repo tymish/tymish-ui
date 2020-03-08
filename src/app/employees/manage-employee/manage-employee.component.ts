@@ -4,7 +4,7 @@ import { map, switchMap, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { EmployeesService } from 'src/app/core/api/services';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Employee, UpdateEmployeeCommand } from 'src/app/core/api/models';
+import { Employee, UpdateEmployeeCommand, DeleteEmployeeCommand } from 'src/app/core/api/models';
 
 @Component({
   selector: 'app-manage-employee',
@@ -40,5 +40,10 @@ export class ManageEmployeeComponent implements OnInit {
       hourlyPay: +this.form.get('hourlyPay').value
     };
     this.service.updateEmployee({ body: updateEmployeeCommand }).subscribe();
+  }
+
+  delete(employeeNumber: number): void {
+    const command: DeleteEmployeeCommand = { employeeNumber };
+    this.service.deleteEmployee({ body: command }).subscribe();
   }
 }

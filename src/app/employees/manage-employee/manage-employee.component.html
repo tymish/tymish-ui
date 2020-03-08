@@ -1,6 +1,7 @@
 <div *ngIf="employee$ | async as employee">
     <h2>Employee {{employee.employeeNumber}}</h2>
-    <button routerLink="/employees">Back to Employees</button>
+    <a mat-button routerLink="/employees">Back to Employees</a>
+    <button mat-button (click)="delete(employee.employeeNumber)">Delete</button>
     <form [formGroup]="form">
         <div>
             <label>
@@ -8,22 +9,23 @@
                 <input type="text" formControlName="givenName">
             </label>
         </div>
-    
+
         <div><label>
                 Last Name:
                 <input type="text" formControlName="familyName">
             </label></div>
-    
+
         <div><label>
                 Email:
                 <input type="text" formControlName="email">
             </label></div>
-    
+
         <div><label>
                 Hourly Pay:
                 <input type="text" formControlName="hourlyPay">
             </label></div>
-    
-        <button type="submit" (click)="updateEmployee(employee.employeeNumber)">Save</button>
+
+        <button (click)="updateEmployee(employee.employeeNumber)" type="submit" mat-raised-button
+            color="primary">Save</button>
     </form>
 </div>
