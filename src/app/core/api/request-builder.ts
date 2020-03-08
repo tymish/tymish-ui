@@ -137,7 +137,7 @@ export class RequestBuilder {
   /**
    * Builds the request with the current set parameters
    */
-  build<T=any>(options?: {
+  build<T = any>(options?: {
     /** Which content types to accept */
     accept?: string;
 

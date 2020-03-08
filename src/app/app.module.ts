@@ -29,7 +29,7 @@ import { MonthSummaryComponent } from './time-reports/month-summary/month-summar
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ApiModule.forRoot({rootUrl: 'https://localhost:5001' })
+    ApiModule.forRoot({ rootUrl: 'https://localhost:5001' })
   ],
   providers: [],
   bootstrap: [AppComponent]

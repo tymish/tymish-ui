@@ -13,9 +13,9 @@ const routes: Routes = [
   { path: 'employees/add', component: AddEmployeeComponent },
   { path: 'employees/:employeeNumber/manage', component: ManageEmployeeComponent },
   // Future use this to select tab in the <employee-shelf>
-  { path: 'employees/:employeeNumber/time-sheets', redirectTo: 'employees/:employeeNumber'},
+  { path: 'employees/:employeeNumber/time-sheets', redirectTo: 'employees/:employeeNumber' },
   { path: 'time-reports', component: TimeReportsComponent },
-  { path: 'time-reports/:year/:month/summary', component: MonthSummaryComponent}
+  { path: 'time-reports/:year/:month/summary', component: MonthSummaryComponent }
 ];
 
 @NgModule({

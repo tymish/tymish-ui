@@ -21,8 +21,8 @@ export class MonthSummaryComponent implements OnInit {
 
   ngOnInit(): void {
     const snapshot = this.route.snapshot;
-    this.year = +snapshot.params['year'];
-    this.month = snapshot.params['month'];
+    this.year = +snapshot.params.year;
+    this.month = snapshot.params.month;
 
     this.aggregates$ = this.service.getEmployeeTimeReportAggregates({
       month: this.toDateString(this.year, this.month)

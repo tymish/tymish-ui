@@ -20,10 +20,10 @@ export class TimeReportsComponent implements OnInit {
     this.previousMonthsReports$ = this.getPreviousMonthsTimeReports(3);
   }
 
-  getPreviousMonthsTimeReports(monthsToFetch: number)  {
-    let timeReportArrays = [] as Observable<MonthlyAggregateDto>[];
+  getPreviousMonthsTimeReports(monthsToFetch: number) {
+    const timeReportArrays = [] as Observable<MonthlyAggregateDto>[];
     for (let i = 1; i <= monthsToFetch; i++) {
-      const lastMonth = moment().subtract('months', i).toDate();
+      const lastMonth = moment().subtract(i, 'months').toDate();
       timeReportArrays.push(this.getTimeReportSummary(lastMonth))
     }
     return forkJoin(timeReportArrays);
@@ -40,6 +40,6 @@ export class TimeReportsComponent implements OnInit {
   }
 
   requestTimeReports(date: string) {
-    this.service.issueTimeReports({body: {issued: date}}).subscribe();
+    this.service.issueTimeReports({ body: { issued: date } }).subscribe();
   }
 }
