@@ -30,3 +30,14 @@ $tymish-ui-theme: mat-light-theme($tymish-ui-primary, $tymish-ui-accent, $tymish
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+mat-card {
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    max-width: 600px;
+    width: 100%;
+}

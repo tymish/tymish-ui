@@ -42,4 +42,8 @@ export class TimeReportsComponent implements OnInit {
   requestTimeReports(date: string) {
     this.service.issueTimeReports({ body: { issued: date } }).subscribe();
   }
+
+  displayMonthYear(date: string) {
+    return moment(date).format('MMMM');
+  }
 }

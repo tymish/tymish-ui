@@ -1,8 +1,8 @@
-<div class="container">
-  <div class="row">
-    <h2>Employees</h2>
-    <a routerLink="/employees/add" mat-raised-button color="primary">Add Employee</a>
-  </div>
+<mat-card>
+  <mat-card-header class="space-between">
+    <h2 mat-card-title>Employees</h2>
+    <a routerLink="/employees/add" mat-raised-button color="primary" class="mt-auto mb-auto">Add Employee</a>
+  </mat-card-header>
 
   <div class="employee-list d-flex col">
     <mat-list>
@@ -13,4 +13,4 @@
       </mat-list-item>
     </mat-list>
   </div>
-</div>
+</mat-card>

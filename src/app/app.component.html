@@ -1,7 +1,20 @@
-<h1>Time Sheet app</h1>
-<nav>
-    <a routerLink="time-reports">Time Reports</a>
-    <a routerLink="employees">Employees</a>
-</nav>
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="sidenav.toggle()">Nav</button>
+  <mat-icon></mat-icon>
+  <h1>Tymish</h1>
+</mat-toolbar>
 
-<router-outlet></router-outlet>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side" role="navigation">
+    <mat-nav-list>
+      <a mat-list-item routerLink="time-reports">Time Reports</a>
+      <a mat-list-item routerLink="employees">Employees</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <!-- Main Content -->
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

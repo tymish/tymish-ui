@@ -1,27 +1,33 @@
 <div>
-    <div *ngIf="thisMonthSummary$ | async as thisMonth" class="current-month" id="current-month">
+    <div class="current-month" id="current-month">
+
+    </div>
+
+    <mat-card *ngIf="thisMonthSummary$ | async as thisMonth">
         <div *ngIf="thisMonth.issued.length > 0">
-            <h2>{{getDate(thisMonth.issued).toLocaleString()}}</h2>
+            <h2 mat-card-title>{{displayMonthYear(thisMonth.issued)}}</h2>
             <div [routerLink]="[getDate(thisMonth.issued).year(), getDate(thisMonth.issued).format('MM'), 'summary']">
-                {{getDate(thisMonth.issued).toLocaleString()}} Issued: {{thisMonth.reportsIssuedCount}}, Submitted:
-                {{thisMonth.reportsSubmittedCount}}, Paid: {{thisMonth.reportsPaidCount}} | {{thisMonth.amountOwing}}
+                Issued: {{thisMonth.reportsIssuedCount}}, Submitted:
+                {{thisMonth.reportsSubmittedCount}}, Paid: {{thisMonth.reportsPaidCount}} | ${{thisMonth.amountOwing}}
             </div>
         </div>
         <div *ngIf="thisMonth.issued.length === 0" #requestTimeReports>
             <p>There are no time reports for this month yet.</p>
             <button (click)="requestTimeReports(thisMonth.issued)">Send reports for March</button>
         </div>
-    </div>
+    </mat-card>
 
-    <div class="monthly-time-reports">
-        <div *ngFor="let month of previousMonthsReports$ | async">
-            <div [routerLink]="[getDate(month.issued).year(), getDate(month.issued).format('MM'), 'summary']">
-                {{getDate(month.issued).toLocaleString()}} Issued: {{month.reportsIssuedCount}}, Submitted:
-                {{month.reportsSubmittedCount}}, Paid: {{month.reportsPaidCount}} | {{month.amountOwing}}
-            </div>
-        </div>
-    </div>
-</div>
-<div>
-
+    <mat-card>
+        <mat-list>
+            <mat-list-item *ngFor="let month of previousMonthsReports$ | async"
+                [routerLink]="[getDate(month.issued).year(), getDate(month.issued).format('MM'), 'summary']">
+                <span>{{displayMonthYear(month.issued)}}</span>
+                <span>Issued: {{month.reportsIssuedCount}}</span>
+                <span>Submitted: {{month.reportsSubmittedCount}}</span>
+                <span>Paid: {{month.reportsPaidCount}}</span>
+                |
+                <span>${{month.amountOwing}}</span>
+            </mat-list-item>
+        </mat-list>
+    </mat-card>
 </div>
