@@ -5,20 +5,25 @@
 }
 
 .row {
-    display: flex;
-    flex-direction: row;
     justify-content: space-between;
 }
 
-.employee-list {
+.d-flex {
     display: flex;
+}
+
+.d-flex.col {
     flex-direction: column;
 }
 
-.employee-list-employee {
-    display: flex;
+.d-flex.row {
     flex-direction: row;
+}
+.p-1 {
     padding: 1em;
+}
+.w-100 {
+    width: 100%;
 }
 
 .employee-list-employee:hover {
@@ -31,8 +36,8 @@
     justify-content: space-evenly;
 }
 
-.employee-list-employee > .overview > .name,
-.employee-list-employee > .overview > .email {
+.name,
+.email {
     padding: .5em;
     width: 100%;
 }
