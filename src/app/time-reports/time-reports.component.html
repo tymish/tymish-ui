@@ -1,33 +1,30 @@
 <div>
-    <div class="current-month" id="current-month">
+    <div *ngIf="thisMonthSummary$ | async as thisMonth">
 
+        <mat-card *ngIf="thisMonth.reportsIssuedCount > 0" [routerLink]="routerLink(thisMonth)" class="month-card">
+            <h2 mat-card-title>{{displayMonthYear(thisMonth.issued)}}</h2>
+            <div class="counts">
+                <span class="box">Issued <span class="count">{{thisMonth.reportsIssuedCount}}</span> </span>
+                <span class="box">Submitted <span class="count">{{thisMonth.reportsSubmittedCount}}</span></span>
+                <span class="box">Paid <span class="count">{{thisMonth.reportsPaidCount}}</span></span>
+            </div>
+        </mat-card>
+
+        <mat-card *ngIf="thisMonth.reportsIssuedCount === 0">
+            <h2 mat-card-title>{{displayMonthYear(thisMonth.issued)}}</h2>
+            <p>There are no time reports for this month yet.</p>
+            <button mat-raised-button (click)="requestTimeReports(thisMonth.issued)" color="primary">Request time
+                reports</button>
+        </mat-card>
     </div>
 
-    <mat-card *ngIf="thisMonthSummary$ | async as thisMonth">
-        <div *ngIf="thisMonth.issued.length > 0">
-            <h2 mat-card-title>{{displayMonthYear(thisMonth.issued)}}</h2>
-            <div [routerLink]="[getDate(thisMonth.issued).year(), getDate(thisMonth.issued).format('MM'), 'summary']">
-                Issued: {{thisMonth.reportsIssuedCount}}, Submitted:
-                {{thisMonth.reportsSubmittedCount}}, Paid: {{thisMonth.reportsPaidCount}} | ${{thisMonth.amountOwing}}
-            </div>
-        </div>
-        <div *ngIf="thisMonth.issued.length === 0" #requestTimeReports>
-            <p>There are no time reports for this month yet.</p>
-            <button (click)="requestTimeReports(thisMonth.issued)">Send reports for March</button>
+    <mat-card *ngFor="let month of previousMonthsReports$ | async" [routerLink]="routerLink(month)" class="month-card">
+        <h2 mat-card-title>{{displayMonthYear(month.issued)}}</h2>
+        <div class="counts">
+            <span class="box">Issued <span class="count">{{month.reportsIssuedCount}}</span> </span>
+            <span class="box">Submitted <span class="count">{{month.reportsSubmittedCount}}</span></span>
+            <span class="box">Paid <span class="count">{{month.reportsPaidCount}}</span></span>
         </div>
     </mat-card>
 
-    <mat-card>
-        <mat-list>
-            <mat-list-item *ngFor="let month of previousMonthsReports$ | async"
-                [routerLink]="[getDate(month.issued).year(), getDate(month.issued).format('MM'), 'summary']">
-                <span>{{displayMonthYear(month.issued)}}</span>
-                <span>Issued: {{month.reportsIssuedCount}}</span>
-                <span>Submitted: {{month.reportsSubmittedCount}}</span>
-                <span>Paid: {{month.reportsPaidCount}}</span>
-                |
-                <span>${{month.amountOwing}}</span>
-            </mat-list-item>
-        </mat-list>
-    </mat-card>
 </div>

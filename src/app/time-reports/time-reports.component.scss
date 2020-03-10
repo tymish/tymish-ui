@@ -1,0 +1,19 @@
+.box {
+  display: flex;
+  flex-direction: column;
+
+  max-width: 10em;
+  text-align: center;
+
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.month-card {
+  display: flex;
+  justify-content: space-between;
+}
+
+.counts {
+  display: flex;
+}

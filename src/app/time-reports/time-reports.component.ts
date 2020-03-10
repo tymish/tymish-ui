@@ -16,7 +16,7 @@ export class TimeReportsComponent implements OnInit {
   constructor(private service: TimeReportsService) { }
 
   ngOnInit(): void {
-    this.thisMonthSummary$ = this.getTimeReportSummary(new Date());
+    this.thisMonthSummary$ = this.getMonthAggregate(new Date());
     this.previousMonthsReports$ = this.getPreviousMonthsTimeReports(3);
   }
 
@@ -24,23 +24,31 @@ export class TimeReportsComponent implements OnInit {
     const timeReportArrays = [] as Observable<MonthlyAggregateDto>[];
     for (let i = 1; i <= monthsToFetch; i++) {
       const lastMonth = moment().subtract(i, 'months').toDate();
-      timeReportArrays.push(this.getTimeReportSummary(lastMonth))
+      timeReportArrays.push(this.getMonthAggregate(lastMonth))
     }
     return forkJoin(timeReportArrays);
   }
 
-  getTimeReportSummary(date: Date) {
+  getMonthAggregate(date: Date) {
     return this.service.getMonthAggregate({
       month: date.toLocaleDateString()
     });
   }
 
-  getDate(date: string): moment.Moment {
-    return moment(date);
+  routerLink(aggregate: MonthlyAggregateDto) {
+    const thisMonth = moment(aggregate.issued);
+    const routes = [
+      thisMonth.year(),
+      thisMonth.format('MM'),
+      'summary'
+    ];
+    return routes;
   }
 
   requestTimeReports(date: string) {
-    this.service.issueTimeReports({ body: { issued: date } }).subscribe();
+    this.service
+      .issueTimeReports({ body: { issued: date } })
+      .subscribe();
   }
 
   displayMonthYear(date: string) {

@@ -7,6 +7,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatBadgeModule } from '@angular/material/badge';
 
 
 const angularMaterial = [
@@ -17,7 +18,8 @@ const angularMaterial = [
   MatSidenavModule,
   MatGridListModule,
   MatCardModule,
-  MatIconModule
+  MatIconModule,
+  MatBadgeModule,
 ]
 
 @NgModule({
