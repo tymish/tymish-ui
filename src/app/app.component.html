@@ -1,11 +1,11 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="fixed">
   <button mat-icon-button (click)="sidenav.toggle()"><i class="material-icons">menu</i></button>
   <mat-icon></mat-icon>
   <h1>Tymish</h1>
 </mat-toolbar>
 
 <mat-sidenav-container class="example-container">
-  <mat-sidenav #sidenav mode="side" role="navigation" style="min-width: 256px" [opened]="true">
+  <mat-sidenav #sidenav mode="side" role="navigation" [opened]="true">
     <mat-nav-list>
       <a mat-list-item routerLink="time-reports">Time Reports</a>
       <a mat-list-item routerLink="employees">Employees</a>

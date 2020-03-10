@@ -1,17 +1,19 @@
-<mat-card>
-    <mat-toolbar>
-        <button mat-button routerLink="/time-reports"><i class="material-icons">arrow_back</i></button>
-        {{year}} {{month}}
-    </mat-toolbar>
+<div class="container">
+    <mat-card>
+        <mat-toolbar>
+            <button mat-button routerLink="/time-reports"><i class="material-icons">arrow_back</i></button>
+            {{year}} {{month}}
+        </mat-toolbar>
 
-    <mat-card-header>
-        <mat-card-title></mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <div *ngFor="let a of aggregates$ | async">
-            {{a.employee.givenName}} {{a.employee.familyName}} Issued: {{a.issued}} Paid: {{a.paid}} Submitted:
-            {{a.submitted}} Owed: {{a.amountOwed}}
-        </div>
-    </mat-card-content>
+        <mat-card-header>
+            <mat-card-title></mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div *ngFor="let a of aggregates$ | async">
+                {{a.employee.givenName}} {{a.employee.familyName}} Issued: {{a.issued}} Paid: {{a.paid}} Submitted:
+                {{a.submitted}} Owed: {{a.amountOwed}}
+            </div>
+        </mat-card-content>
 
-</mat-card>
+    </mat-card>
+</div>
