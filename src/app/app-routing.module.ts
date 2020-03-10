@@ -12,9 +12,9 @@ const routes: Routes = [
   { path: 'employees', component: EmployeesComponent },
   { path: 'employees/add', component: AddEmployeeComponent },
   { path: 'employees/:employeeNumber/manage', component: ManageEmployeeComponent },
-  // Future use this to select tab in the <employee-shelf>
-  { path: 'employees/:employeeNumber/time-sheets', redirectTo: 'employees/:employeeNumber' },
   { path: 'time-reports', component: TimeReportsComponent },
+  // Future use this to select mat-drawers that appear on the right
+  { path: 'employees/:employeeNumber/time-sheets', redirectTo: 'employees/:employeeNumber' },
   { path: 'time-reports/:year/:month/summary', component: MonthSummaryComponent }
 ];
 
