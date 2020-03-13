@@ -1,7 +1,24 @@
 <div class="container">
     <mat-card>
-        <form>
+        <mat-card-header>
+            <mat-card-title>Employee info for their timesheet</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="timeReportForm">
+                <div formArrayName="timeEntries">
+                    <div *ngFor="let entry of timeEntries.controls; let idx=index" [formGroupName]="idx">
+                        <label>
+                            Start: <input formControlName="start">
+                        </label>
 
-        </form>
+                        <label>
+                            End: <input formControlName="end">
+                        </label>
+                        <button (click)="removeTimeEntry(idx)">Remove</button>
+                    </div>
+                    <button mat-fab-button (click)="addTimeEntry()">Add</button>
+                </div>
+            </form>
+        </mat-card-content>
     </mat-card>
 </div>

@@ -5,6 +5,7 @@ import { AddEmployeeComponent } from './employees/add-employee/add-employee.comp
 import { ManageEmployeeComponent } from './employees/manage-employee/manage-employee.component';
 import { TimeReportsComponent } from './time-reports/time-reports.component';
 import { MonthSummaryComponent } from './time-reports/month-summary/month-summary.component';
+import { SubmitTimeReportComponent } from './submit-time-report/submit-time-report.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,9 @@ const routes: Routes = [
   { path: 'time-reports', component: TimeReportsComponent },
   // Future use this to select mat-drawers that appear on the right
   { path: 'employees/:employeeNumber/time-sheets', redirectTo: 'employees/:employeeNumber' },
-  { path: 'time-reports/:year/:month/summary', component: MonthSummaryComponent }
+  { path: 'time-reports/:year/:month/summary', component: MonthSummaryComponent },
+  // also available to anonymous
+  { path: 'submit-time-report', component: SubmitTimeReportComponent }
 ];
 
 @NgModule({

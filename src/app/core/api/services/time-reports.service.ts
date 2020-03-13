@@ -12,6 +12,7 @@ import { CreateTimeReportsCommand } from '../models/create-time-reports-command'
 import { EmployeeTimeReportAggregateDto } from '../models/employee-time-report-aggregate-dto';
 import { IssueTimeReportsCommand } from '../models/issue-time-reports-command';
 import { MonthlyAggregateDto } from '../models/monthly-aggregate-dto';
+import { TimeEntry } from '../models/time-entry';
 import { TimeReport } from '../models/time-report';
 
 @Injectable({
@@ -175,7 +176,7 @@ export class TimeReportsService extends BaseService {
   /**
    * Path part for operation submitTimeReport
    */
-  static readonly SubmitTimeReportPath = '/time-reports/{id}/submitted';
+  static readonly SubmitTimeReportPath = '/time-reports/submit';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -184,14 +185,16 @@ export class TimeReportsService extends BaseService {
    * This method doesn't expect any request body.
    */
   submitTimeReport$Response(params: {
-    id: string;
+    timeReportId: string;
+    timeEntries: Array<TimeEntry>;
 
   }): Observable<StrictHttpResponse<TimeReport>> {
 
     const rb = new RequestBuilder(this.rootUrl, TimeReportsService.SubmitTimeReportPath, 'put');
     if (params) {
 
-      rb.path('id', params.id);
+      rb.path('TimeReportId', params.timeReportId);
+      rb.path('TimeEntries', params.timeEntries);
 
     }
     return this.http.request(rb.build({
@@ -212,7 +215,8 @@ export class TimeReportsService extends BaseService {
    * This method doesn't expect any request body.
    */
   submitTimeReport(params: {
-    id: string;
+    timeReportId: string;
+    timeEntries: Array<TimeEntry>;
 
   }): Observable<TimeReport> {
 
