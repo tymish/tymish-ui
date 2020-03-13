@@ -8,6 +8,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 
 const angularMaterial = [
@@ -20,6 +23,9 @@ const angularMaterial = [
   MatCardModule,
   MatIconModule,
   MatBadgeModule,
+  MatInputModule,
+  MatDatepickerModule,
+  MatMomentDateModule
 ]
 
 @NgModule({
