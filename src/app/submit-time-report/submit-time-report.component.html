@@ -1,36 +1,50 @@
 <div class="container">
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>Employee info for their timesheet</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <form [formGroup]="timeReportForm">
-                <div formArrayName="timeEntries">
-                    <div *ngFor="let entry of timeEntries.controls; let idx=index" [formGroupName]="idx"
-                        class="form-row">
-                        <mat-form-field appearance="outline">
-                            <mat-label>Date</mat-label>
-                            <input matInput [matDatepicker]="picker" formControlName="start">
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
-                        </mat-form-field>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Employee info for their timesheet</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="timeReportForm">
+        <div formArrayName="timeEntries">
+          <div
+            *ngFor="let entry of timeEntries.controls; let idx = index"
+            [formGroupName]="idx"
+            class="form-row"
+          >
+            <mat-form-field appearance="outline">
+              <mat-label>Date</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="date" />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
 
-                        <mat-form-field appearance="outline">
-                            <mat-label>Start Time</mat-label>
-                            <input matInput formControlName="start" type="time">
-                        </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Start Time</mat-label>
+              <input matInput formControlName="start" type="time" />
+            </mat-form-field>
 
-                        <mat-form-field appearance="outline">
-                            <mat-label>End Time</mat-label>
-                            <input matInput formControleName="end" type="time">
-                        </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>End Time</mat-label>
+              <input matInput formControlName="end" type="time" />
+            </mat-form-field>
 
-                        <button mat-button (click)="removeTimeEntry(idx)" class="mt-1"><i
-                                class="material-icons">delete</i>Remove</button>
-                    </div>
-                    <button mat-button color="primary" (click)="addTimeEntry()">Add</button>
-                </div>
-            </form>
-        </mat-card-content>
-    </mat-card>
+            <button mat-button (click)="removeTimeEntry(idx)" class="mt-1">
+              <i class="material-icons">delete</i>Remove
+            </button>
+          </div>
+          <button mat-button color="primary" (click)="addTimeEntry()">
+            Add row
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="submitTimeReport()">
+        Save and Submit
+      </button>
+    </mat-card-actions>
+  </mat-card>
 </div>
