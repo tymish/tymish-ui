@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TimeReportsService } from 'src/app/core/api/services';
 import * as moment from 'moment';
 import { Observable } from 'rxjs';
@@ -17,7 +17,8 @@ export class MonthSummaryComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private service: TimeReportsService) { }
+    private service: TimeReportsService,
+    private router: Router) { }
 
   ngOnInit(): void {
     const snapshot = this.route.snapshot;

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { TimeReportsService } from '../core/api/services';
 import { TimeEntry } from '../core/api/models';
 import * as moment from 'moment';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-submit-time-report',
@@ -11,11 +13,19 @@ import * as moment from 'moment';
 })
 export class SubmitTimeReportComponent implements OnInit {
 
-  constructor(private builder: FormBuilder, private service: TimeReportsService) { }
-
+  constructor(
+    private builder: FormBuilder,
+    private service: TimeReportsService,
+    private route: ActivatedRoute
+  ) { }
+  public timeReportId: string;
   public timeReportForm: FormGroup;
 
   ngOnInit(): void {
+    this.route.params
+      .pipe(map(p => p.id))
+      .subscribe(id => this.timeReportId = id);
+
     this.timeReportForm = this.builder.group({
       timeEntries: this.builder.array([
         this.builder.group({
@@ -47,7 +57,7 @@ export class SubmitTimeReportComponent implements OnInit {
     console.log(this.timeReportForm.value);
 
     this.service.submitTimeReport({
-      timeReportId: '', timeEntries: this.map(this.timeEntries)
+      timeReportId: this.timeReportId, timeEntries: this.map(this.timeEntries)
     });
   }
 

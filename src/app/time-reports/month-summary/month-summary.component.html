@@ -1,19 +1,45 @@
 <div class="container">
-    <mat-card>
-        <mat-toolbar>
-            <button mat-button routerLink="/time-reports"><i class="material-icons">arrow_back</i></button>
-            {{year}} {{month}}
-        </mat-toolbar>
+  <mat-card>
+    <mat-toolbar>
+      <button mat-button routerLink="/time-reports">
+        <i class="material-icons">arrow_back</i>
+      </button>
+      {{ year }} {{ month }}
+    </mat-toolbar>
 
-        <mat-card-header>
-            <mat-card-title></mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <div *ngFor="let a of aggregates$ | async">
-                {{a.employee.givenName}} {{a.employee.familyName}} Issued: {{a.issued}} Paid: {{a.paid}} Submitted:
-                {{a.submitted}} Owed: {{a.amountOwed}}
-            </div>
-        </mat-card-content>
-
-    </mat-card>
+    <mat-card-header>
+      <mat-card-title></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div *ngFor="let a of aggregates$ | async">
+        <div [routerLink]="['/submit-time-report', a.timeReportId]" class="row">
+          <span>{{ a.employee.givenName }} {{ a.employee.familyName }}</span>
+          <span class="box"
+            >Issued <span>{{ a.issued | date }}</span></span
+          >
+          <span class="box"
+            >Paid
+            <span *ngIf="a.paid !== '0001-01-01T00:00:00'; else pending">{{
+              a.paid | date
+            }}</span></span
+          >
+          <span class="box"
+            >Submitted
+            <span *ngIf="a.submitted !== '0001-01-01T00:00:00'; else pending">{{
+              a.submitted | date
+            }}</span></span
+          >
+          <span class="box"
+            >Owed <span>{{ a.amountOwed }}</span></span
+          >
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>
+
+<ng-template #pending>
+  <span>
+    pending
+  </span>
+</ng-template>

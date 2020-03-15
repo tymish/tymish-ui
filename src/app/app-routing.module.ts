@@ -18,7 +18,8 @@ const routes: Routes = [
   { path: 'employees/:employeeNumber/time-sheets', redirectTo: 'employees/:employeeNumber' },
   { path: 'time-reports/:year/:month/summary', component: MonthSummaryComponent },
   // also available to anonymous
-  { path: 'submit-time-report', component: SubmitTimeReportComponent }
+  { path: 'submit-time-report', component: SubmitTimeReportComponent },
+  { path: 'submit-time-report/:id', component: SubmitTimeReportComponent }
 ];
 
 @NgModule({

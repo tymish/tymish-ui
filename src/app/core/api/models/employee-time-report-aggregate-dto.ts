@@ -6,4 +6,5 @@ export interface EmployeeTimeReportAggregateDto {
   issued?: string;
   paid?: string;
   submitted?: string;
+  timeReportId?: string;
 }

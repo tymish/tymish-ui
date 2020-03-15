@@ -1,7 +1,9 @@
 <div class="container">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>Employee info for their timesheet</mat-card-title>
+      <mat-card-title
+        >Employee info for their timesheet {{ timeReportId }}</mat-card-title
+      >
     </mat-card-header>
     <mat-card-content>
       <form [formGroup]="timeReportForm">
