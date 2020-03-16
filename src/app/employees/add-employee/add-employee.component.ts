@@ -22,14 +22,14 @@ export class AddEmployeeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  postEmployee(): void {
+  addEmployee(): void {
     const employee: CreateEmployeeCommand = {
       givenName: this.form.get('givenName').value,
       familyName: this.form.get('familyName').value,
       email: this.form.get('email').value,
       hourlyPay: +this.form.get('hourlyPay').value
     };
-    this.service.createEmployee({body: employee}).subscribe();
+    this.service.createEmployee({ body: employee }).subscribe();
   }
 
 }
