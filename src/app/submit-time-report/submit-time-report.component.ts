@@ -2,10 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { TimeReportsService } from '../core/api/services';
-import { TimeEntry } from '../core/api/models';
+import { TimeEntry, Employee } from '../core/api/models';
 import * as moment from 'moment';
 import { map } from 'rxjs/operators';
-import { TIMEOUT } from 'dns';
+
+export interface State {
+  timeReportId: string;
+  employee: Employee;
+}
+
 
 @Component({
   selector: 'app-submit-time-report',
