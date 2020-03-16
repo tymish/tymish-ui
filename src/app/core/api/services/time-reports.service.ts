@@ -12,7 +12,7 @@ import { CreateTimeReportsCommand } from '../models/create-time-reports-command'
 import { EmployeeTimeReportAggregateDto } from '../models/employee-time-report-aggregate-dto';
 import { IssueTimeReportsCommand } from '../models/issue-time-reports-command';
 import { MonthlyAggregateDto } from '../models/monthly-aggregate-dto';
-import { TimeEntry } from '../models/time-entry';
+import { SubmitTimeReportCommand } from '../models/submit-time-report-command';
 import { TimeReport } from '../models/time-report';
 
 @Injectable({
@@ -182,20 +182,17 @@ export class TimeReportsService extends BaseService {
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `submitTimeReport()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  submitTimeReport$Response(params: {
-    timeReportId: string;
-    timeEntries: Array<TimeEntry>;
-
+  submitTimeReport$Response(params?: {
+      body?: SubmitTimeReportCommand
   }): Observable<StrictHttpResponse<TimeReport>> {
 
     const rb = new RequestBuilder(this.rootUrl, TimeReportsService.SubmitTimeReportPath, 'put');
     if (params) {
 
-      rb.path('TimeReportId', params.timeReportId);
-      rb.path('TimeEntries', params.timeEntries);
 
+      rb.body(params.body, 'application/*+json');
     }
     return this.http.request(rb.build({
       responseType: 'json',
@@ -212,12 +209,10 @@ export class TimeReportsService extends BaseService {
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `submitTimeReport$Response()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  submitTimeReport(params: {
-    timeReportId: string;
-    timeEntries: Array<TimeEntry>;
-
+  submitTimeReport(params?: {
+      body?: SubmitTimeReportCommand
   }): Observable<TimeReport> {
 
     return this.submitTimeReport$Response(params).pipe(

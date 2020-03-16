@@ -5,6 +5,7 @@ import { TimeReportsService } from '../core/api/services';
 import { TimeEntry } from '../core/api/models';
 import * as moment from 'moment';
 import { map } from 'rxjs/operators';
+import { TIMEOUT } from 'dns';
 
 @Component({
   selector: 'app-submit-time-report',
@@ -54,11 +55,15 @@ export class SubmitTimeReportComponent implements OnInit {
   }
 
   submitTimeReport() {
-    console.log(this.timeReportForm.value);
+    const id = this.timeReportId;
+    const timeEntries = this.map(this.timeEntries);
+    console.log(`${id}, ${timeEntries}`);
 
     this.service.submitTimeReport({
-      timeReportId: this.timeReportId, timeEntries: this.map(this.timeEntries)
-    });
+      body: {
+        timeReportId: id, timeEntries: timeEntries
+      }
+    }).subscribe();
   }
 
   map(timeEntries: FormArray): TimeEntry[] {
