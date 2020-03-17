@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
 import { CreateTimeReportsCommand } from '../models/create-time-reports-command';
+import { Employee } from '../models/employee';
 import { EmployeeTimeReportAggregateDto } from '../models/employee-time-report-aggregate-dto';
 import { IssueTimeReportsCommand } from '../models/issue-time-reports-command';
 import { MonthlyAggregateDto } from '../models/monthly-aggregate-dto';
@@ -72,6 +73,55 @@ export class TimeReportsService extends BaseService {
 
     return this.getTimeReportById$Response(params).pipe(
       map((r: StrictHttpResponse<TimeReport>) => r.body as TimeReport)
+    );
+  }
+
+  /**
+   * Path part for operation getEmployeeByTimeReportId
+   */
+  static readonly GetEmployeeByTimeReportIdPath = '/time-reports/{id}/employee';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getEmployeeByTimeReportId()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getEmployeeByTimeReportId$Response(params: {
+    id: string;
+
+  }): Observable<StrictHttpResponse<Employee>> {
+
+    const rb = new RequestBuilder(this.rootUrl, TimeReportsService.GetEmployeeByTimeReportIdPath, 'get');
+    if (params) {
+
+      rb.path('id', params.id);
+
+    }
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Employee>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `getEmployeeByTimeReportId$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getEmployeeByTimeReportId(params: {
+    id: string;
+
+  }): Observable<Employee> {
+
+    return this.getEmployeeByTimeReportId$Response(params).pipe(
+      map((r: StrictHttpResponse<Employee>) => r.body as Employee)
     );
   }
 

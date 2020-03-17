@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
-import { TimeReportsService } from '../core/api/services';
-import { TimeEntry, Employee } from '../core/api/models';
+import { map, switchMap } from 'rxjs/operators';
 import * as moment from 'moment';
-import { map } from 'rxjs/operators';
+import { TimeReportsService, EmployeesService } from '../core/api/services';
+import { TimeEntry, Employee } from '../core/api/models';
+import { Observable, of, forkJoin } from 'rxjs';
 
 export interface State {
   timeReportId: string;
@@ -21,16 +22,20 @@ export class SubmitTimeReportComponent implements OnInit {
 
   constructor(
     private builder: FormBuilder,
-    private service: TimeReportsService,
+    private timeReports: TimeReportsService,
     private route: ActivatedRoute
   ) { }
-  public timeReportId: string;
+  public state$: Observable<State>;
   public timeReportForm: FormGroup;
 
   ngOnInit(): void {
-    this.route.params
-      .pipe(map(p => p.id))
-      .subscribe(id => this.timeReportId = id);
+    const id$ = this.route.params
+      .pipe(map(p => p.id as string));
+
+    this.state$ = id$.pipe(switchMap(id =>
+      forkJoin(of(id), this.timeReports.getEmployeeByTimeReportId({ id: id }))),
+      map(result => ({ timeReportId: result[0], employee: result[1] } as State))
+    );
 
     this.timeReportForm = this.builder.group({
       timeEntries: this.builder.array([
@@ -59,12 +64,11 @@ export class SubmitTimeReportComponent implements OnInit {
     this.timeEntries.removeAt(index);
   }
 
-  submitTimeReport() {
-    const id = this.timeReportId;
+  submitTimeReport(id: string) {
     const timeEntries = this.map(this.timeEntries);
     console.log(`${id}, ${timeEntries}`);
 
-    this.service.submitTimeReport({
+    this.timeReports.submitTimeReport({
       body: {
         timeReportId: id, timeEntries: timeEntries
       }
