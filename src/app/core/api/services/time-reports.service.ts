@@ -13,6 +13,7 @@ import { Employee } from '../models/employee';
 import { EmployeeTimeReportAggregateDto } from '../models/employee-time-report-aggregate-dto';
 import { IssueTimeReportsCommand } from '../models/issue-time-reports-command';
 import { MonthlyAggregateDto } from '../models/monthly-aggregate-dto';
+import { PayTimeReportCommand } from '../models/pay-time-report-command';
 import { SubmitTimeReportCommand } from '../models/submit-time-report-command';
 import { TimeReport } from '../models/time-report';
 
@@ -266,6 +267,53 @@ export class TimeReportsService extends BaseService {
   }): Observable<TimeReport> {
 
     return this.submitTimeReport$Response(params).pipe(
+      map((r: StrictHttpResponse<TimeReport>) => r.body as TimeReport)
+    );
+  }
+
+  /**
+   * Path part for operation payTimeReport
+   */
+  static readonly PayTimeReportPath = '/time-reports/pay';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `payTimeReport()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  payTimeReport$Response(params?: {
+      body?: PayTimeReportCommand
+  }): Observable<StrictHttpResponse<TimeReport>> {
+
+    const rb = new RequestBuilder(this.rootUrl, TimeReportsService.PayTimeReportPath, 'put');
+    if (params) {
+
+
+      rb.body(params.body, 'application/*+json');
+    }
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<TimeReport>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `payTimeReport$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  payTimeReport(params?: {
+      body?: PayTimeReportCommand
+  }): Observable<TimeReport> {
+
+    return this.payTimeReport$Response(params).pipe(
       map((r: StrictHttpResponse<TimeReport>) => r.body as TimeReport)
     );
   }

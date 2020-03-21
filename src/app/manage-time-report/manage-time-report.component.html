@@ -13,12 +13,12 @@
           <td>{{entry.end | date: 'h:mm a'}}</td>
         </tr>
       </table>
-      <form [formGroup]="">
+      <form [formGroup]="form" (submit)="markAsPaid(timeReport.id)">
         <mat-form-field appearance="outline">
           <mat-label>E-transfer Reference No.</mat-label>
-          <input matInput type="text" placeholder="CAyjXgxc">
+          <input matInput type="text" formControlName="eTransferReference" placeholder="CAyjXgxc">
         </mat-form-field>
-        <button mat-button color="primary">Mark as paid</button>
+        <button mat-button color="primary" type="submit">Mark as paid</button>
       </form>
     </div>
   </mat-card>
