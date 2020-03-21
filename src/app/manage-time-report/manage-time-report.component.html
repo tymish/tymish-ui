@@ -1,0 +1,34 @@
+<div class="container">
+  <mat-card *ngIf="timeReport$ | async as timeReport">
+    <div *ngIf="timeReport.timeEntries; else noReportSubmitted">
+      <table>
+        <tr>
+          <th>Date</th>
+          <th>Start</th>
+          <th>End</th>
+        </tr>
+        <tr *ngFor="let entry of timeReport.timeEntries">
+          <td>{{entry.start | date: 'EEEE, MMMM dd'}}</td>
+          <td>{{entry.start | date: 'h:mm a'}}</td>
+          <td>{{entry.end | date: 'h:mm a'}}</td>
+        </tr>
+      </table>
+      <form [formGroup]="">
+        <mat-form-field appearance="outline">
+          <mat-label>E-transfer Reference No.</mat-label>
+          <input matInput type="text" placeholder="CAyjXgxc">
+        </mat-form-field>
+        <button mat-button color="primary">Mark as paid</button>
+      </form>
+    </div>
+  </mat-card>
+</div>
+
+<ng-template #noReportSubmitted>
+  <mat-card-title>Hmm...</mat-card-title>
+  <p>
+    This time report has not been submitted yet.
+  </p>
+  <p>Send them this link to submit their time report</p>
+  <code *ngIf="timeReport$ | async as timeReport">{{submitLink(timeReport.id)}}</code>
+</ng-template>

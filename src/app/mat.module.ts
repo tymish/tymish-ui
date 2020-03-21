@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatTableModule } from '@angular/material/table';
 
 
 const angularMaterial = [
@@ -27,7 +28,8 @@ const angularMaterial = [
   MatInputModule,
   MatDatepickerModule,
   MatMomentDateModule,
-  MatChipsModule
+  MatChipsModule,
+  MatTableModule,
 ]
 
 @NgModule({

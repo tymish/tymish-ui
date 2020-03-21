@@ -16,6 +16,7 @@ import { ManageEmployeeComponent } from './employees/manage-employee/manage-empl
 import { TimeReportsComponent } from './time-reports/time-reports.component';
 import { MonthSummaryComponent } from './time-reports/month-summary/month-summary.component';
 import { SubmitTimeReportComponent } from './submit-time-report/submit-time-report.component';
+import { ManageTimeReportComponent } from './manage-time-report/manage-time-report.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SubmitTimeReportComponent } from './submit-time-report/submit-time-repo
     ManageEmployeeComponent,
     TimeReportsComponent,
     MonthSummaryComponent,
-    SubmitTimeReportComponent
+    SubmitTimeReportComponent,
+    ManageTimeReportComponent
   ],
   imports: [
     CommonModule,

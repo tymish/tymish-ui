@@ -6,6 +6,7 @@ import { ManageEmployeeComponent } from './employees/manage-employee/manage-empl
 import { TimeReportsComponent } from './time-reports/time-reports.component';
 import { MonthSummaryComponent } from './time-reports/month-summary/month-summary.component';
 import { SubmitTimeReportComponent } from './submit-time-report/submit-time-report.component';
+import { ManageTimeReportComponent } from './manage-time-report/manage-time-report.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   // Future use this to select mat-drawers that appear on the right
   { path: 'employees/:employeeNumber/time-sheets', redirectTo: 'employees/:employeeNumber' },
   { path: 'time-reports/:year/:month/summary', component: MonthSummaryComponent },
+  { path: 'time-reports/:id', component: ManageTimeReportComponent },
   // also available to anonymous
   { path: 'submit-time-report', component: SubmitTimeReportComponent },
   { path: 'submit-time-report/:id', component: SubmitTimeReportComponent }

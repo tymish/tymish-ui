@@ -12,26 +12,18 @@
     </mat-card-header>
     <mat-card-content>
       <div *ngFor="let a of aggregates$ | async">
-        <div [routerLink]="['/submit-time-report', a.timeReportId]" class="row">
+        <div [routerLink]="['/time-reports', a.timeReportId]" class="row">
           <span>{{ a.employee.givenName }} {{ a.employee.familyName }}</span>
-          <span class="box"
-            >Issued <span>{{ a.issued | date }}</span></span
-          >
-          <span class="box"
-            >Submitted
+          <span class="box">Issued <span>{{ a.issued | date }}</span></span>
+          <span class="box">Submitted
             <span *ngIf="a.submitted !== '0001-01-01T00:00:00'; else pending">{{
               a.submitted | date
-            }}</span></span
-          >
-          <span class="box"
-            >Paid
+            }}</span></span>
+          <span class="box">Paid
             <span *ngIf="a.paid !== '0001-01-01T00:00:00'; else pending">{{
               a.paid | date
-            }}</span></span
-          >
-          <span class="box"
-            >Owed <span>{{ a.amountOwed }}</span></span
-          >
+            }}</span></span>
+          <span class="box">Owed <span>${{ a.amountOwed }}</span></span>
         </div>
       </div>
     </mat-card-content>
