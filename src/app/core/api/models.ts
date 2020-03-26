@@ -9,4 +9,4 @@ export { MonthlyAggregateDto } from './models/monthly-aggregate-dto';
 export { SubmitTimeReportCommand } from './models/submit-time-report-command';
 export { PayTimeReportCommand } from './models/pay-time-report-command';
 export { CreateTimeReportsCommand } from './models/create-time-reports-command';
-export { IssueTimeReportsCommand } from './models/issue-time-reports-command';
+export { SendTimeReportsCommand } from './models/send-time-reports-command';

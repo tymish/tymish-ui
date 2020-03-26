@@ -5,8 +5,8 @@ export interface TimeReport {
   employee?: null | Employee;
   employeeId?: string;
   id?: string;
-  issued?: string;
   paid?: string;
+  sent?: string;
   submitted?: string;
   timeEntries?: null | Array<TimeEntry>;
 }

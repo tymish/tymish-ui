@@ -36,7 +36,7 @@ export class TimeReportsComponent implements OnInit {
   }
 
   routerLink(aggregate: MonthlyAggregateDto) {
-    const thisMonth = moment(aggregate.issued);
+    const thisMonth = moment(aggregate.sent);
     const routes = [
       thisMonth.year(),
       thisMonth.format('MM'),
@@ -47,7 +47,7 @@ export class TimeReportsComponent implements OnInit {
 
   requestTimeReports(date: string) {
     this.service
-      .issueTimeReports({ body: { issued: date } })
+      .sendTimeReports({ body: { sent: date } })
       .subscribe();
   }
 

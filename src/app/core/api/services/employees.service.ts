@@ -409,22 +409,22 @@ export class EmployeesService extends BaseService {
   }
 
   /**
-   * Path part for operation issueTimeReportForEmployee
+   * Path part for operation sendTimeReportForEmployee
    */
-  static readonly IssueTimeReportForEmployeePath = '/employees/{number}/time-report/issued';
+  static readonly SendTimeReportForEmployeePath = '/employees/{number}/time-report/sent';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `issueTimeReportForEmployee()` instead.
+   * To access only the response body, use `sendTimeReportForEmployee()` instead.
    *
    * This method doesn't expect any request body.
    */
-  issueTimeReportForEmployee$Response(params: {
+  sendTimeReportForEmployee$Response(params: {
     number: number;
 
   }): Observable<StrictHttpResponse<TimeReport>> {
 
-    const rb = new RequestBuilder(this.rootUrl, EmployeesService.IssueTimeReportForEmployeePath, 'put');
+    const rb = new RequestBuilder(this.rootUrl, EmployeesService.SendTimeReportForEmployeePath, 'put');
     if (params) {
 
       rb.path('number', params.number);
@@ -443,16 +443,16 @@ export class EmployeesService extends BaseService {
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `issueTimeReportForEmployee$Response()` instead.
+   * To access the full response (for headers, for example), `sendTimeReportForEmployee$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  issueTimeReportForEmployee(params: {
+  sendTimeReportForEmployee(params: {
     number: number;
 
   }): Observable<TimeReport> {
 
-    return this.issueTimeReportForEmployee$Response(params).pipe(
+    return this.sendTimeReportForEmployee$Response(params).pipe(
       map((r: StrictHttpResponse<TimeReport>) => r.body as TimeReport)
     );
   }

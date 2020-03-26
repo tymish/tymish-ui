@@ -11,9 +11,9 @@ import { map, filter } from 'rxjs/operators';
 import { CreateTimeReportsCommand } from '../models/create-time-reports-command';
 import { Employee } from '../models/employee';
 import { EmployeeTimeReportAggregateDto } from '../models/employee-time-report-aggregate-dto';
-import { IssueTimeReportsCommand } from '../models/issue-time-reports-command';
 import { MonthlyAggregateDto } from '../models/monthly-aggregate-dto';
 import { PayTimeReportCommand } from '../models/pay-time-report-command';
+import { SendTimeReportsCommand } from '../models/send-time-reports-command';
 import { SubmitTimeReportCommand } from '../models/submit-time-report-command';
 import { TimeReport } from '../models/time-report';
 
@@ -366,21 +366,21 @@ export class TimeReportsService extends BaseService {
   }
 
   /**
-   * Path part for operation issueTimeReports
+   * Path part for operation sendTimeReports
    */
-  static readonly IssueTimeReportsPath = '/time-reports/bulk/issued';
+  static readonly SendTimeReportsPath = '/time-reports/sent';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `issueTimeReports()` instead.
+   * To access only the response body, use `sendTimeReports()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  issueTimeReports$Response(params?: {
-      body?: IssueTimeReportsCommand
+  sendTimeReports$Response(params?: {
+      body?: SendTimeReportsCommand
   }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, TimeReportsService.IssueTimeReportsPath, 'put');
+    const rb = new RequestBuilder(this.rootUrl, TimeReportsService.SendTimeReportsPath, 'put');
     if (params) {
 
 
@@ -399,15 +399,15 @@ export class TimeReportsService extends BaseService {
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `issueTimeReports$Response()` instead.
+   * To access the full response (for headers, for example), `sendTimeReports$Response()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  issueTimeReports(params?: {
-      body?: IssueTimeReportsCommand
+  sendTimeReports(params?: {
+      body?: SendTimeReportsCommand
   }): Observable<void> {
 
-    return this.issueTimeReports$Response(params).pipe(
+    return this.sendTimeReports$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
