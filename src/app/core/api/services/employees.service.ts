@@ -360,55 +360,6 @@ export class EmployeesService extends BaseService {
   }
 
   /**
-   * Path part for operation createTimeReportForEmployee
-   */
-  static readonly CreateTimeReportForEmployeePath = '/employees/{number}/time-report';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `createTimeReportForEmployee()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  createTimeReportForEmployee$Response(params: {
-    number: number;
-
-  }): Observable<StrictHttpResponse<TimeReport>> {
-
-    const rb = new RequestBuilder(this.rootUrl, EmployeesService.CreateTimeReportForEmployeePath, 'post');
-    if (params) {
-
-      rb.path('number', params.number);
-
-    }
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<TimeReport>;
-      })
-    );
-  }
-
-  /**
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `createTimeReportForEmployee$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  createTimeReportForEmployee(params: {
-    number: number;
-
-  }): Observable<TimeReport> {
-
-    return this.createTimeReportForEmployee$Response(params).pipe(
-      map((r: StrictHttpResponse<TimeReport>) => r.body as TimeReport)
-    );
-  }
-
-  /**
    * Path part for operation sendTimeReportForEmployee
    */
   static readonly SendTimeReportForEmployeePath = '/employees/{number}/time-report/sent';

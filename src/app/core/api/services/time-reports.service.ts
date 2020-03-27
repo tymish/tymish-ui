@@ -8,7 +8,6 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
-import { CreateTimeReportsCommand } from '../models/create-time-reports-command';
 import { Employee } from '../models/employee';
 import { EmployeeTimeReportAggregateDto } from '../models/employee-time-report-aggregate-dto';
 import { MonthlyAggregateDto } from '../models/monthly-aggregate-dto';
@@ -315,53 +314,6 @@ export class TimeReportsService extends BaseService {
 
     return this.payTimeReport$Response(params).pipe(
       map((r: StrictHttpResponse<TimeReport>) => r.body as TimeReport)
-    );
-  }
-
-  /**
-   * Path part for operation createTimeReports
-   */
-  static readonly CreateTimeReportsPath = '/time-reports/bulk';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `createTimeReports()` instead.
-   *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
-   */
-  createTimeReports$Response(params?: {
-      body?: CreateTimeReportsCommand
-  }): Observable<StrictHttpResponse<Array<{  }>>> {
-
-    const rb = new RequestBuilder(this.rootUrl, TimeReportsService.CreateTimeReportsPath, 'post');
-    if (params) {
-
-
-      rb.body(params.body, 'application/*+json');
-    }
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<{  }>>;
-      })
-    );
-  }
-
-  /**
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `createTimeReports$Response()` instead.
-   *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
-   */
-  createTimeReports(params?: {
-      body?: CreateTimeReportsCommand
-  }): Observable<Array<{  }>> {
-
-    return this.createTimeReports$Response(params).pipe(
-      map((r: StrictHttpResponse<Array<{  }>>) => r.body as Array<{  }>)
     );
   }
 

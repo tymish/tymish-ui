@@ -45,7 +45,7 @@ export class TimeReportsComponent implements OnInit {
     return routes;
   }
 
-  requestTimeReports(date: string) {
+  sendTimeReports(date: string) {
     this.service
       .sendTimeReports({ body: { sent: date } })
       .subscribe();
