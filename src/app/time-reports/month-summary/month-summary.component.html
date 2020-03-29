@@ -19,15 +19,13 @@
           >
           <span class="box"
             >Submitted
-            <span *ngIf="a.submitted !== '0001-01-01T00:00:00'; else pending">{{
+            <span *ngIf="a.submitted; else pending">{{
               a.submitted | date
             }}</span></span
           >
           <span class="box"
             >Paid
-            <span *ngIf="a.paid !== '0001-01-01T00:00:00'; else pending">{{
-              a.paid | date
-            }}</span></span
+            <span *ngIf="a.paid; else pending">{{ a.paid | date }}</span></span
           >
           <span class="box"
             >Owed <span>${{ a.amountOwed }}</span></span
