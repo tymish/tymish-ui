@@ -42,14 +42,16 @@
     <h2 mat-card-title>{{ displayMonthYear(month.sent) }}</h2>
     <div class="counts">
       <span class="box"
-        >Sent <span class="count">{{ month.reportsSentCount }}</span>
+        ><span class="count">{{ month.reportsSentCount }}</span
+        >Sent
       </span>
-      <span class="box"
-        >Submitted
-        <span class="count">{{ month.reportsSubmittedCount }}</span></span
+      <span class="box">
+        <span class="count">{{ month.reportsSubmittedCount }}</span
+        >Submitted</span
       >
       <span class="box"
-        >Paid <span class="count">{{ month.reportsPaidCount }}</span></span
+        ><span class="count">{{ month.reportsPaidCount }}</span
+        >Paid</span
       >
     </div>
   </mat-card>
