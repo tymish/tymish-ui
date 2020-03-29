@@ -11,7 +11,6 @@ import { map, filter } from 'rxjs/operators';
 import { CreateEmployeeCommand } from '../models/create-employee-command';
 import { DeleteEmployeeCommand } from '../models/delete-employee-command';
 import { Employee } from '../models/employee';
-import { TimeReport } from '../models/time-report';
 import { UpdateEmployeeCommand } from '../models/update-employee-command';
 
 @Injectable({
@@ -356,55 +355,6 @@ export class EmployeesService extends BaseService {
 
     return this.getTimeReportsForEmployee$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
-    );
-  }
-
-  /**
-   * Path part for operation sendTimeReportForEmployee
-   */
-  static readonly SendTimeReportForEmployeePath = '/employees/{number}/time-report/sent';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `sendTimeReportForEmployee()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  sendTimeReportForEmployee$Response(params: {
-    number: number;
-
-  }): Observable<StrictHttpResponse<TimeReport>> {
-
-    const rb = new RequestBuilder(this.rootUrl, EmployeesService.SendTimeReportForEmployeePath, 'put');
-    if (params) {
-
-      rb.path('number', params.number);
-
-    }
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<TimeReport>;
-      })
-    );
-  }
-
-  /**
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `sendTimeReportForEmployee$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  sendTimeReportForEmployee(params: {
-    number: number;
-
-  }): Observable<TimeReport> {
-
-    return this.sendTimeReportForEmployee$Response(params).pipe(
-      map((r: StrictHttpResponse<TimeReport>) => r.body as TimeReport)
     );
   }
 

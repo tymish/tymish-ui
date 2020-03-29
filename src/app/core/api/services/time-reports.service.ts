@@ -364,4 +364,56 @@ export class TimeReportsService extends BaseService {
     );
   }
 
+  /**
+   * Path part for operation sendTimeReport
+   */
+  static readonly SendTimeReportPath = '/time-reports/{id}/sent';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `sendTimeReport()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  sendTimeReport$Response(params: {
+    timeReportId: string;
+    id: string;
+
+  }): Observable<StrictHttpResponse<TimeReport>> {
+
+    const rb = new RequestBuilder(this.rootUrl, TimeReportsService.SendTimeReportPath, 'put');
+    if (params) {
+
+      rb.path('timeReportId', params.timeReportId);
+      rb.path('id', params.id);
+
+    }
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<TimeReport>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `sendTimeReport$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  sendTimeReport(params: {
+    timeReportId: string;
+    id: string;
+
+  }): Observable<TimeReport> {
+
+    return this.sendTimeReport$Response(params).pipe(
+      map((r: StrictHttpResponse<TimeReport>) => r.body as TimeReport)
+    );
+  }
+
 }
