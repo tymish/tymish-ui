@@ -1,58 +1,92 @@
 <div class="container">
+  <h1>Overview</h1>
+  <mat-form-field appearance="outline">
+    <mat-label>Year</mat-label>
+    <mat-select value="2020"
+      ><mat-option value="2020">2020</mat-option>
+      <mat-option value="2019">2019</mat-option></mat-select
+    >
+  </mat-form-field>
   <div *ngIf="thisMonthSummary$ | async as thisMonth">
     <mat-card
       *ngIf="thisMonth.reportsSentCount > 0"
       [routerLink]="routerLink(thisMonth)"
-      class="month-card"
+      class="flex space-between"
     >
       <h2 mat-card-title>{{ displayMonthYear(thisMonth.sent) }}</h2>
-      <div class="counts">
+      <div class="flex">
         <span class="box"
-          >Sent <span class="count">{{ thisMonth.reportsSentCount }}</span>
+          >Sent <span>{{ thisMonth.reportsSentCount }}</span>
         </span>
         <span class="box"
-          >Submitted
-          <span class="count">{{ thisMonth.reportsSubmittedCount }}</span></span
+          >Submitted <span>{{ thisMonth.reportsSubmittedCount }}</span></span
         >
         <span class="box"
-          >Paid
-          <span class="count">{{ thisMonth.reportsPaidCount }}</span></span
+          >Paid <span>{{ thisMonth.reportsPaidCount }}</span></span
         >
       </div>
     </mat-card>
 
     <mat-card *ngIf="thisMonth.reportsSentCount === 0">
       <h2 mat-card-title>{{ displayMonthYear(thisMonth.sent) }}</h2>
-      <p>There are no time reports for this month yet.</p>
       <button
-        mat-raised-button
+        mat-button
         (click)="sendTimeReports(thisMonth.sent)"
         color="primary"
+        class="shift-left"
       >
         Send time reports
       </button>
     </mat-card>
   </div>
 
-  <mat-card
-    *ngFor="let month of previousMonthsReports$ | async"
-    [routerLink]="routerLink(month)"
-    class="month-card"
-  >
-    <h2 mat-card-title>{{ displayMonthYear(month.sent) }}</h2>
-    <div class="counts">
-      <span class="box"
-        ><span class="count">{{ month.reportsSentCount }}</span
-        >Sent
-      </span>
-      <span class="box">
-        <span class="count">{{ month.reportsSubmittedCount }}</span
-        >Submitted</span
-      >
-      <span class="box"
-        ><span class="count">{{ month.reportsPaidCount }}</span
-        >Paid</span
-      >
-    </div>
-  </mat-card>
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let month of previousMonthsReports$ | async">
+      <mat-expansion-panel-header>
+        <mat-panel-title
+          ><h2>
+            {{ displayMonthYear(month.sent) }}
+          </h2>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="flex vertical space-between progress-group">
+        <div class="flex space-between">
+          Received time reports<span
+            >{{
+              month.reportsSentCount - month.reportsSubmittedCount
+            }}
+            remaining</span
+          >
+        </div>
+        <mat-progress-bar
+          mode="determinate"
+          [value]="
+            percentDone(month.reportsSubmittedCount, month.reportsSentCount)
+          "
+        ></mat-progress-bar>
+        <div>
+          <button mat-button color="primary" class="shift-left">
+            Send Reminder
+          </button>
+        </div>
+      </div>
+      <div class="spacer"></div>
+      <div class="flex vertical space-between progress-group">
+        <div class="flex space-between">
+          Paid invoices<span>
+            {{ month.reportsSentCount - month.reportsPaidCount }} remaining
+          </span>
+        </div>
+        <mat-progress-bar
+          mode="determinate"
+          [value]="percentDone(month.reportsPaidCount, month.reportsSentCount)"
+        ></mat-progress-bar>
+        <div>
+          <button mat-button color="primary" class="shift-left">
+            Pay invoices
+          </button>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>

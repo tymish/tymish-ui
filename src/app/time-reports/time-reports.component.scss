@@ -9,11 +9,29 @@
   padding-right: 2em;
 }
 
-.month-card {
+h2 {
+  margin-bottom: 0;
+}
+
+.flex {
   display: flex;
+}
+.flex.space-between {
   justify-content: space-between;
 }
 
-.counts {
-  display: flex;
+.flex.vertical {
+  flex-direction: column;
+}
+
+.progress-group {
+  height: 7em;
+}
+
+div.spacer {
+  height: 2em;
+}
+
+.shift-left {
+  margin-left: -1em;
 }

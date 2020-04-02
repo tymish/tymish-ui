@@ -13,7 +13,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTableModule } from '@angular/material/table';
-
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSelectModule } from '@angular/material/select';
 
 const angularMaterial = [
   MatButtonModule,
@@ -30,6 +32,9 @@ const angularMaterial = [
   MatMomentDateModule,
   MatChipsModule,
   MatTableModule,
+  MatExpansionModule,
+  MatProgressBarModule,
+  MatSelectModule,
 ]
 
 @NgModule({

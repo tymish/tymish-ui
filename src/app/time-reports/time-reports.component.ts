@@ -54,4 +54,10 @@ export class TimeReportsComponent implements OnInit {
   displayMonthYear(date: string) {
     return moment(date).format('MMMM');
   }
+
+  percentDone(done: number, total: number) {
+    if (done === 0) return 0;
+    if (done === total) return 100;
+    return (total - done) / total * 100
+  }
 }
