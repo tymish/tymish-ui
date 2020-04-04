@@ -18,6 +18,7 @@ import { TimeReportsComponent } from './time-reports/time-reports.component';
 import { MonthSummaryComponent } from './time-reports/month-summary/month-summary.component';
 import { SubmitTimeReportComponent } from './submit-time-report/submit-time-report.component';
 import { ManageTimeReportComponent } from './manage-time-report/manage-time-report.component';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { ManageTimeReportComponent } from './manage-time-report/manage-time-repo
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatModule,
-    ApiModule.forRoot({ rootUrl: 'https://localhost:5001' })
+    ApiModule.forRoot({ rootUrl: environment.api })
   ],
   providers: [],
   bootstrap: [AppComponent]
