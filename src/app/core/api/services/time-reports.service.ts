@@ -10,7 +10,7 @@ import { map, filter } from 'rxjs/operators';
 
 import { Employee } from '../models/employee';
 import { EmployeeTimeReportAggregateDto } from '../models/employee-time-report-aggregate-dto';
-import { MonthlyAggregateDto } from '../models/monthly-aggregate-dto';
+import { MonthAggregateDto } from '../models/month-aggregate-dto';
 import { PayTimeReportCommand } from '../models/pay-time-report-command';
 import { SendTimeReportsCommand } from '../models/send-time-reports-command';
 import { SubmitTimeReportCommand } from '../models/submit-time-report-command';
@@ -186,14 +186,14 @@ export class TimeReportsService extends BaseService {
    * This method doesn't expect any request body.
    */
   getMonthAggregate$Response(params?: {
-    month?: string;
+    year?: number;
 
-  }): Observable<StrictHttpResponse<MonthlyAggregateDto>> {
+  }): Observable<StrictHttpResponse<Array<MonthAggregateDto>>> {
 
     const rb = new RequestBuilder(this.rootUrl, TimeReportsService.GetMonthAggregatePath, 'get');
     if (params) {
 
-      rb.query('month', params.month);
+      rb.query('year', params.year);
 
     }
     return this.http.request(rb.build({
@@ -202,7 +202,7 @@ export class TimeReportsService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<MonthlyAggregateDto>;
+        return r as StrictHttpResponse<Array<MonthAggregateDto>>;
       })
     );
   }
@@ -214,12 +214,12 @@ export class TimeReportsService extends BaseService {
    * This method doesn't expect any request body.
    */
   getMonthAggregate(params?: {
-    month?: string;
+    year?: number;
 
-  }): Observable<MonthlyAggregateDto> {
+  }): Observable<Array<MonthAggregateDto>> {
 
     return this.getMonthAggregate$Response(params).pipe(
-      map((r: StrictHttpResponse<MonthlyAggregateDto>) => r.body as MonthlyAggregateDto)
+      map((r: StrictHttpResponse<Array<MonthAggregateDto>>) => r.body as Array<MonthAggregateDto>)
     );
   }
 

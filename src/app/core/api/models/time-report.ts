@@ -6,6 +6,7 @@ export interface TimeReport {
   employeeId?: string;
   id?: string;
   paid?: null | string;
+  payPeriod?: string;
   sent?: null | string;
   submitted?: null | string;
   timeEntries?: null | Array<TimeEntry>;

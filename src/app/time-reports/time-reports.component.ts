@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TimeReportsService } from '../core/api/services';
-import { MonthlyAggregateDto } from '../core/api/models';
+import { MonthAggregateDto } from '../core/api/models';
 import * as moment from 'moment';
 import { Observable, forkJoin } from 'rxjs';
 
@@ -10,33 +10,24 @@ import { Observable, forkJoin } from 'rxjs';
   styleUrls: ['./time-reports.component.scss']
 })
 export class TimeReportsComponent implements OnInit {
-  public thisMonthSummary$: Observable<MonthlyAggregateDto>;
-  public previousMonthsReports$: Observable<MonthlyAggregateDto[]>;
+  public selectedYear = 2020;
+  public monthAggregates$: Observable<MonthAggregateDto[]>;
 
   constructor(private service: TimeReportsService) { }
 
   ngOnInit(): void {
-    this.thisMonthSummary$ = this.getMonthAggregate(new Date());
-    this.previousMonthsReports$ = this.getPreviousMonthsTimeReports(3);
+    this.monthAggregates$ = this.getMonthAggregate(this.selectedYear);
   }
 
-  getPreviousMonthsTimeReports(monthsToFetch: number) {
-    const timeReportArrays = [] as Observable<MonthlyAggregateDto>[];
-    for (let i = 1; i <= monthsToFetch; i++) {
-      const lastMonth = moment().subtract(i, 'months').toDate();
-      timeReportArrays.push(this.getMonthAggregate(lastMonth))
-    }
-    return forkJoin(timeReportArrays);
-  }
-
-  getMonthAggregate(date: Date) {
+  getMonthAggregate(year: number) {
     return this.service.getMonthAggregate({
-      month: date.toLocaleDateString()
+      year: year
     });
   }
 
-  routerLink(aggregate: MonthlyAggregateDto) {
-    const thisMonth = moment(aggregate.sent);
+  goToSummary(aggregate: MonthAggregateDto) {
+    const thisMonth = moment(aggregate.payPeriod);
+    console.log(thisMonth);
     const routes = [
       thisMonth.year(),
       thisMonth.format('MM'),
@@ -45,14 +36,14 @@ export class TimeReportsComponent implements OnInit {
     return routes;
   }
 
+  updateData(year: number) {
+    this.monthAggregates$ = this.getMonthAggregate(year);
+  }
+
   sendTimeReports(date: string) {
     this.service
       .sendTimeReports({ body: { sent: date } })
       .subscribe();
-  }
-
-  displayMonthYear(date: string) {
-    return moment(date).format('MMMM');
   }
 
   percentDone(done: number, total: number) {

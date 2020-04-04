@@ -2,67 +2,32 @@
   <h1>Overview</h1>
   <mat-form-field appearance="outline">
     <mat-label>Year</mat-label>
-    <mat-select value="2020"
+    <mat-select
+      [(ngModel)]="selectedYear"
+      (selectionChange)="updateData(selectedYear)"
       ><mat-option value="2020">2020</mat-option>
       <mat-option value="2019">2019</mat-option></mat-select
     >
   </mat-form-field>
-  <div *ngIf="thisMonthSummary$ | async as thisMonth">
-    <mat-card
-      *ngIf="thisMonth.reportsSentCount > 0"
-      [routerLink]="routerLink(thisMonth)"
-      class="flex space-between"
-    >
-      <h2 mat-card-title>{{ displayMonthYear(thisMonth.sent) }}</h2>
-      <div class="flex">
-        <span class="box"
-          >Sent <span>{{ thisMonth.reportsSentCount }}</span>
-        </span>
-        <span class="box"
-          >Submitted <span>{{ thisMonth.reportsSubmittedCount }}</span></span
-        >
-        <span class="box"
-          >Paid <span>{{ thisMonth.reportsPaidCount }}</span></span
-        >
-      </div>
-    </mat-card>
-
-    <mat-card *ngIf="thisMonth.reportsSentCount === 0">
-      <h2 mat-card-title>{{ displayMonthYear(thisMonth.sent) }}</h2>
-      <button
-        mat-button
-        (click)="sendTimeReports(thisMonth.sent)"
-        color="primary"
-        class="shift-left"
-      >
-        Send time reports
-      </button>
-    </mat-card>
-  </div>
 
   <mat-accordion>
-    <mat-expansion-panel *ngFor="let month of previousMonthsReports$ | async">
+    <mat-expansion-panel *ngFor="let month of monthAggregates$ | async">
       <mat-expansion-panel-header>
         <mat-panel-title
           ><h2>
-            {{ displayMonthYear(month.sent) }}
+            {{ month.payPeriod | date: 'MMMM' }}
           </h2>
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div class="flex vertical space-between progress-group">
         <div class="flex space-between">
           Received time reports<span
-            >{{
-              month.reportsSentCount - month.reportsSubmittedCount
-            }}
-            remaining</span
+            >{{ month.sentReports - month.receivedReports }} remaining</span
           >
         </div>
         <mat-progress-bar
           mode="determinate"
-          [value]="
-            percentDone(month.reportsSubmittedCount, month.reportsSentCount)
-          "
+          [value]="percentDone(month.receivedReports, month.sentReports)"
         ></mat-progress-bar>
         <div>
           <button mat-button color="primary" class="shift-left">
@@ -74,15 +39,20 @@
       <div class="flex vertical space-between progress-group">
         <div class="flex space-between">
           Paid invoices<span>
-            {{ month.reportsSentCount - month.reportsPaidCount }} remaining
+            {{ month.sentReports - month.paidReports }} remaining
           </span>
         </div>
         <mat-progress-bar
           mode="determinate"
-          [value]="percentDone(month.reportsPaidCount, month.reportsSentCount)"
+          [value]="percentDone(month.paidReports, month.sentReports)"
         ></mat-progress-bar>
         <div>
-          <button mat-button color="primary" class="shift-left">
+          <button
+            mat-button
+            color="primary"
+            class="shift-left"
+            [routerLink]="goToSummary(month)"
+          >
             Pay invoices
           </button>
         </div>
