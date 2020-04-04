@@ -1,19 +1,19 @@
-# 1. Yarn install dependencies from lock-file
-# 2. ng build for production
-# 3. s3-sync-action@master
-name: Tymish-UI CI
+name: ci
 
 on:
   push:
-    branches:
-      - master
+    branches: [master]
+  pull_request:
+    branches: [master]
+
 jobs:
-  deploy:
+  build_deploy:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@master
 
-      - name: Yarn Cache
+      - name: cache
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
@@ -24,13 +24,14 @@ jobs:
           key: ${{runner.os}}-yarn-${{hashFiles('**/yarn.lock')}}
           restore-keys: ${{runner.os}}-yarn-
 
-      - name: Yarn Install
+      - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Yarn Build
+      - name: Build artifact
         run: yarn build --prod
 
-      - uses: jakejarvis/s3-sync-action@master
+      - name: Push to S3 bucket
+        uses: jakejarvis/s3-sync-action@master
         with:
           args: --acl public-read --follow-symlinks --delete
         env:
