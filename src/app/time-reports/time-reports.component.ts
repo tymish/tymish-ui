@@ -3,6 +3,7 @@ import { TimeReportsService } from '../core/api/services';
 import { MonthAggregateDto } from '../core/api/models';
 import * as moment from 'moment';
 import { Observable, forkJoin } from 'rxjs';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-time-reports',

@@ -2,33 +2,27 @@
   <h1>Overview</h1>
   <mat-form-field appearance="outline">
     <mat-label>Year</mat-label>
-    <mat-select
-      [(ngModel)]="selectedYear"
-      (selectionChange)="updateData(selectedYear)"
-      ><mat-option value="2020">2020</mat-option>
-      <mat-option value="2019">2019</mat-option></mat-select
-    >
+    <mat-select [(ngModel)]="selectedYear" (selectionChange)="updateData(selectedYear)">
+      <mat-option [value]="2020">2020</mat-option>
+      <mat-option [value]="2019">2019</mat-option>
+    </mat-select>
   </mat-form-field>
 
   <mat-accordion>
     <mat-expansion-panel *ngFor="let month of monthAggregates$ | async">
       <mat-expansion-panel-header>
-        <mat-panel-title
-          ><h2>
+        <mat-panel-title>
+          <h2>
             {{ month.payPeriod | date: 'MMMM' }}
           </h2>
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div class="flex vertical space-between progress-group">
         <div class="flex space-between">
-          Received time reports<span
-            >{{ month.sentReports - month.receivedReports }} remaining</span
-          >
+          Received time reports<span>{{ month.sentReports - month.receivedReports }} remaining</span>
         </div>
-        <mat-progress-bar
-          mode="determinate"
-          [value]="percentDone(month.receivedReports, month.sentReports)"
-        ></mat-progress-bar>
+        <mat-progress-bar mode="determinate" [value]="percentDone(month.receivedReports, month.sentReports)">
+        </mat-progress-bar>
         <div>
           <button mat-button color="primary" class="shift-left">
             SEND REMINDER
@@ -42,17 +36,10 @@
             {{ month.sentReports - month.paidReports }} remaining
           </span>
         </div>
-        <mat-progress-bar
-          mode="determinate"
-          [value]="percentDone(month.paidReports, month.sentReports)"
-        ></mat-progress-bar>
+        <mat-progress-bar mode="determinate" [value]="percentDone(month.paidReports, month.sentReports)">
+        </mat-progress-bar>
         <div>
-          <button
-            mat-button
-            color="primary"
-            class="shift-left"
-            [routerLink]="goToSummary(month)"
-          >
+          <button mat-button color="primary" class="shift-left" [routerLink]="goToSummary(month)">
             PAY INVOICES
           </button>
         </div>
