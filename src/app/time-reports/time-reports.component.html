@@ -46,8 +46,8 @@
         <mat-progress-bar mode="determinate" [value]="percentDone(month.paidReports, month.sentReports)">
         </mat-progress-bar>
         <div>
-          <button mat-button color="primary" class="shift-left" [routerLink]="goToSummary(month)">
-            PAY INVOICES
+          <button mat-raised-button color="primary" [routerLink]="goToSummary(month)" class="w-100">
+            VIEW DETAILS
           </button>
         </div>
       </div>
