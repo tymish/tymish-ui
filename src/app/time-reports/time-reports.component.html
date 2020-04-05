@@ -9,13 +9,14 @@
   </mat-form-field>
 
   <mat-accordion>
-    <mat-expansion-panel *ngFor="let month of monthAggregates$ | async" #panel>
+    <mat-expansion-panel *ngFor="let month of monthAggregates$ | async" #panel class="mt-1">
       <mat-expansion-panel-header collapsedHeight="100px">
         <mat-panel-title>
           <h2>
             <span>
               {{ month.payPeriod | date: 'MMMM' }}
             </span>
+            <div class="title-spacer"></div>
             <mat-chip-list *ngIf="!panel.expanded">
               <mat-chip>{{month.sentReports}} Sent</mat-chip>
               <mat-chip>{{month.receivedReports}} Received</mat-chip>
