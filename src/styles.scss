@@ -31,10 +31,6 @@ $tymish-ui-theme: mat-light-theme(
 
 /* You can add global styles to this file, and also import other style files */
 
-html,
-body {
-  height: 100%;
-}
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
@@ -50,8 +46,8 @@ mat-toolbar.fixed {
   height: 64px;
 }
 
-mat-sidenav-container {
-  height: 100%;
+mat-sidenav.fixed {
+  position: fixed;
 }
 
 mat-sidenav {
@@ -65,7 +61,6 @@ mat-sidenav-content {
 
 .container {
   padding: 0.6em;
-
   max-width: 600px;
 }
 

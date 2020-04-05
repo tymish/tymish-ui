@@ -4,10 +4,10 @@
 </mat-toolbar>
 
 <mat-sidenav-container class="example-container">
-  <mat-sidenav #sidenav [mode]="sideNavMode" role="navigation" [opened]="sideNavOpened">
+  <mat-sidenav #sidenav [mode]="sideNavMode" role="navigation" [opened]="sideNavOpened" class="fixed">
     <mat-nav-list>
-      <a mat-list-item routerLink="time-reports">Time Reports</a>
-      <a mat-list-item routerLink="employees">Employees</a>
+      <a mat-list-item routerLink="time-reports" (click)="sidenav.mode === 'over' && sidenav.close()">Time Reports</a>
+      <a mat-list-item routerLink="employees" (click)="sidenav.mode === 'over' && sidenav.close()">Employees</a>
     </mat-nav-list>
   </mat-sidenav>
 
