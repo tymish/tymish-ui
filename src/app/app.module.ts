@@ -20,6 +20,10 @@ import { SubmitTimeReportComponent } from './submit-time-report/submit-time-repo
 import { ManageTimeReportComponent } from './manage-time-report/manage-time-report.component';
 import { environment } from 'src/environments/environment';
 
+// NGRX
+import { StoreModule } from '@ngrx/store';
+import { reducer } from './store/reducers/employee.reducer';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +44,10 @@ import { environment } from 'src/environments/environment';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatModule,
-    ApiModule.forRoot({ rootUrl: environment.api })
+    ApiModule.forRoot({ rootUrl: environment.api }),
+    StoreModule.forRoot({
+      employee: reducer
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

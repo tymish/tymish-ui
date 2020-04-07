@@ -19,8 +19,7 @@ export class AddEmployeeComponent implements OnInit {
 
   constructor(private service: EmployeesService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   addEmployee(): void {
     const employee: CreateEmployeeCommand = {
