@@ -1,4 +1,4 @@
-import { createAction, Action, props } from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
 
 import { Employee } from '../../core/api/models/employee';
 
@@ -8,11 +8,10 @@ export const ADD_EMPLOYEE = '[EMPLOYEE] Add';
 export const REMOVE_EMPLOYEE = '[EMPLOYEE] Remove';
 export const UPDATE_EMPLOYEE = '[EMPLOYEE] Update';
 
-export const LoadEmployees = createAction(LOAD_EMPLOYEE, props<any>());
+export const loadEmployees = createAction(LOAD_EMPLOYEE);
 
-export const AddEmployee = createAction(ADD_EMPLOYEE, props<{ employee: Employee }>());
+export const addEmployee = createAction(ADD_EMPLOYEE, props<{ employee: Employee }>());
 
-export const RemoveEmployee = createAction(REMOVE_EMPLOYEE, props<{ employeeNumber: number }>());
+export const removeEmployee = createAction(REMOVE_EMPLOYEE, props<{ employeeNumber: number }>());
 
-export const UpdateEmployee = createAction(UPDATE_EMPLOYEE, props<{ employee: Employee }>());
-
+export const updateEmployee = createAction(UPDATE_EMPLOYEE, props<{ employee: Employee }>());
