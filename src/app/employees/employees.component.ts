@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { EmployeesService } from '../core/api/services';
-import { Employee } from '../core/api/models';
-import { Observable } from 'rxjs';
+import {Component, OnInit} from '@angular/core';
+import {Store, select} from '@ngrx/store';
+
+import {AppState} from '../store/app.state';
+import * as EmployeeActions from '../store/actions/employee.action';
+import {selectEmployees} from '../store/selectors/employee.selector';
 
 @Component({
   selector: 'app-employees',
   templateUrl: './employees.component.html',
-  styleUrls: ['./employees.component.scss']
+  styleUrls: ['./employees.component.scss'],
 })
 export class EmployeesComponent implements OnInit {
-  public employees$: Observable<Employee[]>;
-
-  constructor(private service: EmployeesService) { }
+  public employees$ = this.store.pipe(select(selectEmployees));
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.employees$ = this.service.getEmployeeList();
+    this.store.dispatch(EmployeeActions.getEmployees());
   }
 }
