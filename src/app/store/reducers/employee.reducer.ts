@@ -7,7 +7,11 @@ const initialState: Employee[] = [];
 
 const employeeReducer = createReducer(
   initialState,
-  on(EmployeeActions.loadEmployees, (state) => state),
+  on(EmployeeActions.getEmployees, (state) => state),
+
+  on(EmployeeActions.employeesLoaded, (state, props) => {
+    return props.employees;
+  }),
 
   on(EmployeeActions.addEmployee, (state, props) => {
     state.push(props.employee);
@@ -18,12 +22,15 @@ const employeeReducer = createReducer(
     const index = state.findIndex(
       (employee) => employee.employeeNumber === props.employee.employeeNumber
     );
-    return state.splice(index);
+    return {...state, employees: state.splice(index)};
   }),
 
-  on(EmployeeActions.removeEmployee, (state, props) =>
-    state.filter((employee) => employee.employeeNumber !== props.employeeNumber)
-  )
+  on(EmployeeActions.removeEmployee, (state, props) => ({
+    ...state,
+    employees: state.filter(
+      (employee) => employee.employeeNumber !== props.employeeNumber
+    ),
+  }))
 );
 export function reducer(state: Employee[] | undefined, action: Action) {
   return employeeReducer(state, action);
