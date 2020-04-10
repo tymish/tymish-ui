@@ -19,6 +19,11 @@ export const addEmployee = createAction(
   props<{employee: Employee}>()
 );
 
+export const employeeAdded = createAction(
+  '[Employees] Added',
+  props<{employee: Employee}>()
+);
+
 export const removeEmployee = createAction(
   REMOVE_EMPLOYEE,
   props<{employeeNumber: number}>()

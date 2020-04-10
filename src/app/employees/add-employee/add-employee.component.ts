@@ -3,6 +3,8 @@ import {FormGroup, FormControl} from '@angular/forms';
 import {CreateEmployeeCommand} from 'src/app/core/api/models';
 
 import * as EmployeeActions from '../../store/actions/employee.action';
+import {Store} from '@ngrx/store';
+import {AppState} from 'src/app/store/app.state';
 
 @Component({
   selector: 'app-add-employee',
@@ -17,7 +19,7 @@ export class AddEmployeeComponent implements OnInit {
     hourlyPay: new FormControl(''),
   });
 
-  constructor() {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {}
 
@@ -28,6 +30,6 @@ export class AddEmployeeComponent implements OnInit {
       email: this.form.get('email').value,
       hourlyPay: +this.form.get('hourlyPay').value,
     };
-    EmployeeActions.addEmployee({employee: employee});
+    this.store.dispatch(EmployeeActions.addEmployee({employee: employee}));
   }
 }
