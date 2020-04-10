@@ -15,6 +15,8 @@ export class EmployeesComponent implements OnInit {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
+    // This happens everytime, even from add, update, delete
+    // I only want to call the web api if it's not from those three routes
     this.store.dispatch(EmployeeActions.getEmployees());
   }
 }
