@@ -24,6 +24,7 @@ import {environment} from 'src/environments/environment';
 import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {EffectsModule} from '@ngrx/effects';
+
 import {reducer} from './store/reducers/employee.reducer';
 import {EmployeeEffect} from './store/effects/employee.effect';
 
