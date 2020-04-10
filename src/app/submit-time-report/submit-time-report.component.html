@@ -1,17 +1,25 @@
 <div class="container">
   <mat-card *ngIf="state$ | async as state">
     <mat-card-header>
-      <mat-card-title>{{ state.employee.givenName }} {{ state.employee.familyName }}
+      <mat-card-title
+        >{{ state.employee.givenName }} {{ state.employee.familyName }}
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <form [formGroup]="timeReportForm">
         <div formArrayName="timeEntries">
-          <div *ngFor="let entry of timeEntries.controls; let idx = index" [formGroupName]="idx" class="form-row">
+          <div
+            *ngFor="let entry of timeEntries.controls; let idx = index"
+            [formGroupName]="idx"
+            class="form-row"
+          >
             <mat-form-field appearance="outline">
               <mat-label>Date</mat-label>
               <input matInput [matDatepicker]="picker" formControlName="date" />
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
 
@@ -36,7 +44,11 @@
       </form>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="submitTimeReport(state.timeReportId)">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="submitTimeReport(state.timeReportId)"
+      >
         Save and Submit
       </button>
     </mat-card-actions>

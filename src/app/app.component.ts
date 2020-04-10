@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,11 +6,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   sideNavOpened = false;
-  sideNavMode: "side" | "over" = "over";
+  sideNavMode: 'side' | 'over' = 'over';
 
   ngOnInit() {
     if (screen.width > 975) {
-      this.sideNavMode = "side";
+      this.sideNavMode = 'side';
       this.sideNavOpened = true;
     }
   }

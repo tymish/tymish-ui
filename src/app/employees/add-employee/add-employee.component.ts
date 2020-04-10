@@ -9,14 +9,14 @@ import {AppState} from 'src/app/store/app.state';
 @Component({
   selector: 'app-add-employee',
   templateUrl: './add-employee.component.html',
-  styleUrls: ['./add-employee.component.scss'],
+  styleUrls: ['./add-employee.component.scss']
 })
 export class AddEmployeeComponent implements OnInit {
   public form = new FormGroup({
     givenName: new FormControl(''),
     familyName: new FormControl(''),
     email: new FormControl(''),
-    hourlyPay: new FormControl(''),
+    hourlyPay: new FormControl('')
   });
 
   constructor(private store: Store<AppState>) {}
@@ -28,7 +28,7 @@ export class AddEmployeeComponent implements OnInit {
       givenName: this.form.get('givenName').value,
       familyName: this.form.get('familyName').value,
       email: this.form.get('email').value,
-      hourlyPay: +this.form.get('hourlyPay').value,
+      hourlyPay: +this.form.get('hourlyPay').value
     };
     this.store.dispatch(addEmployee({employee: employee}));
   }

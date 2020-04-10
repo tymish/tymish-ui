@@ -1,26 +1,23 @@
 /* tslint:disable */
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { BaseService } from '../base-service';
-import { ApiConfiguration } from '../api-configuration';
-import { StrictHttpResponse } from '../strict-http-response';
-import { RequestBuilder } from '../request-builder';
-import { Observable } from 'rxjs';
-import { map, filter } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpResponse} from '@angular/common/http';
+import {BaseService} from '../base-service';
+import {ApiConfiguration} from '../api-configuration';
+import {StrictHttpResponse} from '../strict-http-response';
+import {RequestBuilder} from '../request-builder';
+import {Observable} from 'rxjs';
+import {map, filter} from 'rxjs/operators';
 
-import { CreateEmployeeCommand } from '../models/create-employee-command';
-import { DeleteEmployeeCommand } from '../models/delete-employee-command';
-import { Employee } from '../models/employee';
-import { UpdateEmployeeCommand } from '../models/update-employee-command';
+import {CreateEmployeeCommand} from '../models/create-employee-command';
+import {DeleteEmployeeCommand} from '../models/delete-employee-command';
+import {Employee} from '../models/employee';
+import {UpdateEmployeeCommand} from '../models/update-employee-command';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class EmployeesService extends BaseService {
-  constructor(
-    config: ApiConfiguration,
-    http: HttpClient
-  ) {
+  constructor(config: ApiConfiguration, http: HttpClient) {
     super(config, http);
   }
 
@@ -35,24 +32,29 @@ export class EmployeesService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  getEmployeeList$Response(params?: {
-
-  }): Observable<StrictHttpResponse<Array<Employee>>> {
-
-    const rb = new RequestBuilder(this.rootUrl, EmployeesService.GetEmployeeListPath, 'get');
-    if (params) {
-
-
-    }
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<Employee>>;
-      })
+  getEmployeeList$Response(params?: {}): Observable<
+    StrictHttpResponse<Array<Employee>>
+  > {
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      EmployeesService.GetEmployeeListPath,
+      'get'
     );
+    if (params) {
+    }
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/json'
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<Array<Employee>>;
+        })
+      );
   }
 
   /**
@@ -61,10 +63,7 @@ export class EmployeesService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  getEmployeeList(params?: {
-
-  }): Observable<Array<Employee>> {
-
+  getEmployeeList(params?: {}): Observable<Array<Employee>> {
     return this.getEmployeeList$Response(params).pipe(
       map((r: StrictHttpResponse<Array<Employee>>) => r.body as Array<Employee>)
     );
@@ -82,24 +81,31 @@ export class EmployeesService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   updateEmployee$Response(params?: {
-      body?: UpdateEmployeeCommand
+    body?: UpdateEmployeeCommand;
   }): Observable<StrictHttpResponse<void>> {
-
-    const rb = new RequestBuilder(this.rootUrl, EmployeesService.UpdateEmployeePath, 'put');
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      EmployeesService.UpdateEmployeePath,
+      'put'
+    );
     if (params) {
-
-
       rb.body(params.body, 'application/*+json');
     }
-    return this.http.request(rb.build({
-      responseType: 'text',
-      accept: '*/*'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
-      })
-    );
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'text',
+          accept: '*/*'
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return (r as HttpResponse<any>).clone({
+            body: undefined
+          }) as StrictHttpResponse<void>;
+        })
+      );
   }
 
   /**
@@ -108,10 +114,7 @@ export class EmployeesService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  updateEmployee(params?: {
-      body?: UpdateEmployeeCommand
-  }): Observable<void> {
-
+  updateEmployee(params?: {body?: UpdateEmployeeCommand}): Observable<void> {
     return this.updateEmployee$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
@@ -129,24 +132,29 @@ export class EmployeesService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   createEmployee$Response(params?: {
-      body?: CreateEmployeeCommand
+    body?: CreateEmployeeCommand;
   }): Observable<StrictHttpResponse<Employee>> {
-
-    const rb = new RequestBuilder(this.rootUrl, EmployeesService.CreateEmployeePath, 'post');
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      EmployeesService.CreateEmployeePath,
+      'post'
+    );
     if (params) {
-
-
       rb.body(params.body, 'application/*+json');
     }
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Employee>;
-      })
-    );
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/json'
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<Employee>;
+        })
+      );
   }
 
   /**
@@ -156,9 +164,8 @@ export class EmployeesService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   createEmployee(params?: {
-      body?: CreateEmployeeCommand
+    body?: CreateEmployeeCommand;
   }): Observable<Employee> {
-
     return this.createEmployee$Response(params).pipe(
       map((r: StrictHttpResponse<Employee>) => r.body as Employee)
     );
@@ -176,24 +183,31 @@ export class EmployeesService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   deleteEmployee$Response(params?: {
-      body?: DeleteEmployeeCommand
+    body?: DeleteEmployeeCommand;
   }): Observable<StrictHttpResponse<void>> {
-
-    const rb = new RequestBuilder(this.rootUrl, EmployeesService.DeleteEmployeePath, 'delete');
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      EmployeesService.DeleteEmployeePath,
+      'delete'
+    );
     if (params) {
-
-
       rb.body(params.body, 'application/*+json');
     }
-    return this.http.request(rb.build({
-      responseType: 'text',
-      accept: '*/*'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
-      })
-    );
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'text',
+          accept: '*/*'
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return (r as HttpResponse<any>).clone({
+            body: undefined
+          }) as StrictHttpResponse<void>;
+        })
+      );
   }
 
   /**
@@ -202,10 +216,7 @@ export class EmployeesService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  deleteEmployee(params?: {
-      body?: DeleteEmployeeCommand
-  }): Observable<void> {
-
+  deleteEmployee(params?: {body?: DeleteEmployeeCommand}): Observable<void> {
     return this.deleteEmployee$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
@@ -224,24 +235,28 @@ export class EmployeesService extends BaseService {
    */
   getEmployeeById$Response(params: {
     id: string;
-
   }): Observable<StrictHttpResponse<Employee>> {
-
-    const rb = new RequestBuilder(this.rootUrl, EmployeesService.GetEmployeeByIdPath, 'get');
-    if (params) {
-
-      rb.path('id', params.id);
-
-    }
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Employee>;
-      })
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      EmployeesService.GetEmployeeByIdPath,
+      'get'
     );
+    if (params) {
+      rb.path('id', params.id);
+    }
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/json'
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<Employee>;
+        })
+      );
   }
 
   /**
@@ -250,11 +265,7 @@ export class EmployeesService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  getEmployeeById(params: {
-    id: string;
-
-  }): Observable<Employee> {
-
+  getEmployeeById(params: {id: string}): Observable<Employee> {
     return this.getEmployeeById$Response(params).pipe(
       map((r: StrictHttpResponse<Employee>) => r.body as Employee)
     );
@@ -273,24 +284,28 @@ export class EmployeesService extends BaseService {
    */
   getEmployeeByNumber$Response(params: {
     number: number;
-
   }): Observable<StrictHttpResponse<Employee>> {
-
-    const rb = new RequestBuilder(this.rootUrl, EmployeesService.GetEmployeeByNumberPath, 'get');
-    if (params) {
-
-      rb.path('number', params.number);
-
-    }
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Employee>;
-      })
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      EmployeesService.GetEmployeeByNumberPath,
+      'get'
     );
+    if (params) {
+      rb.path('number', params.number);
+    }
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/json'
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<Employee>;
+        })
+      );
   }
 
   /**
@@ -299,11 +314,7 @@ export class EmployeesService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  getEmployeeByNumber(params: {
-    number: number;
-
-  }): Observable<Employee> {
-
+  getEmployeeByNumber(params: {number: number}): Observable<Employee> {
     return this.getEmployeeByNumber$Response(params).pipe(
       map((r: StrictHttpResponse<Employee>) => r.body as Employee)
     );
@@ -312,7 +323,8 @@ export class EmployeesService extends BaseService {
   /**
    * Path part for operation getTimeReportsForEmployee
    */
-  static readonly GetTimeReportsForEmployeePath = '/employees/{number}/time-reports';
+  static readonly GetTimeReportsForEmployeePath =
+    '/employees/{number}/time-reports';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -322,24 +334,30 @@ export class EmployeesService extends BaseService {
    */
   getTimeReportsForEmployee$Response(params: {
     number: number;
-
   }): Observable<StrictHttpResponse<void>> {
-
-    const rb = new RequestBuilder(this.rootUrl, EmployeesService.GetTimeReportsForEmployeePath, 'get');
-    if (params) {
-
-      rb.path('number', params.number);
-
-    }
-    return this.http.request(rb.build({
-      responseType: 'text',
-      accept: '*/*'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
-      })
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      EmployeesService.GetTimeReportsForEmployeePath,
+      'get'
     );
+    if (params) {
+      rb.path('number', params.number);
+    }
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'text',
+          accept: '*/*'
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return (r as HttpResponse<any>).clone({
+            body: undefined
+          }) as StrictHttpResponse<void>;
+        })
+      );
   }
 
   /**
@@ -348,14 +366,9 @@ export class EmployeesService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  getTimeReportsForEmployee(params: {
-    number: number;
-
-  }): Observable<void> {
-
+  getTimeReportsForEmployee(params: {number: number}): Observable<void> {
     return this.getTimeReportsForEmployee$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
-
 }

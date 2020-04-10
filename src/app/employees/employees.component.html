@@ -2,13 +2,27 @@
   <mat-card>
     <mat-card-header class="space-between">
       <h2 mat-card-title>Employees</h2>
-      <a routerLink="/employees/add" mat-raised-button color="primary" class="mt-auto mb-auto">ADD EMPLOYEE</a>
+      <a
+        routerLink="/employees/add"
+        mat-raised-button
+        color="primary"
+        class="mt-auto mb-auto"
+        >ADD EMPLOYEE</a
+      >
     </mat-card-header>
 
     <div class="employee-list d-flex col">
       <mat-list>
-        <mat-list-item *ngFor="let employee of employees$ | async" [routerLink]="[employee.employeeNumber, 'manage']">
-          <img mat-list-icon class="head-shot" src="https://via.placeholder.com/75" alt="head shot" />
+        <mat-list-item
+          *ngFor="let employee of employees$ | async"
+          [routerLink]="[employee.employeeNumber, 'manage']"
+        >
+          <img
+            mat-list-icon
+            class="head-shot"
+            src="https://via.placeholder.com/75"
+            alt="head shot"
+          />
           <h4 mat-line>{{ employee.givenName }} {{ employee.familyName }}</h4>
           <p mat-line>{{ employee.email }}</p>
         </mat-list-item>

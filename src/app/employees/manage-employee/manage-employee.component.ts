@@ -7,19 +7,19 @@ import {FormGroup, FormControl} from '@angular/forms';
 import {
   Employee,
   UpdateEmployeeCommand,
-  DeleteEmployeeCommand,
+  DeleteEmployeeCommand
 } from 'src/app/core/api/models';
 import {AppState} from 'src/app/store/app.state';
 import {Store} from '@ngrx/store';
 import {
   updateEmployee,
-  removeEmployee,
+  removeEmployee
 } from 'src/app/store/actions/employee.action';
 
 @Component({
   selector: 'app-manage-employee',
   templateUrl: './manage-employee.component.html',
-  styleUrls: ['./manage-employee.component.scss'],
+  styleUrls: ['./manage-employee.component.scss']
 })
 export class ManageEmployeeComponent implements OnInit {
   constructor(
@@ -34,7 +34,7 @@ export class ManageEmployeeComponent implements OnInit {
     givenName: new FormControl(''),
     familyName: new FormControl(''),
     email: new FormControl(''),
-    hourlyPay: new FormControl(''),
+    hourlyPay: new FormControl('')
   });
 
   ngOnInit(): void {
@@ -55,7 +55,7 @@ export class ManageEmployeeComponent implements OnInit {
       givenName: this.form.get('givenName').value,
       familyName: this.form.get('familyName').value,
       email: this.form.get('email').value,
-      hourlyPay: +this.form.get('hourlyPay').value,
+      hourlyPay: +this.form.get('hourlyPay').value
     };
     this.store.dispatch(updateEmployee({employee: updateEmployeeCommand}));
   }

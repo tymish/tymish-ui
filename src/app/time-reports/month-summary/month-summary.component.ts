@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { TimeReportsService } from 'src/app/core/api/services';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {TimeReportsService} from 'src/app/core/api/services';
 import * as moment from 'moment';
-import { Observable } from 'rxjs';
-import { EmployeeTimeReportAggregateDto } from 'src/app/core/api/models';
+import {Observable} from 'rxjs';
+import {EmployeeTimeReportAggregateDto} from 'src/app/core/api/models';
 
 @Component({
   selector: 'app-month-summary',
@@ -18,7 +18,8 @@ export class MonthSummaryComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private service: TimeReportsService,
-    private router: Router) { }
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     const snapshot = this.route.snapshot;

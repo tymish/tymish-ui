@@ -1,6 +1,6 @@
 /* tslint:disable */
-import { Employee } from './employee';
-import { TimeEntry } from './time-entry';
+import {Employee} from './employee';
+import {TimeEntry} from './time-entry';
 export interface TimeReport {
   employee?: null | Employee;
   employeeId?: string;

@@ -8,7 +8,7 @@ import {EmployeesService} from '../../core/api/services/employees.service';
 import {CreateEmployeeCommand} from '../../core/api/models/create-employee-command';
 import {
   UpdateEmployeeCommand,
-  DeleteEmployeeCommand,
+  DeleteEmployeeCommand
 } from 'src/app/core/api/models';
 
 import * as EmployeeActions from '../actions/employee.action';
@@ -23,7 +23,7 @@ export class EmployeeEffect {
         this.employeeService.getEmployeeList().pipe(
           map((employees) => ({
             type: EmployeeActions.employeesGotten.type,
-            employees: employees,
+            employees: employees
           })),
           catchError(() => EMPTY)
         )
@@ -40,7 +40,7 @@ export class EmployeeEffect {
           map(
             (employee) => ({
               type: EmployeeActions.employeeAdded.type,
-              employee: employee,
+              employee: employee
             }),
             catchError(() => EMPTY)
           ),
@@ -59,7 +59,7 @@ export class EmployeeEffect {
           map(
             () => ({
               type: EmployeeActions.employeeUpdated.type,
-              employee: action.employee,
+              employee: action.employee
             }),
             catchError(() => EMPTY)
           ),
@@ -74,12 +74,12 @@ export class EmployeeEffect {
       ofType(EmployeeActions.removeEmployee),
       mergeMap((action) => {
         const params = {
-          employeeNumber: action.employeeNumber,
+          employeeNumber: action.employeeNumber
         } as DeleteEmployeeCommand;
         return this.employeeService.deleteEmployee({body: params}).pipe(
           map(() => ({
             type: EmployeeActions.employeeRemoved.type,
-            employeeNumber: action.employeeNumber,
+            employeeNumber: action.employeeNumber
           })),
           tap(() => this.router.navigate(['/employees']))
         );

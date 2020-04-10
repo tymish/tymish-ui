@@ -8,7 +8,7 @@ import {selectEmployees} from '../store/selectors/employee.selector';
 @Component({
   selector: 'app-employees',
   templateUrl: './employees.component.html',
-  styleUrls: ['./employees.component.scss'],
+  styleUrls: ['./employees.component.scss']
 })
 export class EmployeesComponent implements OnInit {
   public employees$ = this.store.pipe(select(selectEmployees));

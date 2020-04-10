@@ -37,7 +37,7 @@ import {EmployeeEffect} from './store/effects/employee.effect';
     TimeReportsComponent,
     MonthSummaryComponent,
     SubmitTimeReportComponent,
-    ManageTimeReportComponent,
+    ManageTimeReportComponent
   ],
   imports: [
     CommonModule,
@@ -52,11 +52,11 @@ import {EmployeeEffect} from './store/effects/employee.effect';
     StoreModule.forRoot({employees: reducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
-      logOnly: environment.production,
+      logOnly: environment.production
     }),
-    EffectsModule.forRoot([EmployeeEffect]),
+    EffectsModule.forRoot([EmployeeEffect])
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

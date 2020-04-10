@@ -1,5 +1,5 @@
 /* tslint:disable */
-import { TimeReport } from './time-report';
+import {TimeReport} from './time-report';
 export interface Employee {
   email?: null | string;
   employeeNumber?: number;

@@ -8,15 +8,20 @@
           <th>End</th>
         </tr>
         <tr *ngFor="let entry of timeReport.timeEntries">
-          <td>{{entry.start | date: 'EEEE, MMMM dd'}}</td>
-          <td>{{entry.start | date: 'h:mm a'}}</td>
-          <td>{{entry.end | date: 'h:mm a'}}</td>
+          <td>{{ entry.start | date: 'EEEE, MMMM dd' }}</td>
+          <td>{{ entry.start | date: 'h:mm a' }}</td>
+          <td>{{ entry.end | date: 'h:mm a' }}</td>
         </tr>
       </table>
       <form [formGroup]="form" (submit)="markAsPaid(timeReport.id)">
         <mat-form-field appearance="outline">
           <mat-label>E-transfer Reference No.</mat-label>
-          <input matInput type="text" formControlName="eTransferReference" placeholder="CAyjXgxc">
+          <input
+            matInput
+            type="text"
+            formControlName="eTransferReference"
+            placeholder="CAyjXgxc"
+          />
         </mat-form-field>
         <button mat-button color="primary" type="submit">Mark as paid</button>
       </form>
@@ -30,5 +35,7 @@
     This time report has not been submitted yet.
   </p>
   <p>Send them this link to submit their time report</p>
-  <code *ngIf="timeReport$ | async as timeReport">{{submitLink(timeReport.id)}}</code>
+  <code *ngIf="timeReport$ | async as timeReport">{{
+    submitLink(timeReport.id)
+  }}</code>
 </ng-template>

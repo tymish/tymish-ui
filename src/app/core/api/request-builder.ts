@@ -1,5 +1,10 @@
 /* tslint:disable */
-import { HttpRequest, HttpParameterCodec, HttpParams, HttpHeaders } from '@angular/common/http';
+import {
+  HttpRequest,
+  HttpParameterCodec,
+  HttpParams,
+  HttpHeaders
+} from '@angular/common/http';
 
 /**
  * Custom parameter codec to correctly handle the plus sign in parameter
@@ -28,7 +33,6 @@ const ParameterCodecInstance = new ParameterCodec();
  * Helper to build http requests from parameters
  */
 export class RequestBuilder {
-
   private _path = new Map<string, any>();
   private _query = new Map<string, any>();
   private _header = new Map<string, any>();
@@ -38,8 +42,8 @@ export class RequestBuilder {
   constructor(
     public rootUrl: string,
     public operationPath: string,
-    public method: string) {
-  }
+    public method: string
+  ) {}
 
   /**
    * Sets a path parameter
@@ -77,7 +81,10 @@ export class RequestBuilder {
     } else {
       this._bodyContentType = contentType;
     }
-    if (this._bodyContentType === 'application/x-www-form-urlencoded' && typeof value === 'object') {
+    if (
+      this._bodyContentType === 'application/x-www-form-urlencoded' &&
+      typeof value === 'object'
+    ) {
       // Handle URL-encoded data
       const pairs: string[][] = [];
       for (const key of Object.keys(value)) {
@@ -92,7 +99,9 @@ export class RequestBuilder {
           }
         }
       }
-      this._bodyContent = pairs.map(p => `${encodeURIComponent(p[0])}=${encodeURIComponent(p[1])}`).join('&');
+      this._bodyContent = pairs
+        .map((p) => `${encodeURIComponent(p[0])}=${encodeURIComponent(p[1])}`)
+        .join('&');
     } else if (this._bodyContentType === 'multipart/form-data') {
       // Handle multipart form data
       const formData = new FormData();
@@ -137,7 +146,7 @@ export class RequestBuilder {
   /**
    * Builds the request with the current set parameters
    */
-  build<T=any>(options?: {
+  build<T = any>(options?: {
     /** Which content types to accept */
     accept?: string;
 
@@ -147,14 +156,16 @@ export class RequestBuilder {
     /** Whether to report progress on uploads / downloads */
     reportProgress?: boolean;
   }): HttpRequest<T> {
-
     options = options || {};
 
     // Path parameters
     let path = this.operationPath;
     for (const param of Array.from(this._path.keys())) {
       const item = this._path.get(param);
-      path = path.replace(`{${param}}`, (item !== undefined && item !== null ? item : '').toString());
+      path = path.replace(
+        `{${param}}`,
+        (item !== undefined && item !== null ? item : '').toString()
+      );
     }
     const url = this.rootUrl + path;
 
@@ -166,10 +177,16 @@ export class RequestBuilder {
       const value = this._query.get(param);
       if (value instanceof Array) {
         for (const item of value) {
-          httpParams = httpParams.append(param, (item !== undefined && item !== null ? item : '').toString());
+          httpParams = httpParams.append(
+            param,
+            (item !== undefined && item !== null ? item : '').toString()
+          );
         }
       } else {
-        httpParams = httpParams.set(param, (value !== undefined && value !== null ? value : '').toString());
+        httpParams = httpParams.set(
+          param,
+          (value !== undefined && value !== null ? value : '').toString()
+        );
       }
     }
 
@@ -182,10 +199,16 @@ export class RequestBuilder {
       const value = this._header.get(param);
       if (value instanceof Array) {
         for (const item of value) {
-          httpHeaders = httpHeaders.append(param, (item !== undefined && item !== null ? item : '').toString());
+          httpHeaders = httpHeaders.append(
+            param,
+            (item !== undefined && item !== null ? item : '').toString()
+          );
         }
       } else {
-        httpHeaders = httpHeaders.set(param, (value !== undefined && value !== null ? value : '').toString());
+        httpHeaders = httpHeaders.set(
+          param,
+          (value !== undefined && value !== null ? value : '').toString()
+        );
       }
     }
 
@@ -195,12 +218,16 @@ export class RequestBuilder {
     }
 
     // Perform the request
-    return new HttpRequest<T>(this.method.toUpperCase(), url, this._bodyContent, {
-      params: httpParams,
-      headers: httpHeaders,
-      responseType: options.responseType,
-      reportProgress: options.reportProgress
-    });
+    return new HttpRequest<T>(
+      this.method.toUpperCase(),
+      url,
+      this._bodyContent,
+      {
+        params: httpParams,
+        headers: httpHeaders,
+        responseType: options.responseType,
+        reportProgress: options.reportProgress
+      }
+    );
   }
 }
-
