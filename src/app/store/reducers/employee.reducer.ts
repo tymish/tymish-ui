@@ -9,7 +9,7 @@ const employeeReducer = createReducer(
   initialState,
   on(EmployeeActions.getEmployees, (state) => state),
 
-  on(EmployeeActions.employeesLoaded, (state, props) => {
+  on(EmployeeActions.employeesGotten, (state, props) => {
     return props.employees;
   }),
 
@@ -18,16 +18,23 @@ const employeeReducer = createReducer(
   }),
 
   on(EmployeeActions.employeeAdded, (state, props) => {
-    console.log(props);
     return [...state, props.employee];
   }),
 
   on(EmployeeActions.updateEmployee, (state, props) => {
-    const index = state.findIndex(
-      (employee) => employee.employeeNumber === props.employee.employeeNumber
-    );
-    return {...state, employees: state.splice(index)};
+    return state;
   }),
+
+  on(EmployeeActions.employeeUpdated, (state, props) =>
+    state.map((old) => {
+      if (old.employeeNumber !== props.employee.employeeNumber) return old;
+
+      return Object.assign(
+        {},
+        ...Object.keys(old).map((e) => ({[e]: props.employee[e]}))
+      );
+    })
+  ),
 
   on(EmployeeActions.removeEmployee, (state, props) => ({
     ...state,

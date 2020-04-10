@@ -9,7 +9,7 @@ export const UPDATE_EMPLOYEE = '[EMPLOYEE] Update';
 
 export const getEmployees = createAction(FETCH_EMPLOYEE);
 
-export const employeesLoaded = createAction(
+export const employeesGotten = createAction(
   '[Employees API] Employees Loaded',
   props<{employees: Employee[]}>()
 );
@@ -31,5 +31,10 @@ export const removeEmployee = createAction(
 
 export const updateEmployee = createAction(
   UPDATE_EMPLOYEE,
+  props<{employee: Employee}>()
+);
+
+export const employeeUpdated = createAction(
+  '[Employee] update success',
   props<{employee: Employee}>()
 );
