@@ -31,7 +31,7 @@ const employeeReducer = createReducer(
 
       return Object.assign(
         {},
-        ...Object.keys(old).map((e) => ({[e]: props.employee[e]}))
+        ...Object.keys(old).map((e) => ({[e]: props.employee[e] ?? old[e]}))
       );
     })
   ),
