@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
 import {CreateEmployeeCommand} from 'src/app/core/api/models';
 
-import * as EmployeeActions from '../../store/actions/employee.action';
+import {addEmployee} from '../../store/actions/employee.action';
 import {Store} from '@ngrx/store';
 import {AppState} from 'src/app/store/app.state';
 
@@ -30,6 +30,6 @@ export class AddEmployeeComponent implements OnInit {
       email: this.form.get('email').value,
       hourlyPay: +this.form.get('hourlyPay').value,
     };
-    this.store.dispatch(EmployeeActions.addEmployee({employee: employee}));
+    this.store.dispatch(addEmployee({employee: employee}));
   }
 }

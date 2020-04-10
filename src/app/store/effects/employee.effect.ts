@@ -1,13 +1,14 @@
 import {Injectable} from '@angular/core';
-import {map, mergeMap, catchError} from 'rxjs/operators';
-
 import {createEffect, Actions, ofType} from '@ngrx/effects';
-import * as EmployeeActions from '../actions/employee.action';
+
+import {EMPTY} from 'rxjs';
+import {map, mergeMap, catchError} from 'rxjs/operators';
 
 import {EmployeesService} from '../../core/api/services/employees.service';
 import {CreateEmployeeCommand} from '../../core/api/models/create-employee-command';
-import {EMPTY} from 'rxjs';
 import {UpdateEmployeeCommand} from 'src/app/core/api/models';
+
+import * as EmployeeActions from '../actions/employee.action';
 
 @Injectable()
 export class EmployeeEffect {
