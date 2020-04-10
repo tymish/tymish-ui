@@ -14,8 +14,12 @@ const employeeReducer = createReducer(
   }),
 
   on(EmployeeActions.addEmployee, (state, props) => {
-    state.push(props.employee);
     return state;
+  }),
+
+  on(EmployeeActions.employeeAdded, (state, props) => {
+    console.log(props);
+    return [...state, props.employee];
   }),
 
   on(EmployeeActions.updateEmployee, (state, props) => {

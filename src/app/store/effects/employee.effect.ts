@@ -28,11 +28,15 @@ export class EmployeeEffect {
   addEmployee$ = createEffect(() =>
     this.actions$.pipe(
       ofType(EmployeeActions.addEmployee),
-      map((action) => {
-        this.employeeService.createEmployee({
-          body: action.employee as CreateEmployeeCommand,
-        });
-        return EmployeeActions.getEmployees();
+      mergeMap((action) => {
+        const param = {body: action.employee as CreateEmployeeCommand};
+        return this.employeeService.createEmployee(param).pipe(
+          map((employee) => ({
+            type: EmployeeActions.employeeAdded.type,
+            employee: employee,
+          })),
+          catchError(() => EMPTY)
+        );
       })
     )
   );
