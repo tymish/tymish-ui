@@ -36,12 +36,13 @@ const employeeReducer = createReducer(
     })
   ),
 
-  on(Actions.removeEmployee, (state, props) => ({
-    ...state,
-    employees: state.filter(
-      (employee) => employee.employeeNumber !== props.employeeNumber
-    ),
-  }))
+  on(Actions.removeEmployee, (state, props) => state),
+
+  on(Actions.employeeRemoved, (state, props) => {
+    return state.filter(
+      (employeeNumber) => employeeNumber !== props.employeeNumber
+    );
+  })
 );
 export function reducer(state: Employee[] | undefined, action: Action) {
   return employeeReducer(state, action);

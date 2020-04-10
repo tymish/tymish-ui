@@ -2,13 +2,17 @@ import {Injectable} from '@angular/core';
 import {createEffect, Actions, ofType} from '@ngrx/effects';
 
 import {EMPTY} from 'rxjs';
-import {map, mergeMap, catchError} from 'rxjs/operators';
+import {map, mergeMap, catchError, tap} from 'rxjs/operators';
 
 import {EmployeesService} from '../../core/api/services/employees.service';
 import {CreateEmployeeCommand} from '../../core/api/models/create-employee-command';
-import {UpdateEmployeeCommand} from 'src/app/core/api/models';
+import {
+  UpdateEmployeeCommand,
+  DeleteEmployeeCommand,
+} from 'src/app/core/api/models';
 
 import * as EmployeeActions from '../actions/employee.action';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class EmployeeEffect {
@@ -39,7 +43,8 @@ export class EmployeeEffect {
               employee: employee,
             }),
             catchError(() => EMPTY)
-          )
+          ),
+          tap(() => this.router.navigate(['/employees']))
         );
       })
     )
@@ -57,7 +62,26 @@ export class EmployeeEffect {
               employee: action.employee,
             }),
             catchError(() => EMPTY)
-          )
+          ),
+          tap(() => this.router.navigate(['/employees']))
+        );
+      })
+    )
+  );
+
+  deleteEmployee$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(EmployeeActions.removeEmployee),
+      mergeMap((action) => {
+        const params = {
+          employeeNumber: action.employeeNumber,
+        } as DeleteEmployeeCommand;
+        return this.employeeService.deleteEmployee({body: params}).pipe(
+          map(() => ({
+            type: EmployeeActions.employeeRemoved.type,
+            employeeNumber: action.employeeNumber,
+          })),
+          tap(() => this.router.navigate(['/employees']))
         );
       })
     )
@@ -65,6 +89,7 @@ export class EmployeeEffect {
 
   constructor(
     private actions$: Actions,
-    private employeeService: EmployeesService
+    private employeeService: EmployeesService,
+    private router: Router
   ) {}
 }
