@@ -18,11 +18,6 @@ export const employeeAdded = createAction(
   props<{employee: Employee}>()
 );
 
-export const removeEmployee = createAction(
-  '[Employees] Remove',
-  props<{employeeNumber: number}>()
-);
-
 export const updateEmployee = createAction(
   '[Employees] Update',
   props<{employee: Employee}>()
@@ -31,4 +26,14 @@ export const updateEmployee = createAction(
 export const employeeUpdated = createAction(
   '[Employees] Update success',
   props<{employee: Employee}>()
+);
+
+export const removeEmployee = createAction(
+  '[Employees] Remove',
+  props<{employeeNumber: number}>()
+);
+
+export const employeeRemoved = createAction(
+  '[Employees] Remove success',
+  props<{employeeNumber: number}>()
 );

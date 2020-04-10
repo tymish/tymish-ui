@@ -11,7 +11,10 @@ import {
 } from 'src/app/core/api/models';
 import {AppState} from 'src/app/store/app.state';
 import {Store} from '@ngrx/store';
-import {updateEmployee} from 'src/app/store/actions/employee.action';
+import {
+  updateEmployee,
+  removeEmployee,
+} from 'src/app/store/actions/employee.action';
 
 @Component({
   selector: 'app-manage-employee',
@@ -58,7 +61,6 @@ export class ManageEmployeeComponent implements OnInit {
   }
 
   delete(employeeNumber: number): void {
-    const command: DeleteEmployeeCommand = {employeeNumber};
-    this.service.deleteEmployee({body: command}).subscribe();
+    this.store.dispatch(removeEmployee({employeeNumber: employeeNumber}));
   }
 }
