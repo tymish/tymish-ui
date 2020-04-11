@@ -1,9 +1,4 @@
-<mat-toolbar color="primary" class="fixed">
-  <button mat-icon-button (click)="sidenav.toggle()">
-    <i class="material-icons">menu</i>
-  </button>
-  <h1>Tymish</h1>
-</mat-toolbar>
+<app-toolbar [matSidenav]="sidenav"></app-toolbar>
 
 <mat-sidenav-container class="example-container">
   <mat-sidenav

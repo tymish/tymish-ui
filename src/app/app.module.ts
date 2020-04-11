@@ -18,6 +18,8 @@ import {TimeReportsComponent} from './time-reports/time-reports.component';
 import {MonthSummaryComponent} from './time-reports/month-summary/month-summary.component';
 import {SubmitTimeReportComponent} from './submit-time-report/submit-time-report.component';
 import {ManageTimeReportComponent} from './manage-time-report/manage-time-report.component';
+import {ToolbarComponent} from './toolbar/toolbar.component';
+
 import {environment} from 'src/environments/environment';
 
 // NGRX
@@ -37,7 +39,8 @@ import {EmployeeEffect} from './store/effects/employee.effect';
     TimeReportsComponent,
     MonthSummaryComponent,
     SubmitTimeReportComponent,
-    ManageTimeReportComponent
+    ManageTimeReportComponent,
+    ToolbarComponent
   ],
   imports: [
     CommonModule,
