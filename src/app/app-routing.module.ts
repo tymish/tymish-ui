@@ -7,6 +7,7 @@ import {TimeReportsComponent} from './time-reports/time-reports.component';
 import {MonthSummaryComponent} from './time-reports/month-summary/month-summary.component';
 import {SubmitTimeReportComponent} from './submit-time-report/submit-time-report.component';
 import {ManageTimeReportComponent} from './manage-time-report/manage-time-report.component';
+import {LoginComponent} from './core/auth/login.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/employees', pathMatch: 'full'},
@@ -26,7 +27,8 @@ const routes: Routes = [
   {path: 'time-reports/:id', component: ManageTimeReportComponent},
   // also available to anonymous
   {path: 'submit-time-report', component: SubmitTimeReportComponent},
-  {path: 'submit-time-report/:id', component: SubmitTimeReportComponent}
+  {path: 'submit-time-report/:id', component: SubmitTimeReportComponent},
+  {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({
