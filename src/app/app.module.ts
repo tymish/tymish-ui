@@ -19,6 +19,7 @@ import {MonthSummaryComponent} from './time-reports/month-summary/month-summary.
 import {SubmitTimeReportComponent} from './submit-time-report/submit-time-report.component';
 import {ManageTimeReportComponent} from './manage-time-report/manage-time-report.component';
 import {ToolbarComponent} from './toolbar/toolbar.component';
+import {LoginComponent} from './core/auth/login.component';
 
 import {environment} from 'src/environments/environment';
 
@@ -40,7 +41,8 @@ import {EmployeeEffect} from './store/effects/employee.effect';
     MonthSummaryComponent,
     SubmitTimeReportComponent,
     ManageTimeReportComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,
