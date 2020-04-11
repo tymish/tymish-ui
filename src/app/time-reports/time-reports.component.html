@@ -12,66 +12,81 @@
   </mat-form-field>
 
   <mat-accordion>
-    <mat-expansion-panel
-      *ngFor="let month of monthAggregates$ | async"
-      #panel
-      class="mt-1"
-    >
-      <mat-expansion-panel-header collapsedHeight="100px">
-        <mat-panel-title>
-          <h2>
-            <span>
-              {{ month.payPeriod | date: 'MMMM' }}
-            </span>
-            <div class="title-spacer"></div>
-            <mat-chip-list *ngIf="!panel.expanded">
-              <mat-chip>{{ month.sentReports }} Sent</mat-chip>
-              <mat-chip>{{ month.receivedReports }} Received</mat-chip>
-              <mat-chip>{{ month.paidReports }} Paid</mat-chip>
-            </mat-chip-list>
-          </h2>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <div class="flex vertical space-between progress-group">
-        <div class="flex space-between">
-          Received time reports<span
-            >{{ month.sentReports - month.receivedReports }} remaining</span
-          >
-        </div>
-        <mat-progress-bar
-          mode="determinate"
-          [value]="percentDone(month.receivedReports, month.sentReports)"
-        >
-        </mat-progress-bar>
-        <div>
-          <button mat-button color="primary" class="shift-left">
-            SEND REMINDER
-          </button>
-        </div>
-      </div>
-      <div class="spacer"></div>
-      <div class="flex vertical space-between progress-group">
-        <div class="flex space-between">
-          Paid invoices<span>
-            {{ month.sentReports - month.paidReports }} remaining
-          </span>
-        </div>
-        <mat-progress-bar
-          mode="determinate"
-          [value]="percentDone(month.paidReports, month.sentReports)"
-        >
-        </mat-progress-bar>
-        <div>
+    <ng-template ngFor let-month [ngForOf]="monthAggregates$ | async">
+      <mat-card *ngIf="!month.sentReports">
+        <mat-card-header>
+          <mat-card-title>
+            <h2>{{ month.payPeriod | date: 'MMMM' }}</h2>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
           <button
-            mat-raised-button
+            mat-button
             color="primary"
-            [routerLink]="goToSummary(month)"
-            class="w-100"
+            (click)="sendTimeReports(month.payPeriod)"
           >
-            VIEW DETAILS
+            SEND REQUEST
           </button>
+        </mat-card-content>
+      </mat-card>
+      <mat-expansion-panel #panel class="mt-1" *ngIf="month.sentReports">
+        <mat-expansion-panel-header collapsedHeight="100px">
+          <mat-panel-title>
+            <h2>
+              <span>
+                {{ month.payPeriod | date: 'MMMM' }}
+              </span>
+              <div class="title-spacer"></div>
+              <mat-chip-list *ngIf="!panel.expanded">
+                <mat-chip>{{ month.sentReports }} Sent</mat-chip>
+                <mat-chip>{{ month.receivedReports }} Received</mat-chip>
+                <mat-chip>{{ month.paidReports }} Paid</mat-chip>
+              </mat-chip-list>
+            </h2>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div class="flex vertical space-between progress-group">
+          <div class="flex space-between">
+            Received time reports<span
+              >{{ month.sentReports - month.receivedReports }} remaining</span
+            >
+          </div>
+          <mat-progress-bar
+            mode="determinate"
+            [value]="percentDone(month.receivedReports, month.sentReports)"
+          >
+          </mat-progress-bar>
+          <div>
+            <button mat-button color="primary" class="shift-left">
+              SEND REMINDER
+            </button>
+          </div>
         </div>
-      </div>
-    </mat-expansion-panel>
+        <div class="spacer"></div>
+        <div class="flex vertical space-between progress-group">
+          <div class="flex space-between">
+            Paid invoices<span>
+              {{ month.sentReports - month.paidReports }} remaining
+            </span>
+          </div>
+          <mat-progress-bar
+            mode="determinate"
+            [value]="percentDone(month.paidReports, month.sentReports)"
+          >
+          </mat-progress-bar>
+          <div>
+            <button
+              mat-raised-button
+              color="primary"
+              [routerLink]="summaryRoutes(month)"
+              class="w-100"
+            >
+              VIEW DETAILS
+            </button>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </ng-template>
   </mat-accordion>
 </div>

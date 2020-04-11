@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TimeReportsService} from '../core/api/services';
 import {MonthAggregateDto} from '../core/api/models';
 import * as moment from 'moment';
-import {Observable, forkJoin} from 'rxjs';
-import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-time-reports',
@@ -26,7 +25,7 @@ export class TimeReportsComponent implements OnInit {
     });
   }
 
-  goToSummary(aggregate: MonthAggregateDto) {
+  summaryRoutes(aggregate: MonthAggregateDto) {
     const thisMonth = moment(aggregate.payPeriod);
     const routes = [thisMonth.year(), thisMonth.format('MM'), 'summary'];
     return routes;
