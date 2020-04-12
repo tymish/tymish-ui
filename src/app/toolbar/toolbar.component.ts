@@ -10,9 +10,8 @@ import {AuthService} from '../core/auth/auth.service';
 })
 export class ToolbarComponent implements OnInit {
   @Input() matSidenav: MatSidenav;
-  loggedIn = this.auth.loggedIn;
 
-  constructor(private auth: AuthService) {}
+  constructor(public auth: AuthService) {}
 
   ngOnInit(): void {}
 

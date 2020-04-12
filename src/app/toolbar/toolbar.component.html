@@ -4,6 +4,10 @@
   </button>
   <h1>Tymish</h1>
   <span class="spacer"></span>
-  <button mat-button (click)="login()" *ngIf="!loggedIn">Login</button>
-  <button mat-button (click)="logout()">Logout</button>
+  <button mat-button (click)="login()" *ngIf="!auth.loggedIn">
+    Login
+  </button>
+  <button mat-button (click)="logout()" *ngIf="auth.loggedIn">
+    Logout
+  </button>
 </mat-toolbar>
