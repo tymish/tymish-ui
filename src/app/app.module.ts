@@ -28,6 +28,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {reducer} from './store/reducers/employee.reducer';
 import {EmployeeEffect} from './store/effects/employee.effect';
 import {CoreModule} from './core/core.module';
+import {HomeComponent} from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {CoreModule} from './core/core.module';
     TimeReportsComponent,
     MonthSummaryComponent,
     SubmitTimeReportComponent,
-    ManageTimeReportComponent
+    ManageTimeReportComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
