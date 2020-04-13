@@ -7,6 +7,13 @@
   <button mat-button (click)="login()" *ngIf="!auth.loggedIn">
     Login
   </button>
+
+  <img
+    *ngIf="auth.userProfile$ | async as profile"
+    class="profile-picture"
+    [src]="profile.picture"
+    [alt]="profile.name"
+  />
   <button mat-button (click)="logout()" *ngIf="auth.loggedIn">
     Logout
   </button>
