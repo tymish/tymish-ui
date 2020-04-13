@@ -1,17 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {SidenavComponent} from './core/components/sidenav/sidenav.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-  sideNavOpened = false;
-  sideNavMode: 'side' | 'over' = 'over';
+  @ViewChild('sidenav') sidenav: SidenavComponent;
 
-  ngOnInit() {
-    if (screen.width > 975) {
-      this.sideNavMode = 'side';
-      this.sideNavOpened = true;
-    }
+  ngOnInit() {}
+
+  toggleSidenav() {
+    this.sidenav.toggle();
   }
 }
