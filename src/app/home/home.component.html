@@ -1,0 +1,23 @@
+<mat-card class="container">
+  <mat-card-header>
+    <h1>Welcome to Tymish</h1>
+  </mat-card-header>
+  <mat-card-content>
+    <p>Features</p>
+    <ul>
+      <li>Add, remove, update employees</li>
+      <li>Send out time reports to employees via email</li>
+      <li>Employees can submit time reports</li>
+      <li>Mark time reports as paid</li>
+    </ul>
+    <div *ngIf="!auth.loggedIn">
+      <p>
+        The app is still under development, please login to test admin features.
+      </p>
+
+      <button mat-raised-button color="primary" routerLink="/login">
+        Login
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>

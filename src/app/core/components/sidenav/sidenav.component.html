@@ -5,6 +5,7 @@
     role="navigation"
     [opened]="sideNavOpened"
     class="fixed"
+    *ngIf="auth.loggedIn"
   >
     <mat-nav-list>
       <a
