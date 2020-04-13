@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {CommonModule} from '@angular/common';
-import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -18,8 +17,6 @@ import {TimeReportsComponent} from './time-reports/time-reports.component';
 import {MonthSummaryComponent} from './time-reports/month-summary/month-summary.component';
 import {SubmitTimeReportComponent} from './submit-time-report/submit-time-report.component';
 import {ManageTimeReportComponent} from './manage-time-report/manage-time-report.component';
-import {ToolbarComponent} from './toolbar/toolbar.component';
-import {LoginComponent} from './core/auth/login.component';
 
 import {environment} from 'src/environments/environment';
 
@@ -30,6 +27,7 @@ import {EffectsModule} from '@ngrx/effects';
 
 import {reducer} from './store/reducers/employee.reducer';
 import {EmployeeEffect} from './store/effects/employee.effect';
+import {CoreModule} from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -40,15 +38,12 @@ import {EmployeeEffect} from './store/effects/employee.effect';
     TimeReportsComponent,
     MonthSummaryComponent,
     SubmitTimeReportComponent,
-    ManageTimeReportComponent,
-    ToolbarComponent,
-    LoginComponent
+    ManageTimeReportComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
@@ -59,7 +54,8 @@ import {EmployeeEffect} from './store/effects/employee.effect';
       maxAge: 25,
       logOnly: environment.production
     }),
-    EffectsModule.forRoot([EmployeeEffect])
+    EffectsModule.forRoot([EmployeeEffect]),
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

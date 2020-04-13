@@ -2,7 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
-    "outDir": "./dist/out-tsc/app",
+    "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
@@ -14,8 +14,6 @@
     "typeRoots": ["node_modules/@types"],
     "lib": ["es2018", "dom"]
   },
-  "files": ["src/main.ts", "src/polyfills.ts"],
-  "include": ["src/**/*.d.ts"],
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true

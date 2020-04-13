@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" class="fixed">
-  <button mat-icon-button (click)="matSidenav.toggle()">
+  <button mat-icon-button (click)="toggleSidenav($event)" *ngIf="auth.loggedIn">
     <i class="material-icons">menu</i>
   </button>
   <h1>Tymish</h1>

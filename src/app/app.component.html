@@ -1,31 +1,5 @@
-<app-toolbar [matSidenav]="sidenav"></app-toolbar>
+<app-toolbar (sidenavToggled)="toggleSidenav()"></app-toolbar>
 
-<mat-sidenav-container class="example-container">
-  <mat-sidenav
-    #sidenav
-    [mode]="sideNavMode"
-    role="navigation"
-    [opened]="sideNavOpened"
-    class="fixed"
-  >
-    <mat-nav-list>
-      <a
-        mat-list-item
-        routerLink="time-reports"
-        (click)="sidenav.mode === 'over' && sidenav.close()"
-        >Time Reports</a
-      >
-      <a
-        mat-list-item
-        routerLink="employees"
-        (click)="sidenav.mode === 'over' && sidenav.close()"
-        >Employees</a
-      >
-    </mat-nav-list>
-  </mat-sidenav>
-
-  <mat-sidenav-content>
-    <!-- Main Content -->
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<app-sidenav #sidenav>
+  <router-outlet></router-outlet>
+</app-sidenav>
