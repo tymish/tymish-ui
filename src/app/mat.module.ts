@@ -16,6 +16,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSelectModule} from '@angular/material/select';
+import {MatMenuModule} from '@angular/material/menu';
 
 const angularMaterial = [
   MatButtonModule,
@@ -34,7 +35,8 @@ const angularMaterial = [
   MatTableModule,
   MatExpansionModule,
   MatProgressBarModule,
-  MatSelectModule
+  MatSelectModule,
+  MatMenuModule
 ];
 
 @NgModule({

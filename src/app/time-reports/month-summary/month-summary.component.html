@@ -11,33 +11,34 @@
       <mat-card-title>{{ year }} {{ month }} </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <div *ngFor="let a of aggregates$ | async">
-        <div [routerLink]="['/time-reports', a.timeReportId]" class="row">
-          <span>{{ a.employee.givenName }} {{ a.employee.familyName }}</span>
-          <span class="box"
-            >Sent <span>{{ a.sent | date }}</span></span
-          >
-          <span class="box"
-            >Submitted
-            <span *ngIf="a.submitted; else pending">{{
-              a.submitted | date
-            }}</span></span
-          >
-          <span class="box"
-            >Paid
-            <span *ngIf="a.paid; else pending">{{ a.paid | date }}</span></span
-          >
-          <span class="box"
-            >Owed <span>${{ a.amountOwed }}</span></span
-          >
-        </div>
-      </div>
+      <mat-list>
+        <div mat-subheader>Employees</div>
+        <mat-list-item *ngFor="let a of aggregates$ | async">
+          <!-- <img matListAvatar src="" alt="" /> -->
+          <div matListAvatar class="avatar">
+            {{ a.employee.givenName.charAt(0) }}
+          </div>
+          <div matLine>
+            {{ a.employee.givenName }} {{ a.employee.familyName }}
+          </div>
+          <div matLine>Time report: {{ a.submitted }}</div>
+          <div matLine>Balance: {{ a.amountOwed }}</div>
+          <div class="spacer"></div>
+          <button mat-icon-button [matMenuTriggerFor]="timeReportMenu">
+            <i class="material-icons">more_vert</i>
+          </button>
+
+          <mat-menu #timeReportMenu="matMenu">
+            <button mat-menu-item>Send Reminder</button>
+            <button
+              mat-menu-item
+              [routerLink]="['/time-reports', a.timeReportId]"
+            >
+              View Time Report
+            </button>
+          </mat-menu>
+        </mat-list-item>
+      </mat-list>
     </mat-card-content>
   </mat-card>
 </div>
-
-<ng-template #pending>
-  <span>
-    pending
-  </span>
-</ng-template>
