@@ -13,6 +13,7 @@ import {
 
 import * as EmployeeActions from '../actions/employee.action';
 import {Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Injectable()
 export class EmployeeEffect {
@@ -42,9 +43,17 @@ export class EmployeeEffect {
               type: EmployeeActions.employeeAdded.type,
               employee: employee
             }),
-            catchError(() => EMPTY)
+            catchError(() => {
+              this.snackBar.open('Oops, the add failed...😟', '', {
+                duration: 10000
+              });
+              return EMPTY;
+            })
           ),
-          tap(() => this.router.navigate(['/employees']))
+          tap(() => this.router.navigate(['/employees'])),
+          tap(() =>
+            this.snackBar.open('Employee added! 🙂', '', {duration: 5000})
+          )
         );
       })
     )
@@ -61,9 +70,15 @@ export class EmployeeEffect {
               type: EmployeeActions.employeeUpdated.type,
               employee: action.employee
             }),
-            catchError(() => EMPTY)
+            catchError(() => {
+              this.snackBar.open('Oops, update failed...😟', '', {
+                duration: 10000
+              });
+              return EMPTY;
+            })
           ),
-          tap(() => this.router.navigate(['/employees']))
+          tap(() => this.router.navigate(['/employees'])),
+          tap(() => this.snackBar.open('Saved! 👍', '', {duration: 5000}))
         );
       })
     )
@@ -77,11 +92,22 @@ export class EmployeeEffect {
           employeeNumber: action.employeeNumber
         } as DeleteEmployeeCommand;
         return this.employeeService.deleteEmployee({body: params}).pipe(
-          map(() => ({
-            type: EmployeeActions.employeeRemoved.type,
-            employeeNumber: action.employeeNumber
-          })),
-          tap(() => this.router.navigate(['/employees']))
+          map(
+            () => ({
+              type: EmployeeActions.employeeRemoved.type,
+              employeeNumber: action.employeeNumber
+            }),
+            catchError(() => {
+              this.snackBar.open('Oops, delete failed...😟', '', {
+                duration: 10000
+              });
+              return EMPTY;
+            })
+          ),
+          tap(() => this.router.navigate(['/employees'])),
+          tap(() =>
+            this.snackBar.open('Employee deleted! 👌', '', {duration: 5000})
+          )
         );
       })
     )
@@ -90,6 +116,7 @@ export class EmployeeEffect {
   constructor(
     private actions$: Actions,
     private employeeService: EmployeesService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
 }
