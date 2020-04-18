@@ -13,10 +13,6 @@ import {AppComponent} from './app.component';
 import {EmployeesComponent} from './employees/employees.component';
 import {AddEmployeeComponent} from './employees/add-employee/add-employee.component';
 import {ManageEmployeeComponent} from './employees/manage-employee/manage-employee.component';
-import {TimeReportsComponent} from './time-reports/time-reports.component';
-import {MonthSummaryComponent} from './time-reports/month-summary/month-summary.component';
-import {SubmitTimeReportComponent} from './submit-time-report/submit-time-report.component';
-import {ManageTimeReportComponent} from './manage-time-report/manage-time-report.component';
 
 import {environment} from 'src/environments/environment';
 
@@ -29,6 +25,7 @@ import {reducer} from './store/reducers/employee.reducer';
 import {EmployeeEffect} from './store/effects/employee.effect';
 import {CoreModule} from './core/core.module';
 import {HomeComponent} from './home/home.component';
+import {TimeReportsModule} from './time-reports/time-reports.module';
 
 @NgModule({
   declarations: [
@@ -36,10 +33,6 @@ import {HomeComponent} from './home/home.component';
     EmployeesComponent,
     AddEmployeeComponent,
     ManageEmployeeComponent,
-    TimeReportsComponent,
-    MonthSummaryComponent,
-    SubmitTimeReportComponent,
-    ManageTimeReportComponent,
     HomeComponent
   ],
   imports: [
@@ -57,7 +50,8 @@ import {HomeComponent} from './home/home.component';
       logOnly: environment.production
     }),
     EffectsModule.forRoot([EmployeeEffect]),
-    CoreModule
+    CoreModule,
+    TimeReportsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,8 +3,8 @@ import {ActivatedRoute} from '@angular/router';
 import {FormBuilder, FormGroup, FormArray} from '@angular/forms';
 import {map, switchMap} from 'rxjs/operators';
 import * as moment from 'moment';
-import {TimeReportsService, EmployeesService} from '../core/api/services';
-import {TimeEntry, Employee} from '../core/api/models';
+import {TimeReportsService, EmployeesService} from '../../core/api/services';
+import {TimeEntry, Employee} from '../../core/api/models';
 import {Observable, of, forkJoin} from 'rxjs';
 
 export interface State {

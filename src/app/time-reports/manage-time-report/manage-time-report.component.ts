@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
-import {TimeReport} from '../core/api/models';
+import {TimeReport} from '../../core/api/models';
 import {ActivatedRoute} from '@angular/router';
 import {map, switchMap} from 'rxjs/operators';
-import {TimeReportsService} from '../core/api/services';
+import {TimeReportsService} from '../../core/api/services';
 import {FormBuilder} from '@angular/forms';
 
 @Component({
