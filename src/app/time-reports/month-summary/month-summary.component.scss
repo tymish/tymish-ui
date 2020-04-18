@@ -11,3 +11,17 @@
   font-size: 1.1em;
   line-height: 2.2em;
 }
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+
+.filter-drawer {
+  min-width: 256px;
+}
+
+.m-2 {
+  margin: 1rem;
+}
