@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Store, select} from '@ngrx/store';
 
-import {AppState} from '../store/app.state';
-import * as EmployeeActions from '../store/actions/employee.action';
-import {selectEmployees} from '../store/selectors/employee.selector';
+import {AppState} from '../core/app.state';
+import * as EmployeeActions from './store/employee.action';
+import {selectEmployees} from './store/employee.selector';
 
 @Component({
   selector: 'app-employees',

@@ -11,7 +11,7 @@ import {
   DeleteEmployeeCommand
 } from 'src/app/core/api/models';
 
-import * as EmployeeActions from '../actions/employee.action';
+import * as EmployeeActions from './employee.action';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 

@@ -1,7 +1,7 @@
 import {createReducer, on, Action} from '@ngrx/store';
 import {Employee} from '../../core/api/models/employee';
 
-import * as Actions from '../actions/employee.action';
+import * as Actions from './employee.action';
 
 const initialState: Employee[] = [];
 

@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
 import {CreateEmployeeCommand} from 'src/app/core/api/models';
 
-import {addEmployee} from '../../store/actions/employee.action';
+import {addEmployee} from '../store/employee.action';
 import {Store} from '@ngrx/store';
-import {AppState} from 'src/app/store/app.state';
+import {AppState} from 'src/app/core/app.state';
 
 @Component({
   selector: 'app-add-employee',

@@ -10,9 +10,6 @@ import {ApiModule} from './core/api/api.module';
 import {MatModule} from './mat.module';
 
 import {AppComponent} from './app.component';
-import {EmployeesComponent} from './employees/employees.component';
-import {AddEmployeeComponent} from './employees/add-employee/add-employee.component';
-import {ManageEmployeeComponent} from './employees/manage-employee/manage-employee.component';
 
 import {environment} from 'src/environments/environment';
 
@@ -21,20 +18,15 @@ import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {EffectsModule} from '@ngrx/effects';
 
-import {reducer} from './store/reducers/employee.reducer';
-import {EmployeeEffect} from './store/effects/employee.effect';
+import {reducer} from './employees/store/employee.reducer';
+import {EmployeeEffect} from './employees/store/employee.effect';
 import {CoreModule} from './core/core.module';
 import {HomeComponent} from './home/home.component';
 import {TimeReportsModule} from './time-reports/time-reports.module';
+import {EmployeesModule} from './employees/employees.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    EmployeesComponent,
-    AddEmployeeComponent,
-    ManageEmployeeComponent,
-    HomeComponent
-  ],
+  declarations: [AppComponent, HomeComponent],
   imports: [
     CommonModule,
     BrowserModule,
@@ -51,6 +43,7 @@ import {TimeReportsModule} from './time-reports/time-reports.module';
     }),
     EffectsModule.forRoot([EmployeeEffect]),
     CoreModule,
+    EmployeesModule,
     TimeReportsModule
   ],
   providers: [],
