@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {TimeReportsService} from '../core/api/services';
-import {MonthAggregateDto} from '../core/api/models';
+import {TimeReportsService} from '../../core/api/services';
+import {MonthAggregateDto} from '../../core/api/models';
 import * as moment from 'moment';
 import {Observable} from 'rxjs';
 
