@@ -1,14 +1,17 @@
 <div class="container">
   <mat-card>
-    <mat-card-actions>
+    <mat-card-actions class="flex-between">
       <button mat-button routerLink="/time-reports">
         <i class="material-icons">arrow_back</i>
         Back to time reports
       </button>
+      <button mat-icon-button><i class="material-icons">filter_list</i></button>
     </mat-card-actions>
 
     <mat-card-header>
-      <mat-card-title>{{ year }} {{ month }} </mat-card-title>
+      <mat-card-title
+        >{{ monthNumberToString(month) }} {{ year }} Time Reports
+      </mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <mat-list>

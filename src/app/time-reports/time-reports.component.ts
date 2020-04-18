@@ -27,7 +27,7 @@ export class TimeReportsComponent implements OnInit {
 
   summaryRoutes(aggregate: MonthAggregateDto) {
     const thisMonth = moment(aggregate.payPeriod);
-    const routes = [thisMonth.year(), thisMonth.format('MM'), 'summary'];
+    const routes = [thisMonth.year(), thisMonth.format('M'), 'summary'];
     return routes;
   }
 
