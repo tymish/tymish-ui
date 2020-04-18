@@ -9,12 +9,12 @@ import {
   UpdateEmployeeCommand,
   DeleteEmployeeCommand
 } from 'src/app/core/api/models';
-import {AppState} from 'src/app/store/app.state';
+import {AppState} from 'src/app/core/app.state';
 import {Store} from '@ngrx/store';
 import {
   updateEmployee,
   removeEmployee
-} from 'src/app/store/actions/employee.action';
+} from 'src/app/employees/store/employee.action';
 
 @Component({
   selector: 'app-manage-employee',

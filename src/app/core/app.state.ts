@@ -1,4 +1,4 @@
-import {Employee} from '../core/api/models/employee';
+import {Employee} from './api/models/employee';
 
 export interface AppState {
   employees: Employee[];
