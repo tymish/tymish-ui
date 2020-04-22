@@ -3,7 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {map, switchMap, tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {EmployeesService} from 'src/app/core/api/services';
-import {FormGroup, FormControl} from '@angular/forms';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {
   Employee,
   UpdateEmployeeCommand,
@@ -31,10 +31,25 @@ export class ManageEmployeeComponent implements OnInit {
   public employee$: Observable<Employee>;
 
   public form = new FormGroup({
-    givenName: new FormControl(''),
-    familyName: new FormControl(''),
-    email: new FormControl(''),
-    hourlyPay: new FormControl('')
+    givenName: new FormControl('', [
+      Validators.required,
+      Validators.maxLength(50)
+    ]),
+    familyName: new FormControl('', [
+      Validators.required,
+      Validators.maxLength(50)
+    ]),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.pattern(
+        '^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$'
+      )
+    ]),
+    hourlyPay: new FormControl('', [
+      Validators.required,
+      Validators.min(0),
+      Validators.max(100)
+    ])
   });
 
   ngOnInit(): void {
@@ -50,14 +65,16 @@ export class ManageEmployeeComponent implements OnInit {
   }
 
   updateEmployee(employeeNumber: number): void {
-    const updateEmployeeCommand: UpdateEmployeeCommand = {
-      employeeNumber,
-      givenName: this.form.get('givenName').value,
-      familyName: this.form.get('familyName').value,
-      email: this.form.get('email').value,
-      hourlyPay: +this.form.get('hourlyPay').value
-    };
-    this.store.dispatch(updateEmployee({employee: updateEmployeeCommand}));
+    if (this.form.valid) {
+      const updateEmployeeCommand: UpdateEmployeeCommand = {
+        employeeNumber,
+        givenName: this.form.get('givenName').value,
+        familyName: this.form.get('familyName').value,
+        email: this.form.get('email').value,
+        hourlyPay: +this.form.get('hourlyPay').value
+      };
+      this.store.dispatch(updateEmployee({employee: updateEmployeeCommand}));
+    }
   }
 
   delete(employeeNumber: number): void {
