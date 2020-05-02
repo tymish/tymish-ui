@@ -32,9 +32,9 @@
 <ng-template #noReportSubmitted>
   <mat-card-title>Hmm...</mat-card-title>
   <p>
-    This time report has not been submitted yet.
+    This invoice has not been submitted yet.
   </p>
-  <p>Send them this link to submit their time report</p>
+  <p>Send them this link to submit their invoice</p>
   <code *ngIf="timeReport$ | async as timeReport">{{
     submitLink(timeReport.id)
   }}</code>

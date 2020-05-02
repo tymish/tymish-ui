@@ -4,7 +4,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatModule} from '../mat.module';
 
 import {InvoiceOverviewComponent} from './invoice-overview/invoice-overview.component';
-import {TimeReportsRoutingModule} from './invoices-routing.module';
+import {InvoicesRoutingModule} from './invoices-routing.module';
 import {MonthSummaryComponent} from './invoice-overview/month-summary/month-summary.component';
 import {SubmitInvoiceComponent} from './submit-invoice/submit-invoice.component';
 import {ManageInvoiceComponent} from './manage-invoice/manage-invoice.component';
@@ -21,7 +21,7 @@ import {ManageInvoiceComponent} from './manage-invoice/manage-invoice.component'
     MatModule,
     FormsModule,
     ReactiveFormsModule,
-    TimeReportsRoutingModule
+    InvoicesRoutingModule
   ],
   providers: []
 })

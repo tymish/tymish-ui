@@ -22,7 +22,7 @@ import {reducer} from './employees/store/employee.reducer';
 import {EmployeeEffect} from './employees/store/employee.effect';
 import {CoreModule} from './core/core.module';
 import {HomeComponent} from './home/home.component';
-import {TimeReportsModule} from './invoices/invoices.module';
+import {InvoicesModule} from './invoices/invoices.module';
 import {EmployeesModule} from './employees/employees.module';
 
 @NgModule({
@@ -44,7 +44,7 @@ import {EmployeesModule} from './employees/employees.module';
     EffectsModule.forRoot([EmployeeEffect]),
     CoreModule,
     EmployeesModule,
-    TimeReportsModule
+    InvoicesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
