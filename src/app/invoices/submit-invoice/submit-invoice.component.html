@@ -6,7 +6,7 @@
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form [formGroup]="timeReportForm">
+      <form [formGroup]="invoiceForm">
         <div formArrayName="timeEntries">
           <div
             *ngFor="let entry of timeEntries.controls; let idx = index"
@@ -47,7 +47,7 @@
       <button
         mat-raised-button
         color="primary"
-        (click)="submitTimeReport(state.timeReportId)"
+        (click)="submitInvoice(state.invoiceId)"
       >
         Save and Submit
       </button>

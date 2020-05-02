@@ -42,16 +42,13 @@
               <div matLine>Invoice submitted: {{ a.submitted }}</div>
               <div matLine>Balance: {{ a.amountOwed }}</div>
               <div class="spacer"></div>
-              <button mat-icon-button [matMenuTriggerFor]="timeReportMenu">
+              <button mat-icon-button [matMenuTriggerFor]="invoiceMenu">
                 <i class="material-icons">more_vert</i>
               </button>
 
-              <mat-menu #timeReportMenu="matMenu">
+              <mat-menu #invoiceMenu="matMenu">
                 <button mat-menu-item>Send Reminder</button>
-                <button
-                  mat-menu-item
-                  [routerLink]="['/invoices', a.timeReportId]"
-                >
+                <button mat-menu-item [routerLink]="['/invoices', a.invoiceId]">
                   View Invoice
                 </button>
               </mat-menu>

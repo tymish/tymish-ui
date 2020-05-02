@@ -1,5 +1,5 @@
 /* tslint:disable */
-export interface PayTimeReportCommand {
+export interface PayInvoiceCommand {
   id?: string;
   reference: string;
 }

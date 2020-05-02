@@ -25,4 +25,4 @@ import {ManageInvoiceComponent} from './manage-invoice/manage-invoice.component'
   ],
   providers: []
 })
-export class TimeReportsModule {}
+export class InvoicesModule {}

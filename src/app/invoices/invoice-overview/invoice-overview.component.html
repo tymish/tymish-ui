@@ -13,7 +13,7 @@
 
   <mat-accordion>
     <ng-template ngFor let-month [ngForOf]="monthAggregates$ | async">
-      <mat-card *ngIf="!month.sentReports">
+      <mat-card *ngIf="!month.sentInvoices">
         <mat-card-header>
           <mat-card-title>
             <h2>{{ month.payPeriod | date: 'MMMM' }}</h2>
@@ -23,13 +23,13 @@
           <button
             mat-button
             color="primary"
-            (click)="sendTimeReports(month.payPeriod)"
+            (click)="sendInvoices(month.payPeriod)"
           >
             REQUEST INVOICES
           </button>
         </mat-card-content>
       </mat-card>
-      <mat-expansion-panel #panel class="mt-1" *ngIf="month.sentReports">
+      <mat-expansion-panel #panel class="mt-1" *ngIf="month.sentInvoices">
         <mat-expansion-panel-header collapsedHeight="100px">
           <mat-panel-title>
             <h2>
@@ -38,9 +38,9 @@
               </span>
               <div class="title-spacer"></div>
               <mat-chip-list *ngIf="!panel.expanded">
-                <mat-chip>{{ month.sentReports }} Sent</mat-chip>
-                <mat-chip>{{ month.receivedReports }} Received</mat-chip>
-                <mat-chip>{{ month.paidReports }} Paid</mat-chip>
+                <mat-chip>{{ month.sentInvoices }} Sent</mat-chip>
+                <mat-chip>{{ month.receivedInvoices }} Received</mat-chip>
+                <mat-chip>{{ month.paidInvoices }} Paid</mat-chip>
               </mat-chip-list>
             </h2>
           </mat-panel-title>
@@ -49,12 +49,12 @@
         <div class="flex vertical space-between progress-group">
           <div class="flex space-between">
             Received invoices<span
-              >{{ month.sentReports - month.receivedReports }} remaining</span
+              >{{ month.sentInvoices - month.receivedInvoices }} remaining</span
             >
           </div>
           <mat-progress-bar
             mode="determinate"
-            [value]="percentDone(month.receivedReports, month.sentReports)"
+            [value]="percentDone(month.receivedInvoices, month.sentInvoices)"
           >
           </mat-progress-bar>
           <div>
@@ -67,12 +67,12 @@
         <div class="flex vertical space-between progress-group">
           <div class="flex space-between">
             Paid invoices<span>
-              {{ month.sentReports - month.paidReports }} remaining
+              {{ month.sentInvoices - month.paidInvoices }} remaining
             </span>
           </div>
           <mat-progress-bar
             mode="determinate"
-            [value]="percentDone(month.paidReports, month.sentReports)"
+            [value]="percentDone(month.paidInvoices, month.sentInvoices)"
           >
           </mat-progress-bar>
           <div>

@@ -3,12 +3,12 @@ import {ActivatedRoute} from '@angular/router';
 import {FormBuilder, FormGroup, FormArray} from '@angular/forms';
 import {map, switchMap} from 'rxjs/operators';
 import * as moment from 'moment';
-import {TimeReportsService} from '../../core/api/services';
+import {InvoicesService} from '../../core/api/services';
 import {TimeEntry, Employee} from '../../core/api/models';
 import {Observable, of, forkJoin} from 'rxjs';
 
 export interface State {
-  timeReportId: string;
+  invoiceId: string;
   employee: Employee;
 }
 
@@ -20,23 +20,23 @@ export interface State {
 export class SubmitInvoiceComponent implements OnInit {
   constructor(
     private builder: FormBuilder,
-    private timeReports: TimeReportsService,
+    private invoices: InvoicesService,
     private route: ActivatedRoute
   ) {}
   public state$: Observable<State>;
-  public timeReportForm: FormGroup;
+  public invoiceForm: FormGroup;
 
   ngOnInit(): void {
     const id$ = this.route.params.pipe(map((p) => p.id as string));
 
     this.state$ = id$.pipe(
       switchMap((id) =>
-        forkJoin(of(id), this.timeReports.getEmployeeByTimeReportId({id: id}))
+        forkJoin(of(id), this.invoices.getEmployeeByInvoiceId({id: id}))
       ),
-      map((result) => ({timeReportId: result[0], employee: result[1]} as State))
+      map((result) => ({invoiceId: result[0], employee: result[1]} as State))
     );
 
-    this.timeReportForm = this.builder.group({
+    this.invoiceForm = this.builder.group({
       timeEntries: this.builder.array([
         this.builder.group({
           date: this.builder.control(''),
@@ -48,7 +48,7 @@ export class SubmitInvoiceComponent implements OnInit {
   }
 
   get timeEntries() {
-    return this.timeReportForm.get('timeEntries') as FormArray;
+    return this.invoiceForm.get('timeEntries') as FormArray;
   }
 
   addTimeEntry() {
@@ -65,14 +65,14 @@ export class SubmitInvoiceComponent implements OnInit {
     this.timeEntries.removeAt(index);
   }
 
-  submitTimeReport(id: string) {
+  submitInvoice(id: string) {
     const timeEntries = this.map(this.timeEntries);
     console.log(`${id}, ${timeEntries}`);
 
-    this.timeReports
-      .submitTimeReport({
+    this.invoices
+      .submitInvoice({
         body: {
-          timeReportId: id,
+          invoiceId: id,
           timeEntries: timeEntries
         }
       })
