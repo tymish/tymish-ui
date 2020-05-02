@@ -13,11 +13,11 @@ export interface State {
 }
 
 @Component({
-  selector: 'app-submit-time-report',
-  templateUrl: './submit-time-report.component.html',
-  styleUrls: ['./submit-time-report.component.scss']
+  selector: 'app-submit-invoice',
+  templateUrl: './submit-invoice.component.html',
+  styleUrls: ['./submit-invoice.component.scss']
 })
-export class SubmitTimeReportComponent implements OnInit {
+export class SubmitInvoiceComponent implements OnInit {
   constructor(
     private builder: FormBuilder,
     private timeReports: TimeReportsService,

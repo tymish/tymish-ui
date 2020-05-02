@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {SubmitTimeReportComponent} from './time-reports/submit-time-report/submit-time-report.component';
+import {SubmitInvoiceComponent} from './invoices/submit-invoice/submit-invoice.component';
 import {LoginComponent} from './core/auth/login.component';
 import {LoggedOutComponent} from './core/auth/logged-out.component';
 import {AuthGuard} from './core/auth/auth.guard';
@@ -8,8 +8,8 @@ import {HomeComponent} from './home/home.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'submit-time-report', component: SubmitTimeReportComponent},
-  {path: 'submit-time-report/:id', component: SubmitTimeReportComponent},
+  {path: 'submit-invoice', component: SubmitInvoiceComponent},
+  {path: 'submit-invoice/:id', component: SubmitInvoiceComponent},
   {path: 'login', component: LoginComponent},
   {path: 'logged-out', component: LoggedOutComponent},
 
@@ -21,11 +21,9 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'time-reports',
+    path: 'invoices',
     loadChildren: () =>
-      import('./time-reports/time-reports.module').then(
-        (m) => m.TimeReportsModule
-      ),
+      import('./invoices/invoices.module').then((m) => m.TimeReportsModule),
     canActivate: [AuthGuard]
   }
 ];

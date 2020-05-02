@@ -22,7 +22,7 @@ import {reducer} from './employees/store/employee.reducer';
 import {EmployeeEffect} from './employees/store/employee.effect';
 import {CoreModule} from './core/core.module';
 import {HomeComponent} from './home/home.component';
-import {TimeReportsModule} from './time-reports/time-reports.module';
+import {TimeReportsModule} from './invoices/invoices.module';
 import {EmployeesModule} from './employees/employees.module';
 
 @NgModule({

@@ -3,7 +3,7 @@
 ```bash
 $ yarn              # 1. restore dependencies (node_modules)
 $ yarn start        # 2. starts the angular app in dev mode
-# http://localhost:4200
+# https://127.0.0.1:4200
 ```
 
 ## Generate service from swagger
