@@ -14,9 +14,9 @@
     <div class="container">
       <mat-card>
         <mat-card-actions class="flex-between">
-          <button mat-button routerLink="/time-reports">
+          <button mat-button routerLink="/invoices">
             <i class="material-icons">arrow_back</i>
-            Back to time reports
+            Back to invoices
           </button>
           <button mat-icon-button (click)="filter_drawer.toggle()">
             <i class="material-icons">filter_list</i>
@@ -25,7 +25,7 @@
 
         <mat-card-header>
           <!-- <mat-card-title
-            >{{ monthNumberToString(month) }} {{ year }} Time Reports
+            >{{ monthNumberToString(month) }} {{ year }} Invoices
           </mat-card-title> -->
         </mat-card-header>
         <mat-card-content>
@@ -50,7 +50,7 @@
                 <button mat-menu-item>Send Reminder</button>
                 <button
                   mat-menu-item
-                  [routerLink]="['/time-reports', a.timeReportId]"
+                  [routerLink]="['/invoices', a.timeReportId]"
                 >
                   View Time Report
                 </button>

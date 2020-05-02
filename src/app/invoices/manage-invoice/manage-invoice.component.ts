@@ -7,11 +7,11 @@ import {TimeReportsService} from '../../core/api/services';
 import {FormBuilder} from '@angular/forms';
 
 @Component({
-  selector: 'app-manage-time-report',
-  templateUrl: './manage-time-report.component.html',
-  styleUrls: ['./manage-time-report.component.scss']
+  selector: 'app-manage-invoice',
+  templateUrl: './manage-invoice.component.html',
+  styleUrls: ['./manage-invoice.component.scss']
 })
-export class ManageTimeReportComponent implements OnInit {
+export class ManageInvoiceComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private service: TimeReportsService,
@@ -29,7 +29,7 @@ export class ManageTimeReportComponent implements OnInit {
   }
 
   submitLink(id: string) {
-    return `http://localhost:4200/submit-time-report/${id}`;
+    return `https://127.0.0.1:4200/submit-invoice/${id}`;
   }
 
   markAsPaid(id: string) {

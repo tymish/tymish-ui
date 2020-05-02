@@ -5,11 +5,11 @@ import * as moment from 'moment';
 import {Observable} from 'rxjs';
 
 @Component({
-  selector: 'app-time-reports',
-  templateUrl: './time-reports.component.html',
-  styleUrls: ['./time-reports.component.scss']
+  selector: 'app-invoice-overview',
+  templateUrl: './invoice-overview.component.html',
+  styleUrls: ['./invoice-overview.component.scss']
 })
-export class TimeReportsComponent implements OnInit {
+export class InvoiceOverviewComponent implements OnInit {
   public selectedYear = 2020;
   public monthAggregates$: Observable<MonthAggregateDto[]>;
 
