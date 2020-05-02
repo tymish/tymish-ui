@@ -39,7 +39,7 @@
               <div matLine>
                 {{ a.employee.givenName }} {{ a.employee.familyName }}
               </div>
-              <div matLine>Time report: {{ a.submitted }}</div>
+              <div matLine>Invoice submitted: {{ a.submitted }}</div>
               <div matLine>Balance: {{ a.amountOwed }}</div>
               <div class="spacer"></div>
               <button mat-icon-button [matMenuTriggerFor]="timeReportMenu">
@@ -52,7 +52,7 @@
                   mat-menu-item
                   [routerLink]="['/invoices', a.timeReportId]"
                 >
-                  View Time Report
+                  View Invoice
                 </button>
               </mat-menu>
               <mat-divider></mat-divider>

@@ -23,7 +23,7 @@ const routes: Routes = [
   {
     path: 'invoices',
     loadChildren: () =>
-      import('./invoices/invoices.module').then((m) => m.TimeReportsModule),
+      import('./invoices/invoices.module').then((m) => m.InvoicesModule),
     canActivate: [AuthGuard]
   }
 ];
