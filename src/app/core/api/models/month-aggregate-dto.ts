@@ -1,8 +1,8 @@
 /* tslint:disable */
 export interface MonthAggregateDto {
-  paidReports?: number;
+  paidInvoices?: number;
   payPeriod?: string;
-  receivedReports?: number;
-  sentReports?: number;
+  receivedInvoices?: number;
+  sentInvoices?: number;
   totalOwing?: number;
 }

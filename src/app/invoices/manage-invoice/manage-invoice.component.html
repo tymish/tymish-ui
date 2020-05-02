@@ -1,19 +1,19 @@
 <div class="container">
-  <mat-card *ngIf="timeReport$ | async as timeReport">
-    <div *ngIf="timeReport.timeEntries; else noReportSubmitted">
+  <mat-card *ngIf="invoice$ | async as invoice">
+    <div *ngIf="invoice.timeEntries; else noInvoiceSubmitted">
       <table>
         <tr>
           <th>Date</th>
           <th>Start</th>
           <th>End</th>
         </tr>
-        <tr *ngFor="let entry of timeReport.timeEntries">
+        <tr *ngFor="let entry of invoice.timeEntries">
           <td>{{ entry.start | date: 'EEEE, MMMM dd' }}</td>
           <td>{{ entry.start | date: 'h:mm a' }}</td>
           <td>{{ entry.end | date: 'h:mm a' }}</td>
         </tr>
       </table>
-      <form [formGroup]="form" (submit)="markAsPaid(timeReport.id)">
+      <form [formGroup]="form" (submit)="markAsPaid(invoice.id)">
         <mat-form-field appearance="outline">
           <mat-label>E-transfer Reference No.</mat-label>
           <input
@@ -29,13 +29,11 @@
   </mat-card>
 </div>
 
-<ng-template #noReportSubmitted>
+<ng-template #noInvoiceSubmitted>
   <mat-card-title>Hmm...</mat-card-title>
   <p>
     This invoice has not been submitted yet.
   </p>
   <p>Send them this link to submit their invoice</p>
-  <code *ngIf="timeReport$ | async as timeReport">{{
-    submitLink(timeReport.id)
-  }}</code>
+  <code *ngIf="invoice$ | async as invoice">{{ submitLink(invoice.id) }}</code>
 </ng-template>

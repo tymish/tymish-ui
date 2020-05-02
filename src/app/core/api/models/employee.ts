@@ -1,5 +1,5 @@
 /* tslint:disable */
-import {TimeReport} from './time-report';
+import { Invoice } from './invoice';
 export interface Employee {
   email?: null | string;
   employeeNumber?: number;
@@ -7,5 +7,5 @@ export interface Employee {
   givenName?: null | string;
   hourlyPay?: number;
   id?: string;
-  timeReports?: null | Array<TimeReport>;
+  invoices?: null | Array<Invoice>;
 }

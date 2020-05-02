@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
-import {TimeReport} from '../../core/api/models';
+import {Invoice} from '../../core/api/models';
 import {ActivatedRoute} from '@angular/router';
 import {map, switchMap} from 'rxjs/operators';
-import {TimeReportsService} from '../../core/api/services';
+import {InvoicesService} from '../../core/api/services';
 import {FormBuilder} from '@angular/forms';
 
 @Component({
@@ -14,17 +14,17 @@ import {FormBuilder} from '@angular/forms';
 export class ManageInvoiceComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
-    private service: TimeReportsService,
+    private service: InvoicesService,
     private builder: FormBuilder
   ) {}
 
-  public timeReport$: Observable<TimeReport>;
+  public invoice$: Observable<Invoice>;
   form = this.builder.group({eTransferReference: this.builder.control('')});
 
   ngOnInit(): void {
     const id$ = this.route.params.pipe(map((p) => p.id as string));
-    this.timeReport$ = id$.pipe(
-      switchMap((id) => this.service.getTimeReportById({id: id}))
+    this.invoice$ = id$.pipe(
+      switchMap((id) => this.service.getInvoiceById({id: id}))
     );
   }
 
@@ -35,7 +35,7 @@ export class ManageInvoiceComponent implements OnInit {
   markAsPaid(id: string) {
     const reference = this.form.get('eTransferReference').value;
     this.service
-      .payTimeReport({
+      .payInvoice({
         body: {
           id: id,
           reference: reference
