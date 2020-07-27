@@ -1,1 +1,10 @@
-<p>vendors works!</p>
+<mat-list>
+  <mat-list-item *ngFor="let vendor of vendors$ | async">
+    {{ vendor.email }}
+  </mat-list-item>
+</mat-list>
+
+<button class="extended-fab-button" mat-fab color="primary">
+  <mat-icon>people</mat-icon>
+  <span class="extended-fab-button__text">Add vendor</span>
+</button>

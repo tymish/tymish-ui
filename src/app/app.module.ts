@@ -14,16 +14,11 @@ import {AppComponent} from './app.component';
 import {environment} from 'src/environments/environment';
 
 // NGRX
-import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
-import {EffectsModule} from '@ngrx/effects';
 
-import {reducer} from './employees/store/employee.reducer';
-import {EmployeeEffect} from './employees/store/employee.effect';
 import {CoreModule} from './core/core.module';
 import {HomeComponent} from './home/home.component';
-import {InvoicesModule} from './invoices/invoices.module';
-import {EmployeesModule} from './employees/employees.module';
+import {VendorsModule} from './vendors/vendors.module';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -36,15 +31,12 @@ import {EmployeesModule} from './employees/employees.module';
     BrowserAnimationsModule,
     MatModule,
     ApiModule.forRoot({rootUrl: environment.api}),
-    StoreModule.forRoot({employees: reducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production
     }),
-    EffectsModule.forRoot([EmployeeEffect]),
     CoreModule,
-    EmployeesModule,
-    InvoicesModule
+    VendorsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

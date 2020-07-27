@@ -12,16 +12,10 @@ const routes: Routes = [
 
   // Feature Modules
   {
-    path: 'employees',
+    path: 'vendors',
     loadChildren: () =>
-      import('./employees/employees.module').then((m) => m.EmployeesModule),
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'invoices',
-    loadChildren: () =>
-      import('./invoices/invoices.module').then((m) => m.InvoicesModule),
-    canActivate: [AuthGuard]
+      import('./vendors/vendors.module').then((m) => m.VendorsModule),
+    canActivate: []
   }
 ];
 
