@@ -1,7 +1,6 @@
 /* tslint:disable */
 export interface RegisterVendorCommand {
-  familyName?: null | string;
-  givenName?: null | string;
   mobilePhone?: null | string;
+  password?: null | string;
   vendorId?: string;
 }
