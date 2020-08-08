@@ -1,0 +1,8 @@
+<mat-form-field class="mx-auto" appearance="outline">
+  <mat-label>Email</mat-label>
+  <input matInput #email />
+</mat-form-field>
+
+<button mat-raised-button color="primary" (click)="addVendor(email.value)">
+  Add Vendor
+</button>
