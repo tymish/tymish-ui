@@ -128,10 +128,12 @@
   dependencies:
     tslib "^2.0.0"
 
-"@angular/cdk@^9.2.1":
-  version "9.2.1"
-  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-9.2.1.tgz#9a590b8d4671fe2fa47648297b5ea372267d238f"
-  integrity sha512-aSG1UNPszkSnpNuDCNd7ZgT29oQ8vqHPmoqjvJI0JkEv3i6uEs5tRuhWl3TK39wDNuwdlq0AY47XTa/0Ppb5RQ==
+"@angular/cdk@^10.2.4":
+  version "10.2.4"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-10.2.4.tgz#656095648af005e7fa02c4cc68865be4bf59fc10"
+  integrity sha512-Ccm/iRb6zELWwMem6qTnFCalMVX/aS17hhN65efpNKrH3ovhyQSPWtF4p9IaEJ3rZpfXqXMPBneJ9ZXAA/iKog==
+  dependencies:
+    tslib "^2.0.0"
   optionalDependencies:
     parse5 "^5.0.0"
 
@@ -213,15 +215,19 @@
   resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-10.1.5.tgz#bf5658075f7114364e2f266f2d0cc61d93d955a1"
   integrity sha512-D3y97MciUx8txpwkRnMPOhPI1fyPJCGL0JwNOO0jq1qNKMzwRRetaacKUkv1apCZWU7r2PuL2GlJM6tIX5Ml3Q==
 
-"@angular/material-moment-adapter@^9.2.1":
-  version "9.2.1"
-  resolved "https://registry.yarnpkg.com/@angular/material-moment-adapter/-/material-moment-adapter-9.2.1.tgz#21cf436786846e5674691fb2315950bee5500811"
-  integrity sha512-i3tbL3DJQspO23cPAgW6pAvztuv2D8tkGhxl+bTUlq8FgGBqKrOa0T/maN1fik46AXZojowUVZoCG7EvV2T7nQ==
+"@angular/material-moment-adapter@^10.2.4":
+  version "10.2.4"
+  resolved "https://registry.yarnpkg.com/@angular/material-moment-adapter/-/material-moment-adapter-10.2.4.tgz#8cce7c2d02bca8513814709e85d9fe31aacdc806"
+  integrity sha512-rQhmCmYJQKXxY79ju+N+e3F2rnt2mcDrZ6I8gSGqozit1luZoa56YV4OR00kEFDf1S7UJJtJF0hdF5dhQ9A03g==
+  dependencies:
+    tslib "^2.0.0"
 
-"@angular/material@^9.2.1":
-  version "9.2.1"
-  resolved "https://registry.yarnpkg.com/@angular/material/-/material-9.2.1.tgz#99264d2bd3279dfd631d797f592177d59a559e9f"
-  integrity sha512-nqn/0Eg04DxwnkRGSM1xnmGgtfHYOBcEPbFeTu8c1qAbjFEozd6tpw4y6dQrCCL/JLNIRQPsxsUsVnKeWDF/4Q==
+"@angular/material@^10.2.4":
+  version "10.2.4"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-10.2.4.tgz#9a3e4958ed72ae77c1638075efe5bff5158b2ba4"
+  integrity sha512-m5pRzCZQlpb7BZrc+LV+eeMU9M76obWVbNy8or6gvBPa6awfbwOz8uBryIvVngdkhoIieqAu1iV4bG7b7Xp3sg==
+  dependencies:
+    tslib "^2.0.0"
 
 "@angular/platform-browser-dynamic@~10.1.5":
   version "10.1.5"
