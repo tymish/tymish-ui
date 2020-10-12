@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --ssl",
+    "start": "ng serve --port 4202",
     "build": "ng build",
     "lint": "ng lint",
     "gen-api": "ng-openapi-gen --input http://127.0.0.1:5000/swagger/v1/swagger.json --output src/app/core/api"
