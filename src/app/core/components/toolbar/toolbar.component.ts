@@ -1,7 +1,4 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {MatSidenav} from '@angular/material/sidenav';
-
-import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -11,17 +8,15 @@ import {AuthService} from '../../auth/auth.service';
 export class ToolbarComponent implements OnInit {
   @Output() sidenavToggled = new EventEmitter<any>();
 
-  constructor(public auth: AuthService) {}
+  constructor() {}
+
+  loggedIn: boolean;
 
   ngOnInit(): void {}
 
-  login() {
-    this.auth.login();
-  }
+  login() {}
 
-  logout() {
-    this.auth.logout();
-  }
+  logout() {}
 
   toggleSidenav(event: Event) {
     this.sidenavToggled.emit(event);
