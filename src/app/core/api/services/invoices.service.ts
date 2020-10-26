@@ -9,6 +9,8 @@ import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
 import { Invoice } from '../models/invoice';
+import { InvoiceDto } from '../models/invoice-dto';
+import { InvoiceStatus } from '../models/invoice-status';
 import { PayInvoiceCommand } from '../models/pay-invoice-command';
 import { SubmitInvoiceCommand } from '../models/submit-invoice-command';
 
@@ -37,7 +39,7 @@ export class InvoicesService extends BaseService {
   getInvoiceById$Response(params: {
     id: string;
 
-  }): Observable<StrictHttpResponse<Invoice>> {
+  }): Observable<StrictHttpResponse<InvoiceDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, InvoicesService.GetInvoiceByIdPath, 'get');
     if (params) {
@@ -51,7 +53,7 @@ export class InvoicesService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Invoice>;
+        return r as StrictHttpResponse<InvoiceDto>;
       })
     );
   }
@@ -65,10 +67,10 @@ export class InvoicesService extends BaseService {
   getInvoiceById(params: {
     id: string;
 
-  }): Observable<Invoice> {
+  }): Observable<InvoiceDto> {
 
     return this.getInvoiceById$Response(params).pipe(
-      map((r: StrictHttpResponse<Invoice>) => r.body as Invoice)
+      map((r: StrictHttpResponse<InvoiceDto>) => r.body as InvoiceDto)
     );
   }
 
@@ -84,9 +86,9 @@ export class InvoicesService extends BaseService {
    * This method doesn't expect any request body.
    */
   listInvoices$Response(params?: {
-    status?: string;
+    status?: InvoiceStatus;
 
-  }): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<Array<InvoiceDto>>> {
 
     const rb = new RequestBuilder(this.rootUrl, InvoicesService.ListInvoicesPath, 'get');
     if (params) {
@@ -95,12 +97,12 @@ export class InvoicesService extends BaseService {
 
     }
     return this.http.request(rb.build({
-      responseType: 'text',
-      accept: '*/*'
+      responseType: 'json',
+      accept: 'application/json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<Array<InvoiceDto>>;
       })
     );
   }
@@ -112,12 +114,12 @@ export class InvoicesService extends BaseService {
    * This method doesn't expect any request body.
    */
   listInvoices(params?: {
-    status?: string;
+    status?: InvoiceStatus;
 
-  }): Observable<void> {
+  }): Observable<Array<InvoiceDto>> {
 
     return this.listInvoices$Response(params).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+      map((r: StrictHttpResponse<Array<InvoiceDto>>) => r.body as Array<InvoiceDto>)
     );
   }
 

@@ -1,0 +1,25 @@
+<h1>Invoices</h1>
+
+<mat-list *ngIf="submittedInvoices$ | async as submittedInvoices">
+  <h2 *ngIf="submittedInvoices.length">Submitted Invoices</h2>
+  <mat-list-item *ngFor="let invoice of submittedInvoices">
+    <div>FirstName LastName - {{ invoice.totalHours }} Hours</div>
+    <mat-chip-list>
+      <mat-chip
+        >Submitted: {{ invoice.submitted | date: 'yyyy MM dd' }}</mat-chip
+      >
+    </mat-chip-list>
+    <button mat-stroked-button>Review & Pay</button>
+  </mat-list-item>
+</mat-list>
+
+<mat-list *ngIf="paidInvoices$ | async as paidInvoices">
+  <h2 *ngIf="paidInvoices.length">Paid Invoices</h2>
+  <mat-list-item *ngFor="let invoice of paidInvoices" class="invoice-preview">
+    <div>total hours: {{ invoice.totalHours }}</div>
+    <mat-chip-list>
+      <mat-chip>Paid: {{ invoice.paid | date: 'yyyy MM dd' }}</mat-chip>
+    </mat-chip-list>
+    <button mat-stroked-button>View</button>
+  </mat-list-item>
+</mat-list>

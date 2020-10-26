@@ -19,9 +19,10 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {CoreModule} from './core/core.module';
 import {HomeComponent} from './home/home.component';
 import {VendorsModule} from './vendors/vendors.module';
+import {InvoicesComponent} from './invoices/invoices.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, InvoicesComponent],
   imports: [
     CommonModule,
     BrowserModule,

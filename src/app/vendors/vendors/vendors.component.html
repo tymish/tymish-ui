@@ -1,8 +1,8 @@
 <mat-list>
   <mat-list-item *ngFor="let vendor of vendors$ | async">
-    {{ vendor.email }}
+    {{ vendor.givenName }} {{ vendor.familyName }} {{ vendor.email }}
     <mat-chip-list>
-      <mat-chip>Pending</mat-chip>
+      <mat-chip *ngIf="!vendor.registered">Pending</mat-chip>
     </mat-chip-list>
   </mat-list-item>
 </mat-list>

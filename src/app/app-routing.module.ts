@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
+import {InvoicesComponent} from './invoices/invoices.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'vendors', pathMatch: 'full'},
@@ -10,6 +11,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./vendors/vendors.module').then((m) => m.VendorsModule),
     canActivate: []
+  },
+  {
+    path: 'invoices',
+    component: InvoicesComponent
   },
   {
     path: '**',

@@ -10,6 +10,8 @@ import { map, filter } from 'rxjs/operators';
 
 import { AddVendorCommand } from '../models/add-vendor-command';
 import { Invoice } from '../models/invoice';
+import { InvoiceDto } from '../models/invoice-dto';
+import { LoginVendorCommand } from '../models/login-vendor-command';
 import { RegisterVendorCommand } from '../models/register-vendor-command';
 import { Vendor } from '../models/vendor';
 
@@ -22,6 +24,55 @@ export class VendorsService extends BaseService {
     http: HttpClient
   ) {
     super(config, http);
+  }
+
+  /**
+   * Path part for operation getVendor
+   */
+  static readonly GetVendorPath = '/vendors/{id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getVendor()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getVendor$Response(params: {
+    id: string;
+
+  }): Observable<StrictHttpResponse<Vendor>> {
+
+    const rb = new RequestBuilder(this.rootUrl, VendorsService.GetVendorPath, 'get');
+    if (params) {
+
+      rb.path('id', params.id);
+
+    }
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Vendor>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `getVendor$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getVendor(params: {
+    id: string;
+
+  }): Observable<Vendor> {
+
+    return this.getVendor$Response(params).pipe(
+      map((r: StrictHttpResponse<Vendor>) => r.body as Vendor)
+    );
   }
 
   /**
@@ -131,7 +182,7 @@ export class VendorsService extends BaseService {
   listVendorInvoices$Response(params: {
     id: string;
 
-  }): Observable<StrictHttpResponse<Array<Invoice>>> {
+  }): Observable<StrictHttpResponse<Array<InvoiceDto>>> {
 
     const rb = new RequestBuilder(this.rootUrl, VendorsService.ListVendorInvoicesPath, 'get');
     if (params) {
@@ -145,7 +196,7 @@ export class VendorsService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<Invoice>>;
+        return r as StrictHttpResponse<Array<InvoiceDto>>;
       })
     );
   }
@@ -159,10 +210,10 @@ export class VendorsService extends BaseService {
   listVendorInvoices(params: {
     id: string;
 
-  }): Observable<Array<Invoice>> {
+  }): Observable<Array<InvoiceDto>> {
 
     return this.listVendorInvoices$Response(params).pipe(
-      map((r: StrictHttpResponse<Array<Invoice>>) => r.body as Array<Invoice>)
+      map((r: StrictHttpResponse<Array<InvoiceDto>>) => r.body as Array<InvoiceDto>)
     );
   }
 
@@ -210,6 +261,53 @@ export class VendorsService extends BaseService {
 
     return this.registerVendor$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
+    );
+  }
+
+  /**
+   * Path part for operation loginVendor
+   */
+  static readonly LoginVendorPath = '/vendors/login';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `loginVendor()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  loginVendor$Response(params?: {
+      body?: LoginVendorCommand
+  }): Observable<StrictHttpResponse<string>> {
+
+    const rb = new RequestBuilder(this.rootUrl, VendorsService.LoginVendorPath, 'post');
+    if (params) {
+
+
+      rb.body(params.body, 'application/*+json');
+    }
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<string>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `loginVendor$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  loginVendor(params?: {
+      body?: LoginVendorCommand
+  }): Observable<string> {
+
+    return this.loginVendor$Response(params).pipe(
+      map((r: StrictHttpResponse<string>) => r.body as string)
     );
   }
 
