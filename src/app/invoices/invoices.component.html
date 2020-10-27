@@ -3,9 +3,14 @@
 <mat-list *ngIf="submittedInvoices$ | async as submittedInvoices">
   <h2 *ngIf="submittedInvoices.length">Submitted Invoices</h2>
   <mat-list-item *ngFor="let invoice of submittedInvoices">
-    <div>FirstName LastName - {{ invoice.totalHours }} Hours</div>
+    <div>
+      {{ invoice.vendorDto.givenName }} {{ invoice.vendorDto.familyName }} -
+      {{ invoice.totalHours }} Hours
+    </div>
     <mat-chip-list>
-      <mat-chip>Submitted: {{ invoice.submitted | date: 'yyyy MM dd' }}</mat-chip>
+      <mat-chip
+        >Submitted: {{ invoice.submitted | date: 'yyyy MM dd' }}</mat-chip
+      >
     </mat-chip-list>
     <button mat-stroked-button [routerLink]="['/invoices/pay', invoice.id]">
       Review & Pay
