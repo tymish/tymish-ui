@@ -1,8 +1,18 @@
-<mat-form-field class="mx-auto" appearance="outline">
-  <mat-label>Email</mat-label>
-  <input matInput #email />
-</mat-form-field>
+<form [formGroup]="form" (ngSubmit)="addVendor()">
+  <mat-form-field class="mx-auto" appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" />
+  </mat-form-field>
 
-<button mat-raised-button color="primary" (click)="addVendor(email.value)">
-  Add Vendor
-</button>
+  <mat-form-field class="mx-auto" appearance="outline">
+    <mat-label>First Name</mat-label>
+    <input matInput formControlName="givenName" />
+  </mat-form-field>
+
+  <mat-form-field class="mx-auto" appearance="outline">
+    <mat-label>Last Name</mat-label>
+    <input matInput formControlName="familyName" />
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Add Vendor</button>
+</form>
