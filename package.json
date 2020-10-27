@@ -34,6 +34,8 @@
     "@angular/router": "~10.1.6",
     "@ngrx/effects": "^9.1.0",
     "@ngrx/store": "^9.1.0",
+    "@rxweb/types": "^1.0.6",
+    "jwt-decode": "^3.0.0",
     "material-design-icons": "^3.0.1",
     "moment": "^2.24.0",
     "rxjs": "~6.5.5",

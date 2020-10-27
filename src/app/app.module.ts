@@ -21,13 +21,15 @@ import {HomeComponent} from './home/home.component';
 import {VendorsModule} from './vendors/vendors.module';
 import {InvoicesComponent} from './invoices/invoices.component';
 import {PayInvoiceComponent} from './invoices/pay-invoice/pay-invoice.component';
+import {LoginComponent} from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     InvoicesComponent,
-    PayInvoiceComponent
+    PayInvoiceComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,

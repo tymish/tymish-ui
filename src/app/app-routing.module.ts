@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {InvoicesComponent} from './invoices/invoices.component';
 import {PayInvoiceComponent} from './invoices/pay-invoice/pay-invoice.component';
+import {LoginComponent} from './login/login.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'vendors', pathMatch: 'full'},
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'invoices/pay/:id',
     component: PayInvoiceComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: '**',

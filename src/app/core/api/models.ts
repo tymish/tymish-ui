@@ -7,6 +7,7 @@ export { SubmitInvoiceCommand } from './models/submit-invoice-command';
 export { Vendor } from './models/vendor';
 export { Invoice } from './models/invoice';
 export { PayInvoiceCommand } from './models/pay-invoice-command';
+export { LoginStudioCommand } from './models/login-studio-command';
 export { AddVendorCommand } from './models/add-vendor-command';
 export { RegisterVendorCommand } from './models/register-vendor-command';
 export { LoginVendorCommand } from './models/login-vendor-command';

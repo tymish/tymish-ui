@@ -1197,6 +1197,13 @@
   dependencies:
     mkdirp "^1.0.4"
 
+"@rxweb/types@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@rxweb/types/-/types-1.0.6.tgz#e2c21f7e07407a2e8e89238de3ac9f4971bea2ae"
+  integrity sha512-VJTNsVecOub+Yg9qRdUCmX1U+9VTyvf7XzuH7hhoYrX/vM+0tmUjVbIGSAqlLAxYp3uCVcJC3tz8sPrQe3t74Q==
+  dependencies:
+    tslib "^1.9.0"
+
 "@schematics/angular@10.1.7":
   version "10.1.7"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-10.1.7.tgz#f7794b8f27ae48f7fce991e289b9fec8700eae49"
@@ -4780,6 +4787,11 @@ jsprim@^1.2.2:
     extsprintf "1.3.0"
     json-schema "0.2.3"
     verror "1.10.0"
+
+jwt-decode@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/jwt-decode/-/jwt-decode-3.0.0.tgz#d9a17ddf6d37c03bf037b0b27cf8756cfd01c5c7"
+  integrity sha512-RBQv2MTm3FNKQkdzhEyQwh5MbdNgMa+FyIJIK5RMWEn6hRgRHr7j55cRxGhRe6vGJDElyi6f6u/yfkP7AoXddA==
 
 karma-source-map-support@1.4.0:
   version "1.4.0"
