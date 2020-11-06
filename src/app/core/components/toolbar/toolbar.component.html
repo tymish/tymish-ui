@@ -1,10 +1,10 @@
 <mat-toolbar color="primary" class="fixed">
-  <button mat-icon-button (click)="toggleSidenav($event)" *ngIf="loggedIn">
+  <button mat-icon-button (click)="toggleSidenav($event)" *ngIf="auth.loggedIn">
     <i class="material-icons">menu</i>
   </button>
   <h1>Tymish</h1>
   <span class="spacer"></span>
-  <button mat-button routerLink="/login" *ngIf="!loggedIn">Login</button>
+  <button mat-button routerLink="/login" *ngIf="!auth.loggedIn">Login</button>
 
-  <button mat-button (click)="logout()" *ngIf="loggedIn">Logout</button>
+  <button mat-button (click)="logout()" *ngIf="auth.loggedIn">Logout</button>
 </mat-toolbar>

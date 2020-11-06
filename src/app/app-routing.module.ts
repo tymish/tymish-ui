@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
+import {AuthGuard} from './core/auth/auth.guard';
 import {InvoicesComponent} from './invoices/invoices.component';
 import {PayInvoiceComponent} from './invoices/pay-invoice/pay-invoice.component';
 import {LoginComponent} from './login/login.component';
@@ -12,11 +13,12 @@ const routes: Routes = [
     path: 'vendors',
     loadChildren: () =>
       import('./vendors/vendors.module').then((m) => m.VendorsModule),
-    canActivate: []
+    canActivate: [AuthGuard]
   },
   {
     path: 'invoices',
-    component: InvoicesComponent
+    component: InvoicesComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'invoices/pay/:id',
