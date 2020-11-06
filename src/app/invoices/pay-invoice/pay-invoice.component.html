@@ -3,9 +3,21 @@
 
 <form>
   <mat-form-field appearance="outline">
-    <mat-label>E-Transfer Reference #</mat-label>
-    <input matInput />
+    <mat-label>Amount</mat-label>
+    <input matInput #amount />
   </mat-form-field>
-  
-  <button mat-raised-button color="primary">Mark as paid</button>
+
+  <mat-form-field appearance="outline">
+    <mat-label>E-Transfer Reference #</mat-label>
+    <input matInput #reference />
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="payInvoice(+amount.value, reference.value)"
+    type="button"
+  >
+    Mark as paid
+  </button>
 </form>
