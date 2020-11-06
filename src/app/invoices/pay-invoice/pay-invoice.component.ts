@@ -15,19 +15,18 @@ export class PayInvoiceComponent implements OnInit {
     private readonly service: InvoicesService
   ) {}
 
-  invoiceId: string;
   invoice$: Observable<InvoiceDto>;
 
   ngOnInit(): void {
-    this.invoiceId = this.route.snapshot.params['id'];
-    this.invoice$ = this.service.getInvoiceById({id: this.invoiceId});
+    const invoiceId = this.route.snapshot.params['id'];
+    this.invoice$ = this.service.getInvoiceById({id: invoiceId});
   }
 
-  payInvoice(amount: number, reference: string) {
+  payInvoice(id: string, amount: number, reference: string) {
     this.service
       .payInvoice({
         body: {
-          invoiceId: this.invoiceId,
+          invoiceId: id,
           paymentAmount: amount,
           paymentReference: reference
         }

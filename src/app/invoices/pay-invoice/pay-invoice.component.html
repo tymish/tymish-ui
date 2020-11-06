@@ -1,23 +1,28 @@
 <h1>Pay Invoice</h1>
 <p>Mark the invoice as paid.</p>
 
-<form>
-  <mat-form-field appearance="outline">
-    <mat-label>Amount</mat-label>
-    <input matInput #amount />
-  </mat-form-field>
+<div *ngIf="invoice$ | async as invoice">
+  <p>Total Amount: ${{ invoice.totalAmount }}</p>
+  <p>Total Hours: {{ invoice.totalHours }}</p>
 
-  <mat-form-field appearance="outline">
-    <mat-label>E-Transfer Reference #</mat-label>
-    <input matInput #reference />
-  </mat-form-field>
+  <form>
+    <mat-form-field appearance="outline">
+      <mat-label>Amount</mat-label>
+      <input matInput #amount [value]="invoice.totalAmount" />
+    </mat-form-field>
 
-  <button
-    mat-raised-button
-    color="primary"
-    (click)="payInvoice(+amount.value, reference.value)"
-    type="button"
-  >
-    Mark as paid
-  </button>
-</form>
+    <mat-form-field appearance="outline">
+      <mat-label>E-Transfer Reference #</mat-label>
+      <input matInput #reference />
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="payInvoice(invoice.id, +amount.value, reference.value)"
+      type="button"
+    >
+      Mark as paid
+    </button>
+  </form>
+</div>
