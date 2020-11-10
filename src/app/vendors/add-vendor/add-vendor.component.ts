@@ -54,7 +54,6 @@ export class AddVendorComponent implements OnInit {
           hourlyPay: +this.hourlyPay.value
         }
       })
-      .subscribe();
-    this.router.navigate(['vendors']);
+      .subscribe(() => this.router.navigate(['vendors']));
   }
 }

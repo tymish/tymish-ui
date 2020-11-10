@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import {InvoiceDto} from 'src/app/core/api/models';
 import {InvoicesService} from 'src/app/core/api/services';
@@ -12,6 +12,7 @@ import {InvoicesService} from 'src/app/core/api/services';
 export class PayInvoiceComponent implements OnInit {
   constructor(
     private readonly route: ActivatedRoute,
+    private readonly router: Router,
     private readonly service: InvoicesService
   ) {}
 
@@ -31,6 +32,6 @@ export class PayInvoiceComponent implements OnInit {
           paymentReference: reference
         }
       })
-      .subscribe();
+      .subscribe(() => this.router.navigate(['invoices']));
   }
 }
