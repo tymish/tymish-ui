@@ -13,7 +13,7 @@ export class SidenavComponent implements OnInit {
   sideNavOpened = false;
   sideNavMode: 'side' | 'over' = 'over';
 
-  constructor(private readonly auth: AuthService) {}
+  constructor(readonly auth: AuthService) {}
 
   loggedIn = this.auth.loggedIn;
 

@@ -4,7 +4,7 @@
   <h2 *ngIf="submittedInvoices.length">Submitted Invoices</h2>
   <mat-list-item *ngFor="let invoice of submittedInvoices">
     <div>
-      {{ invoice.vendorDto.givenName }} {{ invoice.vendorDto.familyName }} -
+      {{ invoice.vendorDto.givenName }} {{ invoice.vendorDto.familyName }} |
       {{ invoice.totalHours }} Hours
     </div>
     <mat-chip-list>

@@ -6,7 +6,7 @@ import {PayInvoiceComponent} from './invoices/pay-invoice/pay-invoice.component'
 import {LoginComponent} from './login/login.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'vendors', pathMatch: 'full'},
+  {path: '', redirectTo: 'invoices', pathMatch: 'full'},
 
   // Feature Modules
   {
@@ -30,7 +30,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'vendors'
+    redirectTo: 'invoices'
   }
 ];
 

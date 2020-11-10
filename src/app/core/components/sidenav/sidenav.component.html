@@ -1,5 +1,6 @@
 <mat-sidenav-container>
   <mat-sidenav
+    *ngIf="auth.loggedIn"
     #sidenav
     [mode]="sideNavMode"
     role="navigation"
@@ -9,15 +10,15 @@
     <mat-nav-list>
       <a
         mat-list-item
-        routerLink="vendors"
-        (click)="sidenav.mode === 'over' && sidenav.close()"
-        >Vendors</a
-      >
-      <a
-        mat-list-item
         routerLink="invoices"
         (click)="sidenav.mode === 'over' && sidenav.close()"
         >Invoices</a
+      >
+      <a
+        mat-list-item
+        routerLink="vendors"
+        (click)="sidenav.mode === 'over' && sidenav.close()"
+        >Vendors</a
       >
     </mat-nav-list>
   </mat-sidenav>
