@@ -8,6 +8,7 @@ interface AddVendorForm {
   email: string;
   givenName: string;
   familyName: string;
+  hourlyPay: number;
 }
 
 @Component({
@@ -21,7 +22,8 @@ export class AddVendorComponent implements OnInit {
   form = new FormGroup({
     email: new FormControl(''),
     givenName: new FormControl(''),
-    familyName: new FormControl('')
+    familyName: new FormControl(''),
+    hourlyPay: new FormControl('')
   }) as IFormGroup<AddVendorForm>;
 
   get email() {
@@ -36,6 +38,10 @@ export class AddVendorComponent implements OnInit {
     return this.form.controls.familyName;
   }
 
+  get hourlyPay() {
+    return this.form.controls.hourlyPay;
+  }
+
   ngOnInit(): void {}
 
   addVendor() {
@@ -44,7 +50,8 @@ export class AddVendorComponent implements OnInit {
         body: {
           email: this.email.value,
           givenName: this.givenName.value,
-          familyName: this.familyName.value
+          familyName: this.familyName.value,
+          hourlyPay: +this.hourlyPay.value
         }
       })
       .subscribe();

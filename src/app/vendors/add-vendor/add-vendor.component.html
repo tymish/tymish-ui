@@ -1,18 +1,27 @@
+<h1 class="text-center">Add a new Vendor</h1>
+
 <form [formGroup]="form" (ngSubmit)="addVendor()">
-  <mat-form-field class="mx-auto" appearance="outline">
+  <mat-form-field class="form-field" appearance="outline">
     <mat-label>Email</mat-label>
     <input matInput formControlName="email" />
   </mat-form-field>
 
-  <mat-form-field class="mx-auto" appearance="outline">
+  <mat-form-field class="form-field" appearance="outline">
     <mat-label>First Name</mat-label>
     <input matInput formControlName="givenName" />
   </mat-form-field>
 
-  <mat-form-field class="mx-auto" appearance="outline">
+  <mat-form-field class="form-field" appearance="outline">
     <mat-label>Last Name</mat-label>
     <input matInput formControlName="familyName" />
   </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit">Add Vendor</button>
+  <mat-form-field class="form-field" appearance="outline">
+    <mat-label>Hourly Pay</mat-label>
+    <input matInput formControlName="hourlyPay" />
+  </mat-form-field>
+
+  <button mat-raised-button class="form-button" color="primary" type="submit">
+    Add Vendor
+  </button>
 </form>
