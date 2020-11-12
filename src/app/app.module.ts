@@ -22,6 +22,7 @@ import {VendorsModule} from './vendors/vendors.module';
 import {InvoicesComponent} from './invoices/invoices.component';
 import {PayInvoiceComponent} from './invoices/pay-invoice/pay-invoice.component';
 import {LoginComponent} from './login/login.component';
+import {ViewInvoiceComponent} from './invoices/view-invoice/view-invoice.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {LoginComponent} from './login/login.component';
     HomeComponent,
     InvoicesComponent,
     PayInvoiceComponent,
-    LoginComponent
+    LoginComponent,
+    ViewInvoiceComponent
   ],
   imports: [
     CommonModule,

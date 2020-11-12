@@ -25,6 +25,8 @@
     <mat-chip-list>
       <mat-chip>Paid: {{ invoice.paid | date: 'yyyy MM dd' }}</mat-chip>
     </mat-chip-list>
-    <button mat-stroked-button>View</button>
+    <button mat-stroked-button [routerLink]="['/invoices/view', invoice.id]">
+      View
+    </button>
   </mat-list-item>
 </mat-list>

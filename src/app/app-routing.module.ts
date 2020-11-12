@@ -3,6 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {AuthGuard} from './core/auth/auth.guard';
 import {InvoicesComponent} from './invoices/invoices.component';
 import {PayInvoiceComponent} from './invoices/pay-invoice/pay-invoice.component';
+import {ViewInvoiceComponent} from './invoices/view-invoice/view-invoice.component';
 import {LoginComponent} from './login/login.component';
 
 const routes: Routes = [
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'invoices/pay/:id',
     component: PayInvoiceComponent
+  },
+  {
+    path: 'invoices/view/:id',
+    component: ViewInvoiceComponent
   },
   {
     path: 'login',
