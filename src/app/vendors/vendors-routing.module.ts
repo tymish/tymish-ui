@@ -14,7 +14,7 @@ const routes: Routes = [
     component: AddVendorComponent
   },
   {
-    path: ':vendorId/manage',
+    path: 'manage/:id',
     component: ManageVendorComponent
   }
 ];

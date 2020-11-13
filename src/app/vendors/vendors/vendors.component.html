@@ -4,6 +4,9 @@
     <mat-chip-list>
       <mat-chip *ngIf="!vendor.registered">Pending</mat-chip>
     </mat-chip-list>
+    <button mat-flat-button [routerLink]="['/vendors/manage/', vendor.id]">
+      Manage
+    </button>
   </mat-list-item>
 </mat-list>
 
