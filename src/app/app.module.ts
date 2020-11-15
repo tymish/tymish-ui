@@ -13,9 +13,6 @@ import {AppComponent} from './app.component';
 
 import {environment} from 'src/environments/environment';
 
-// NGRX
-import {StoreDevtoolsModule} from '@ngrx/store-devtools';
-
 import {CoreModule} from './core/core.module';
 import {HomeComponent} from './home/home.component';
 import {VendorsModule} from './vendors/vendors.module';
@@ -42,10 +39,6 @@ import {ViewInvoiceComponent} from './invoices/view-invoice/view-invoice.compone
     BrowserAnimationsModule,
     MatModule,
     ApiModule.forRoot({rootUrl: environment.api}),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25,
-      logOnly: environment.production
-    }),
     CoreModule,
     VendorsModule
   ],
